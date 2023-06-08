@@ -3,31 +3,31 @@ const initialState = {
         {
             id: 1,
             name: 'Конкурс "Сетевое и серверное администрирование"',
-            image: './src/assets/pics/test_event.png',
+            image: require('..//assets//pics//test_event.png'),
             date: '30 октября 2023'
         },
         {
             id: 2,
             name: 'Конкурс "Сетевое и серверное администрирование"',
-            image: './src/assets/pics/test_event.png',
+            image: require('..//assets//pics//test_event.png'),
             date: '30 октября 2023'
         },
         {
             id: 3,
             name: 'Конкурс "Сетевое и серверное администрирование"',
-            image: './src/assets/pics/test_event.png',
+            image: require('..//assets//pics//test_event.png'),
             date: '30 октября 2023'
         },
         {
             id: 4,
             name: 'Конкурс "Сетевое и серверное администрирование"',
-            image: './src/assets/pics/test_event.png',
+            image: require('..//assets//pics//test_event.png'),
             date: '30 октября 2023'
         },
         {
             id: 5,
             name: 'Конкурс "Сетевое и серверное администрирование"',
-            image: './src/assets/pics/test_event.png',
+            image: require('..//assets//pics//test_event.png'),
             date: '30 октября 2023'
         }
     ],

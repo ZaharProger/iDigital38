@@ -1,5 +1,11 @@
+.Carousel {
+    margin-left: 96px;
+    margin-right: 96px;
+}
+
 .Carousel-list {
     background-color: var(--on-primary-color);
+    box-shadow: 0 3px 10px var(--border-color);
     border-radius: 30px;
     overflow: hidden;
 }
@@ -7,27 +13,24 @@
 .Carousel-slider-box {
     background-color: var(--on-primary-color);
     border-color: var(--border-color);
-    box-shadow: 0 10px 5px var(--border-color);
+    box-shadow: 0 3px 4px var(--border-color);
     border-radius: 0 0 30px 30px;
 }
 
-.Slider {
-    width: 5px;
-    height: 5px;
+.carousel-indicators [data-bs-target] {
+    width: 15px;
+    height: 15px;
     background-color: var(--secondary-color);
-    border: 1px solid var(--border-color);
+    border: 2px solid var(--border-color);
     border-radius: 100%;
     transition: 0.3s ease-out;
+    opacity: 1;
 }
 
-.Slider::before {
-    width: 10px;
-    height: 10px;
-    background-color: var(--primary-color);
-    border: 2px solid var(--secondary-color);
-    border-radius: 100%;
+.carousel-indicators {
+    position: relative!important;
 }
 
-.active {
-    background-color: var(--border-color)!important;
+.carousel-indicators .active {
+    background-color: var(--border-color);
 }

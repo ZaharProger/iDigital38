@@ -15,10 +15,11 @@ export default function Carousel(props) {
     const carouselItems = useSelector(state => {
         return list_type === LIST_TYPES.events? state.events : state.forum_programme
     })
+    const carouselId = list_type === LIST_TYPES.events? 'event-carousel' : 'forum-programme-carousel'
+    const carouselClassList = `Carousel carousel slide d-flex flex-column mb-${containerMargin}`
 
     return (
-        <div className={ `{Carousel carousel slide d-flex flex-column me-auto ms-auto mb-${containerMargin}` }
-             data-ride="carousel">
+        <div id={ carouselId } className={ carouselClassList } data-bs-ride="carousel">
             <ComponentHeader header_text={ header_text } />
             <CarouselList list_props={{
                 items: carouselItems,
@@ -26,7 +27,8 @@ export default function Carousel(props) {
             }} />
             <CarouselSliderBox slider_box_props={{
                 items: carouselItems,
-                list_type
+                list_type,
+                carousel_id: carouselId
             }} />
         </div>
     )

@@ -1,16 +1,16 @@
-.Event-list-item > img {
+.item-data > img {
     border-radius: 30px;
 }
 
-.Event-list-item > div > u, .Event-list-item > div > span {
+.item-data > div > span {
+    font-family: 'Roboto', sans-serif;
     color: var(--secondary-color);
+    font-size: 1.2em;
+    letter-spacing: 1px;
+
 }
 
-.Event-list-item > div > u {
-    font-size: 0.9em;
-}
-
-.Event-list-item > div > span {
-    font-weight: bold;
+.item-data > div > span:last-child {
     font-size: 1.5em;
+    font-weight: bold;
 }
