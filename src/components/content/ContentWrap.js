@@ -1,8 +1,8 @@
 import React from "react"
 
 import Carousel from "./carousel/Carousel"
-import '../../styles/content-wrap.css'
 import {HEADERS, LIST_TYPES} from "../../globalConstants"
+import '../../styles/content-wrap.css'
 
 // Это обертка над всем контентом страницы (я пока хз пихать ли сюда навбар, но
 // вообще все содержимое страницы размещать здесь (App будет использоваться для перенаправления по роутам)
