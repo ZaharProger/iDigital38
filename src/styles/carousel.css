@@ -1,0 +1,33 @@
+.Carousel-list {
+    background-color: var(--on-primary-color);
+    border-radius: 30px;
+    overflow: hidden;
+}
+
+.Carousel-slider-box {
+    background-color: var(--on-primary-color);
+    border-color: var(--border-color);
+    box-shadow: 0 10px 5px var(--border-color);
+    border-radius: 0 0 30px 30px;
+}
+
+.Slider {
+    width: 5px;
+    height: 5px;
+    background-color: var(--secondary-color);
+    border: 1px solid var(--border-color);
+    border-radius: 100%;
+    transition: 0.3s ease-out;
+}
+
+.Slider::before {
+    width: 10px;
+    height: 10px;
+    background-color: var(--primary-color);
+    border: 2px solid var(--secondary-color);
+    border-radius: 100%;
+}
+
+.active {
+    background-color: var(--border-color)!important;
+}

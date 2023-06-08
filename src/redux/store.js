@@ -5,4 +5,4 @@ import reducer from './reducer.js'
 
 const store = configureStore({ reducer: reducer, preloadedState: initialState })
 
-export default store;
+export default store

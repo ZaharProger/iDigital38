@@ -1,0 +1,16 @@
+.Event-list-item > img {
+    border-radius: 30px;
+}
+
+.Event-list-item > div > u, .Event-list-item > div > span {
+    color: var(--secondary-color);
+}
+
+.Event-list-item > div > u {
+    font-size: 0.9em;
+}
+
+.Event-list-item > div > span {
+    font-weight: bold;
+    font-size: 1.5em;
+}

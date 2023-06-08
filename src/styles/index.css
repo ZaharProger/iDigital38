@@ -2,3 +2,10 @@
     font-family: iDigital;
     src: url('./src/assets/fonts/idigital.ttf')  format('truetype');
 }
+
+:root {
+    --primary-color: #000046;
+    --secondary-color: white;
+    --on-primary-color: #262662;
+    --border-color: #e606b3;
+}
