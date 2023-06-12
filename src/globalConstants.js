@@ -13,5 +13,9 @@ export const HEADERS = {
     events: 'Мероприятия',
     forum_programme: 'Программа форума',
     moderators: 'Модераторы',
-    speakers: 'Спикеры'
+    speakers: 'Спикеры',
+    number: '№',
+    report_name: 'Наименование доклада',
+    time: 'Время',
+    main_speakers: 'Ключевые спикеры'
 }

@@ -1,27 +1,38 @@
-.regular-text, .semi-header-text, .header-text, .caption-text, .caption-header-text {
+.regular-text, .semi-header-text, .header-text, .caption-text,
+.caption-header-text {
     font-family: 'Roboto', sans-serif;
     color: var(--secondary-color);
     letter-spacing: 1px;
+}
+
+.table-header-text, .table-data-text, .table-main-data-text {
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.9em;
+}
+
+.table-main-data-text, .table-data-text {
+    color: var(--on-secondary-color);
+}
+
+.table-header-text {
+    color: var(--secondary-color);
 }
 
 .caption-text, .caption-header-text {
     opacity: 0.75;
 }
 
-.semi-header-text, .header-text, .caption-header-text {
+.semi-header-text, .header-text, .caption-header-text,
+.table-header-text, .table-main-data-text {
     font-weight: bold;
 }
 
-.regular-text {
-    font-size: 1.2em;
-}
-
-.semi-header-text {
-    font-size: 1.3em;
+.semi-header-text, .regular-text {
+    font-size: 1.1em;
 }
 
 .header-text {
-    font-size: 1.5em;
+    font-size: 1.3em;
 }
 
 .hovered {

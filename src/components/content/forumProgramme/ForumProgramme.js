@@ -11,9 +11,9 @@ export default function ForumProgramme() {
     const items = useSelector(state => state.forum_programme)
 
     return (
-        <div id="Forum-programme" className="d-flex flex-column mb-5 me-5 ms-5">
+        <div id="Forum-programme" className="d-flex flex-column mb-5 ms-2 me-2">
             <ComponentHeader header_text={ HEADERS.forum_programme } />
-            <div id="forum-programme-list" className="d-flex flex-column pe-5 ps-5 pt-3 pb-3">
+            <div id="forum-programme-list" className="d-flex flex-column pe-4 ps-4 pt-3 pb-3">
                 {
                     items.map(item => {
                         return <ForumProgrammeListItem

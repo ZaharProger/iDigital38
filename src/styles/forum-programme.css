@@ -7,3 +7,18 @@
 .Forum-programme-list-item {
     transition: 0.3s ease-out;
 }
+
+thead {
+    background-color: var(--primary-color);
+}
+
+td, th {
+    padding: 10px!important;
+}
+
+table {
+    border-radius: 10px;
+    outline: 1px solid var(--border-color);
+    overflow: hidden;
+    box-shadow: 0 1px 7px var(--border-color);
+}

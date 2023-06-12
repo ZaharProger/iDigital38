@@ -8,7 +8,7 @@ export default function WrapButton(props) {
 
     const { set_is_wrapped: setIsWrapped, header_text } = props.wrap_button_props
 
-    const buttonCaptionClassList = `header-text text-center d-flex me-2${isHovered? ' hovered' : ''}`
+    const buttonCaptionClassList = `header-text p-0 d-flex me-2${isHovered? ' hovered' : ''}`
     const buttonIconClassList = `fa-regular fa-${isClicked? 'plus' : 'minus'} m-auto${isHovered? ' hovered' : ''}`
 
     const changeWrappedDataState = useCallback(() => {
@@ -19,7 +19,7 @@ export default function WrapButton(props) {
     }, [setIsWrapped])
 
     return (
-        <div className="Wrap-button d-flex flex-row mb-3 me-auto" onClick={ () => changeWrappedDataState() }
+        <div className="Wrap-button d-flex flex-row mb-1 me-auto" onClick={ () => changeWrappedDataState() }
            onMouseOver={ () => setIsHovered(true) } onMouseLeave={ () => setIsHovered(false) } >
             <button type="button" className={ buttonCaptionClassList }>
                 {
