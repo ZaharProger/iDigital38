@@ -1,0 +1,29 @@
+.regular-text, .semi-header-text, .header-text, .caption-text, .caption-header-text {
+    font-family: 'Roboto', sans-serif;
+    color: var(--secondary-color);
+    letter-spacing: 1px;
+}
+
+.caption-text, .caption-header-text {
+    opacity: 0.75;
+}
+
+.semi-header-text, .header-text, .caption-header-text {
+    font-weight: bold;
+}
+
+.regular-text {
+    font-size: 1.2em;
+}
+
+.semi-header-text {
+    font-size: 1.3em;
+}
+
+.header-text {
+    font-size: 1.5em;
+}
+
+.hovered {
+    color: var(--border-color)!important;
+}

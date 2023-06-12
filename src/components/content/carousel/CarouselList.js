@@ -1,10 +1,10 @@
 import React from "react"
 
-import {LIST_TYPES} from "../../../globalConstants"
 import EventListItem from "../events/EventListItem"
+import {LIST_TYPES} from "../../../globalConstants"
 
 export default function CarouselList(props) {
-    const { items, list_type } = props.list_props
+    const { items, list_type } = props.carousel_list_props
 
     return (
         <div className="Carousel-list carousel-inner">
@@ -12,13 +12,23 @@ export default function CarouselList(props) {
                 items.map(item => {
                     const itemIndex = items.indexOf(item)
 
-                    return list_type === LIST_TYPES.events?
-                        <EventListItem key={`event_item_${item.id}`} item_props={{
-                            item_data: item,
-                            is_active: itemIndex == 0
-                        }} />
-                        :
-                        null
+                    let carouselListItem
+                    let itemKey
+                    switch (list_type) {
+                        case LIST_TYPES.events:
+                            itemKey = `event_item_${item.id}`
+                            carouselListItem = <EventListItem key={ itemKey } item_props={{
+                                item_data: item,
+                                is_active: itemIndex == 0
+                            }} />
+                            break
+                        default:
+                            itemKey = null
+                            carouselListItem = null
+                            break
+                    }
+
+                    return carouselListItem
                 })
             }
         </div>

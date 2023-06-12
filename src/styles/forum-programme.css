@@ -1,0 +1,9 @@
+#forum-programme-list {
+    background-color: var(--on-primary-color);
+    box-shadow: 0 3px 10px var(--border-color);
+    border-radius: 30px;
+}
+
+.Forum-programme-list-item {
+    transition: 0.3s ease-out;
+}

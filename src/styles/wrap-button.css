@@ -1,0 +1,17 @@
+.Wrap-button {
+    cursor: pointer;
+    color: var(--secondary-color);
+}
+
+.Wrap-button > button {
+    border-style: none;
+    background-color: transparent;
+}
+
+.Wrap-button > i {
+    font-size: 1.8em;
+}
+
+.Wrap-button > button, .Wrap-button > i {
+    transition: 0.3s ease-out;
+}

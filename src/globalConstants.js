@@ -11,5 +11,7 @@ export const LIST_TYPES = {
 
 export const HEADERS = {
     events: 'Мероприятия',
-    forum_programme: 'Программа форума'
+    forum_programme: 'Программа форума',
+    moderators: 'Модераторы',
+    speakers: 'Спикеры'
 }

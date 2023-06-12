@@ -1,6 +1,6 @@
 import React from "react"
 
-import '../../../styles/events.css'
+import '../../../styles/event.css'
 
 export default function EventListItem(props) {
     const { item_data, is_active } = props.item_props
@@ -8,11 +8,11 @@ export default function EventListItem(props) {
 
     return (
         <div className={ itemClassList } data-bs-interval="7000">
-            <div className="item-data d-flex flex-row">
+            <div className="d-flex flex-row">
                 <img src={ item_data.image } alt="Мероприятие" />
                 <div className="d-flex flex-column m-auto pe-5 ps-5 pt-3 pb-3">
-                    <span className="text-center mb-5">{ item_data.name }</span>
-                    <span className="text-center mt-5">{ item_data.date }</span>
+                    <span className="regular-text text-center mb-5">{ item_data.name }</span>
+                    <span className="semi-header-text text-center mt-5">{ item_data.date }</span>
                 </div>
             </div>
         </div>
