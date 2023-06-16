@@ -1,0 +1,9 @@
+#News {
+    margin: 0px 150px 150px 150px
+}
+
+#news-block {
+    background-color: var(--on-primary-color);
+    box-shadow: 0 3px 10px var(--border-color);
+    border-radius: 30px;
+}

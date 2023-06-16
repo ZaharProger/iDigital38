@@ -38,3 +38,7 @@
 .hovered {
     color: var(--border-color)!important;
 }
+
+.purple-letter {
+    color: var(--border-color);
+}

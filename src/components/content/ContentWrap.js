@@ -3,6 +3,7 @@ import React from "react"
 import {HEADERS, LIST_TYPES} from "../../globalConstants"
 import '../../styles/content-wrap.css'
 import '../../styles/classes.css'
+import News from "./news/News"
 import Carousel from "./carousel/Carousel"
 import ForumProgramme from "./forumProgramme/ForumProgramme"
 
@@ -11,6 +12,7 @@ import ForumProgramme from "./forumProgramme/ForumProgramme"
 export default function ContentWrap() {
     return (
         <div id="Content-wrap" className="d-flex flex-column p-2">
+            <News/>
             <ForumProgramme />
             <Carousel data={ {
                 header_text: HEADERS.events,

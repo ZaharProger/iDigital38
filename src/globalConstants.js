@@ -17,5 +17,6 @@ export const HEADERS = {
     number: '№',
     report_name: 'Наименование доклада',
     time: 'Время',
-    main_speakers: 'Ключевые спикеры'
+    main_speakers: 'Ключевые спикеры',
+    news: 'Новости'
 }
