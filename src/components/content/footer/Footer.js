@@ -3,8 +3,7 @@ import React from "react"
 import footer from "../../../assets/pics/footer.svg"
 import vk from "../../../assets/pics/icon/vk.svg"
 import telegram from "../../../assets/pics/icon/telegram.svg"
-
-import Logo from "../Logo.js"
+import logo from "../../../assets/pics/logo.svg"
 
 import '../../../styles/footer.css'
 
@@ -41,8 +40,8 @@ export default function Footer(){
                     <img src={telegram} id="Icon"></img>
                     <img src={vk} id="Icon" style={{marginLeft: 30}}></img>
                 </div>
-                <h2> <a href="https://www.istu.edu/" style={{fontSize: 18, fontWeight: "bold", color: "white", marginLeft: 175}}>ФГБОУ ВО ИРНИТУ</a></h2>
-                <Logo></Logo>
+                <h2> <a href="https://www.istu.edu/" style={{fontSize: 18, fontWeight: "bold", color: "white", marginLeft: 160}}>ФГБОУ ВО ИРНИТУ</a></h2>
+                <img src={logo}></img>
             </div>
             <div id="Line"></div>
             <div id="History">
