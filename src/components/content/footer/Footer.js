@@ -32,7 +32,7 @@ export default function Footer(){
                 <h3 style={{marginTop: 15, fontSize: 18, fontWeight: "bold"}}> Начальник отдела информационно-аналитической деятельности <br/> и стратегического планирования в управлении развития<br/> информационных технологий </h3>
                 <h3 style={{marginTop: -6, fontSize: 18, fontWeight: "bold"}}> a.bogdanov@govirk.ru </h3>
             </div>
-            <div id="Security_block" style={{color: "#9B9B9B"}}>
+            <div id="Security_block" style={{color: "#9B9B9B", }}>
                 <span>Копирование и использование материалов, размещенных на данном сайте, без разрешения правообладателя не допускается.<br/>Все права защищены.</span>
             </div>
             <div className="Info_block w-100" style={{flexDirection: "row", display: "flex", justifyContent: "space-between", alignItems: "center"}}>
@@ -46,7 +46,7 @@ export default function Footer(){
             <div id="Line"></div>
             <div id="History">
                 <span style={{marginLeft: 38, fontSize: 16}}>Прошлые форумы:</span>
-                <a href="https://leader-id.ru/events/294793" style={{color: "white", fontSize: 16, textDecoration: "none", marginLeft: 490}}>2022 - LEADER ID</a>
+                <a href="https://leader-id.ru/events/294793" style={{color: "white", fontSize: 16, textDecoration: "none", marginLeft: 100}}>2022 - LEADER ID</a>
             </div>
         </div>
     )
