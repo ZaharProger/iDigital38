@@ -5,7 +5,7 @@ import {HEADERS} from "../../../globalConstants"
 import '../../../styles/news.css'
 
 
-export default function ForumProgramme() {
+export default function News() {
 
     return (
         <div id="News" className="d-flex flex-column">

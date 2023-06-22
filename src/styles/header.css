@@ -1,0 +1,14 @@
+#Header {
+    top: 0;
+    position: fixed;
+    display: flex;
+    height: 104px;
+    background-color: rgba(0, 0, 70, .7);
+    align-items: center;
+    justify-content: space-between;
+    z-index: 99;
+}
+a {
+    text-align: center;
+    cursor: pointer;
+}
