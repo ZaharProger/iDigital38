@@ -8,7 +8,7 @@ import '../../../styles/news.css'
 export default function News() {
 
     return (
-        <div id="News" className="d-flex flex-column">
+        <div id="News" className="d-flex flex-column container-gap">
             <ComponentHeader header_text={ HEADERS.news } />
             <div id="news-block" className="regular-text d-flex flex-column px-4 py-4">
                 <span>

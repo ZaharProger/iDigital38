@@ -2,6 +2,7 @@
     background-color: var(--on-primary-color);
     box-shadow: 0 3px 10px var(--border-color);
     border-radius: 30px;
+    max-width: 2300px;
 }
 
 .Forum-programme-list-item {

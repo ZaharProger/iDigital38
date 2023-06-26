@@ -5,7 +5,7 @@ import {ROUTES} from "../globalConstants";
 
 export default function App() {
   return (
-    <div id="App">
+    <div id="App" className="h-100">
       <Routes>
           <Route path={ ROUTES.main } element={ <ContentWrap /> } />
       </Routes>

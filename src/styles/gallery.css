@@ -1,0 +1,62 @@
+#Gallery > span a {
+    transition: 0.3s ease-out;
+}
+
+#Gallery > span a:hover {
+    color: var(--border-color);
+}
+
+.Gallery-item > img {
+    border: 2px solid var(--border-color);
+    box-shadow: 0 2px 10px var(--border-color);
+    border-radius: 10px;
+}
+
+#Gallery-item-fullscreen-view > i {
+    cursor: pointer;
+}
+
+.Gallery-item > img {
+    cursor: zoom-in;
+    transition: 0.3s ease-out;
+    transform: scale(0.97);
+}
+
+.Gallery-item > img:hover {
+    transform: scale(1);
+}
+
+#Gallery-item-fullscreen-view {
+    background-color: var(--on-secondary-color);
+    width: 100%;
+    inset-inline: auto;
+    inset-block: auto;
+    height: 100%;
+    z-index: 100;
+    animation: fullscreen-reveal 0.3s ease-out 0s 1 forwards;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+@keyframes fullscreen-reveal {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+#Gallery-item-fullscreen-view > i {
+    transition: 0.3s ease-out;
+    color: var(--secondary-color);
+    font-size: 2.5em;
+    inset-block: 3vmin auto;
+    inset-inline: auto 5vmin;
+}
+
+#Gallery-item-fullscreen-view > i:hover {
+    color: var(--border-color);
+}

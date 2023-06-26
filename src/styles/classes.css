@@ -1,5 +1,5 @@
 .regular-text, .semi-header-text, .header-text, .caption-text,
-.caption-header-text {
+.caption-header-text, .footer-text {
     font-family: 'Roboto', sans-serif;
     color: var(--secondary-color);
     letter-spacing: 1px;
@@ -23,7 +23,7 @@
 }
 
 .semi-header-text, .header-text, .caption-header-text,
-.table-header-text, .table-main-data-text {
+.table-header-text, .table-main-data-text, .footer-text {
     font-weight: bold;
 }
 
@@ -31,7 +31,7 @@
     font-size: 1.1em;
 }
 
-.header-text {
+.header-text, .footer-text {
     font-size: 1.3em;
 }
 
@@ -41,4 +41,12 @@
 
 .purple-letter {
     color: var(--border-color);
+}
+
+.container-gap {
+    margin-bottom: 150px;
+}
+
+.neon {
+    box-shadow: 0 3px 10px var(--border-color);
 }

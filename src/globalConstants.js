@@ -6,7 +6,8 @@ export const ROUTES = {
 
 export const LIST_TYPES = {
     events: 0,
-    forum_programme: 1
+    forum_programme: 1,
+    gallery_items: 2
 }
 
 export const HEADERS = {
@@ -18,5 +19,6 @@ export const HEADERS = {
     report_name: 'Наименование доклада',
     time: 'Время',
     main_speakers: 'Ключевые спикеры',
-    news: 'Новости'
+    news: 'Новости',
+    gallery: 'Фотогалерея'
 }

@@ -11,7 +11,7 @@ export default function ForumProgramme() {
     const items = useSelector(state => state.forum_programme)
 
     return (
-        <div id="Forum-programme" className="d-flex flex-column mb-5 ms-4 me-4">
+        <div id="Forum-programme" className="d-flex flex-column container-gap ms-4 me-4">
             <ComponentHeader header_text={ HEADERS.forum_programme } />
             <div id="forum-programme-list" className="d-flex flex-column pe-4 ps-4 pt-3 pb-3">
                 {

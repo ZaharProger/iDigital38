@@ -6,18 +6,33 @@ import CarouselSliderBox from "./CarouselSliderBox"
 import '../../../styles/carousel.css'
 import {LIST_TYPES} from "../../../globalConstants"
 import CarouselList from "./CarouselList"
+import CarouselButtons from "./CarouselButtons"
 
 export default function Carousel(props) {
-    const { header_text, list_type } = props.data
-    let containerMargin = [0, 1, 2, 3, 4, 5].includes(props.data.container_margin)?
-        props.data.container_margin : 3
+    const { header_text, list_type, has_sliders, first_item } = props.data
 
-    const carouselItems = useSelector(state => state.events)
-    const carouselId = list_type === LIST_TYPES.events? 'event-carousel' : ''
-    const carouselClassList = `Carousel carousel slide d-flex flex-column mb-${containerMargin} mt-5`
+    let carouselId
+    let margin
+    const carouselItems = useSelector(state => {
+        switch (list_type) {
+            case LIST_TYPES.events:
+                margin = 'mt-5 me-auto ms-auto'
+                carouselId = 'event-carousel'
+                return state.events
+            case LIST_TYPES.gallery_items:
+                margin = 'mt-auto mb-auto ms-auto me-auto'
+                carouselId = 'gallery-carousel'
+                return state.gallery_items
+            default:
+                carouselId = ''
+                margin = 'mt-5'
+                return Array()
+        }
+    })
+    const carouselClassList = `carousel slide Carousel d-flex container-gap flex-column ${ margin }`
 
     return (
-        <div id={ carouselId } className={ carouselClassList } data-bs-ride="carousel">
+        <div id={ carouselId } className={ carouselClassList } data-bs-ride="true">
             {
                 typeof header_text === 'string'?
                     <ComponentHeader header_text={ header_text } />
@@ -26,13 +41,21 @@ export default function Carousel(props) {
             }
             <CarouselList carousel_list_props={{
                 items: carouselItems,
-                list_type
-            }} />
-            <CarouselSliderBox slider_box_props={{
-                items: carouselItems,
                 list_type,
-                carousel_id: carouselId
+                first_item
             }} />
+            <CarouselButtons carousel_id={ carouselId } />
+            {
+                has_sliders?
+                    <CarouselSliderBox slider_box_props={{
+                        items: carouselItems,
+                        list_type,
+                        carousel_id: carouselId,
+                        first_item
+                    }} />
+                    :
+                    null
+            }
         </div>
     )
 }

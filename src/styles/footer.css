@@ -6,7 +6,7 @@
     font-size: 34px;
     margin-left: 40px;
     margin-top: 20px;
-    font-weight: "bold";
+    font-weight: bold;
     color: var(--secondary-color);
     
 }
@@ -25,7 +25,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #000046;
+    background-color: var(--primary-color);
     opacity: .7;
     border-radius: 50px 50px 0px 0px;
     text-align: center;
@@ -34,29 +34,36 @@
 
 .Info_block{
     height: 90px;
-    background-color: #000046;
+    background-color: var(--primary-color);
     opacity: .7;
-    display: flex;
-    /* justify-content: center; */
-    align-items: center;
-    flex-direction: row;
     padding: 10px;
 }
 
-#Icon{
+.Info_block > h2 a, #History > a {
+    transition: 0.3s ease-out;
+}
+
+.Info_block > h2 a, #History > a {
+    color: var(--secondary-color);
+}
+
+.Info_block > h2 a:hover, #History > a:hover {
+    color: var(--border-color);
+}
+
+.Icon{
     height: 50px;
     width: 50px;
-    /* margin-left: 28px; */
 }
 
 #Line{
     height: .3px;
-    background-color: white;
+    background-color: var(--secondary-color);
 }
 
 #History{
     height: 70px;
-    background-color: #000046;
+    background-color: var(--primary-color);
     opacity: .7;
     display: flex;
     align-items: center;

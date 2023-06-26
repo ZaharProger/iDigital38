@@ -17,3 +17,8 @@
     --border-color: #e606b3;
     --on-secondary-color: black;
 }
+
+html, body {
+    height: 100%;
+    background-color: var(--primary-color);
+}

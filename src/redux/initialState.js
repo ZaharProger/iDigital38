@@ -2,33 +2,31 @@ const initialState = {
     events: [
         {
             id: 1,
-            name: 'Конкурс "Сетевое и серверное администрирование"',
-            image: require('..//assets//pics//test_event.png'),
-            date: '30 октября 2023'
+            name: 'Региональный конкурс IT-проектов для студентов и школьников',
+            image: require('..//assets//pics//events//22-09-2023.png'),
+            date: '22 сентября 2023',
+            link: 'https://leader-id.ru/events/418551'
         },
         {
             id: 2,
-            name: 'Конкурс "Сетевое и серверное администрирование"',
-            image: require('..//assets//pics//test_event.png'),
-            date: '30 октября 2023'
+            name: 'Вторые Штабные Киберучения IrkCyberDef',
+            image: require('..//assets//pics//events//21-10-2023.png'),
+            date: '21 октября 2023',
+            link: 'https://leader-id.ru/events/435589'
         },
         {
             id: 3,
-            name: 'Конкурс "Сетевое и серверное администрирование"',
-            image: require('..//assets//pics//test_event.png'),
-            date: '30 октября 2023'
+            name: 'Межвузовский хакатон по проектированию интернет вещей "IoT38"',
+            image: require('..//assets//pics//events//27-10-2023.png'),
+            date: '27 октября 2023',
+            link: 'https://leader-id.ru/events/436600'
         },
         {
             id: 4,
             name: 'Конкурс "Сетевое и серверное администрирование"',
-            image: require('..//assets//pics//test_event.png'),
-            date: '30 октября 2023'
-        },
-        {
-            id: 5,
-            name: 'Конкурс "Сетевое и серверное администрирование"',
-            image: require('..//assets//pics//test_event.png'),
-            date: '30 октября 2023'
+            image: require('..//assets//pics//events//30-10-2023.png'),
+            date: '30 октября 2023',
+            link: 'https://leader-id.ru/events/435548'
         }
     ],
     forum_programme: [
@@ -461,6 +459,32 @@ const initialState = {
                     ]
                 }
             ]
+        }
+    ],
+    gallery_items: [
+        {
+            id: 0,
+            image: require('..//assets//pics//gallery//0.png')
+        },
+        {
+            id: 1,
+            image: require('..//assets//pics//gallery//1.png')
+        },
+        {
+            id: 2,
+            image: require('..//assets//pics//gallery//2.png')
+        },
+        {
+            id: 3,
+            image: require('..//assets//pics//gallery//3.png')
+        },
+        {
+            id: 4,
+            image: require('..//assets//pics//gallery//4.png')
+        },
+        {
+            id: 5,
+            image: require('..//assets//pics//gallery//5.png')
         }
     ]
 }

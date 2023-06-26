@@ -7,8 +7,19 @@
     align-items: center;
     justify-content: space-between;
     z-index: 99;
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
 }
 a {
     text-align: center;
     cursor: pointer;
+}
+
+#Header > div > a {
+    transition: 0.3s ease-out;
+    color: var(--secondary-color);
+}
+
+#Header > div > a:hover {
+    color: var(--border-color);
 }

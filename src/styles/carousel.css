@@ -1,11 +1,9 @@
 .Carousel {
-    margin-left: 96px;
-    margin-right: 96px;
+    max-width: 1000px;
 }
 
 .Carousel-list {
     background-color: var(--on-primary-color);
-    box-shadow: 0 3px 10px var(--border-color);
     border-radius: 30px;
     overflow: hidden;
 }
@@ -33,4 +31,27 @@
 
 .carousel-indicators .active {
     background-color: var(--border-color);
+}
+
+.Carousel-buttons > button > i {
+    font-size: 2.5em;
+}
+
+.carousel-control-prev {
+    left: -150px;
+}
+
+.carousel-control-next {
+    right: -150px;
+}
+
+.carousel-control-next, .carousel-control-prev {
+    transition: 0.3s ease-out;
+    color: var(--secondary-color)!important;
+    opacity: 1;
+}
+
+.carousel-control-next:hover, .carousel-control-prev:hover {
+    color: var(--border-color)!important;
+    opacity: 1;
 }
