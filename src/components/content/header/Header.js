@@ -46,7 +46,7 @@ export default function Header() {
                     marginTop: "20px",
                 }}
             >
-            <img src={nerpa_intro} id="NerpaIntro" style={{ marginTop: '200px' }}></img>
+            <img src={nerpa_intro} id="NerpaIntro" style={{marginLeft: "-90px",marginTop: '100px' }}></img>
 
             <div
                 style={{
@@ -57,19 +57,18 @@ export default function Header() {
                     display: "flex",
                     justifyContent: "center",
                     flexDirection: "column",
-                    alignItems: "center",
+                    alignItems: "flex-start",
                     textAlign: "center",
                     gap: 10,
                     marginRight: 50,
-                    marginTop: '500px'
-                    // Убедитесь, что родительский контейнер также имеет высоту 100%
+                    marginTop: '350px'
                 }}
             >
-                 <span>
- ИРНИТУ приглашает молодежь<br />
-                     Сибири и Дальнего востока к<br />
-                     участию в конкурсе IT-проектов
-                 </span>
+                   <span>
+            ИРНИТУ приглашает молодежь<br />
+            Сибири и Дальнего востока к<br />
+            участию в конкурсе IT-проектов
+          </span>
             </div>
 
 
