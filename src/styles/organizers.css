@@ -2,7 +2,11 @@
     display: flex;
     align-items: center;
 }
-
+#organizer-block {
+    background-color: var(--on-primary-color);
+    box-shadow: 0 3px 10px var(--border-color);
+    border-radius: 30px;
+}
 .organizer-image {
     width: 200px;
     height: 200px;
@@ -17,4 +21,23 @@
     /*margin-top: 10px;*/
     margin-left: 40px;
     color: var(--secondary-color);
+}
+
+.organizer-heading {
+    margin-top: 30px;
+    font-size: 22px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.organizer-subheading {
+    margin-top: 15px;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.organizer-description {
+    margin-top: -6px;
+    font-size: 18px;
+    font-weight: bold;
 }
