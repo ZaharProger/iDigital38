@@ -2,6 +2,8 @@ import React from "react"
 import background from "../../../assets/pics/background.svg"
 import logo from "../../../assets/pics/logo.svg"
 import "../../../styles/header.css"
+import nerpa_intro from "../../../assets/pics/nerpa_intro.svg";
+
 
 export default function Header() {
     const scrollToSection = (sectionId) => {
@@ -12,7 +14,7 @@ export default function Header() {
     };
 
     return (
-        <div  style={{height: 200, backgroundImage: `url(${background})`,
+        <div  style={{height: 800, backgroundImage: `url(${background})`,
                                                 backgroundRepeat: "no-repeat",
                                                 backgroundSize: "cover"
         }}>
@@ -33,6 +35,47 @@ export default function Header() {
                     <a onClick={() => scrollToSection('event-carousel')}>Мероприятия</a>
                 </div>
             </div>
+
+
+
+
+            <div
+                style={{
+                    display: "flex",
+                    alignItems: "center",
+                    marginTop: "20px",
+                }}
+            >
+            <img src={nerpa_intro} id="NerpaIntro" style={{ marginTop: '200px' }}></img>
+
+            <div
+                style={{
+                    fontFamily: "hisqaida_2018bold",
+                    color: "white",
+                    fontWeight: "bold",
+                    fontSize: 30,
+                    display: "flex",
+                    justifyContent: "center",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    textAlign: "center",
+                    gap: 10,
+                    marginRight: 50,
+                    marginTop: '500px'
+                    // Убедитесь, что родительский контейнер также имеет высоту 100%
+                }}
+            >
+                 <span>
+ ИРНИТУ приглашает молодежь<br />
+                     Сибири и Дальнего востока к<br />
+                     участию в конкурсе IT-проектов
+                 </span>
+            </div>
+
+
+
+            </div>
+
         </div>
     )
 }
