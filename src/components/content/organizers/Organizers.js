@@ -6,6 +6,8 @@ import "../../../styles/organizers.css";
 import sitnikov from "../../../assets/pics/organizers/sitnikov.png";
 import korniakov from "../../../assets/pics/organizers/korniakov.png";
 import shevtsova from "../../../assets/pics/organizers/shevtsova.png";
+import rymorenko from "../../../assets/pics/organizers/rymorenko.png";
+import govorkov from "../../../assets/pics/organizers/govorkov.png";
 
 
 export default function Organizers() {
@@ -42,6 +44,22 @@ export default function Organizers() {
                     <div className="organizer-text">
                         <h3 style={{marginTop: 15, fontSize: 18, fontWeight: "bold"}}> Шевцова Ирина Леонидовна  </h3>
                         <h3 style={{marginTop: -6, fontSize: 18, fontWeight: "bold"}}> Председатель Совета Директоров, Группа компаний "Форус" </h3>
+
+                    </div>
+                </div>
+                <div className="organizer-container mb-4">
+                    <img src={rymorenko} alt="Organizer" className="organizer-image" />
+                    <div className="organizer-text">
+                        <h3 style={{marginTop: 15, fontSize: 18, fontWeight: "bold"}}> Рыморенко Игорь Александрович  </h3>
+                        <h3 style={{marginTop: -6, fontSize: 18, fontWeight: "bold"}}> Министр, Министерство цифрового развития и связи Иркутской области </h3>
+
+                    </div>
+                </div>
+                <div className="organizer-container mb-4">
+                    <img src={govorkov} alt="Organizer" className="organizer-image" />
+                    <div className="organizer-text">
+                        <h3 style={{marginTop: 15, fontSize: 18, fontWeight: "bold"}}> Говорков Алексей Сергеевич  </h3>
+                        <h3 style={{marginTop: -6, fontSize: 18, fontWeight: "bold"}}> Директор, Институт информационных технологий и анализа данных ИРНИТУ </h3>
 
                     </div>
                 </div>
