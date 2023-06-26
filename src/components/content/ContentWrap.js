@@ -10,6 +10,8 @@ import ForumProgramme from "./forumProgramme/ForumProgramme"
 import Footer from "./footer/Footer"
 import Gallery from "./gallery/Gallery"
 import GalleryItemFullscreenView from "./gallery/GalleryItemFullscreenView"
+import Organizers from "./organizers/Organizers"
+
 
 // Это обертка над всем контентом страницы (я пока хз пихать ли сюда навбар, но
 // вообще все содержимое страницы размещать здесь (App будет использоваться для перенаправления по роутам)
@@ -52,6 +54,7 @@ export default function ContentWrap() {
                     null
             }
             <News/>
+            <Organizers/>
             <Gallery />
             <ForumProgramme />
             <Carousel data={ {

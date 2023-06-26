@@ -20,5 +20,7 @@ export const HEADERS = {
     time: 'Время',
     main_speakers: 'Ключевые спикеры',
     news: 'Новости',
-    gallery: 'Фотогалерея'
+    gallery: 'Фотогалерея',
+    organizers: 'Организационный комитет'
+
 }
