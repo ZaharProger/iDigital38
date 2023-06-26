@@ -9,18 +9,20 @@ export default function Header() {
     const scrollToSection = (sectionId) => {
         const element = document.getElementById(sectionId);
         if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
+            element.scrollIntoView({behavior: 'smooth'});
         }
     };
 
     return (
-        <div  style={{height: 800, backgroundImage: `url(${background})`,
-                                                backgroundRepeat: "no-repeat",
-                                                backgroundSize: "cover"
+        <div style={{
+            height: 800, backgroundImage: `url(${background})`,
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover"
         }}>
             <div id="Header" className="w-100">
                 <img src={logo}></img>
-                <div style={{fontFamily: "hisqaida_2018bold",
+                <div style={{
+                    fontFamily: "hisqaida_2018bold",
                     color: "white",
                     fontWeight: "bold",
                     fontSize: 20,
@@ -37,8 +39,6 @@ export default function Header() {
             </div>
 
 
-
-
             <div
                 style={{
                     display: "flex",
@@ -46,32 +46,30 @@ export default function Header() {
                     marginTop: "20px",
                 }}
             >
-            <img src={nerpa_intro} id="NerpaIntro" style={{marginLeft: "-90px",marginTop: '100px' }}></img>
+                <img src={nerpa_intro} id="NerpaIntro" style={{marginLeft: "-90px", marginTop: '100px'}}></img>
 
-            <div
-                style={{
-                    fontFamily: "hisqaida_2018bold",
-                    color: "white",
-                    fontWeight: "bold",
-                    fontSize: 30,
-                    display: "flex",
-                    justifyContent: "center",
-                    flexDirection: "column",
-                    alignItems: "flex-start",
-                    textAlign: "center",
-                    gap: 10,
-                    marginRight: 50,
-                    marginTop: '350px'
-                }}
-            >
-                   <span>
-            ИРНИТУ приглашает молодежь<br />
-            Сибири и Дальнего востока к<br />
+                <div
+                    style={{
+                        fontFamily: "hisqaida_2018bold",
+                        color: "white",
+                        fontWeight: "bold",
+                        fontSize: 30,
+                        display: "flex",
+                        justifyContent: "center",
+                        flexDirection: "column",
+                        alignItems: "flex-start",
+                        textAlign: "center",
+                        gap: 10,
+                        marginRight: 50,
+                        marginTop: '350px'
+                    }}
+                >
+                    <span>
+            ИРНИТУ приглашает молодежь<br/>
+            Сибири и Дальнего востока к<br/>
             участию в конкурсе IT-проектов
-          </span>
-            </div>
-
-
+                   </span>
+                </div>
 
             </div>
 

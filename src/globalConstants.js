@@ -18,5 +18,7 @@ export const HEADERS = {
     report_name: 'Наименование доклада',
     time: 'Время',
     main_speakers: 'Ключевые спикеры',
-    news: 'Новости'
+    news: 'Новости',
+    organizers: 'Организационный комитет'
+
 }

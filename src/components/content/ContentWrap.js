@@ -8,6 +8,8 @@ import News from "./news/News"
 import Carousel from "./carousel/Carousel"
 import ForumProgramme from "./forumProgramme/ForumProgramme"
 import Footer from "./footer/Footer"
+import Organizers from "./organizers/Organizers"
+
 
 // Это обертка над всем контентом страницы (я пока хз пихать ли сюда навбар, но
 // вообще все содержимое страницы размещать здесь (App будет использоваться для перенаправления по роутам)
@@ -16,6 +18,7 @@ export default function ContentWrap() {
         <div id="Content-wrap" className="d-flex flex-column">
             <Header/>
             <News/>
+            <Organizers/>
             <ForumProgramme />
             <Carousel data={ {
                 header_text: HEADERS.events,

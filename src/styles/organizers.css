@@ -1,0 +1,20 @@
+.organizer-container {
+    display: flex;
+    align-items: center;
+}
+
+.organizer-image {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-left: 30px;
+    margin-right: 30px;
+    overflow: hidden;
+}
+
+.organizer-text {
+    /*margin-top: 10px;*/
+    margin-left: 40px;
+    color: var(--secondary-color);
+}
