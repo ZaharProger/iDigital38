@@ -37,7 +37,6 @@
     background-color: #000046;
     opacity: .7;
     display: flex;
-    /* justify-content: center; */
     align-items: center;
     flex-direction: row;
     padding: 10px;
@@ -46,7 +45,6 @@
 #Icon{
     height: 50px;
     width: 50px;
-    /* margin-left: 28px; */
 }
 
 #Line{
@@ -60,4 +58,29 @@
     opacity: .7;
     display: flex;
     align-items: center;
+}
+
+#Icon_arrow{
+    color: var(--secondary-color);
+    font-size: 2em;
+    transition: color 0.3s ease;
+}
+
+#Block_arrow{
+    height: 40px;
+    width: 140px;
+    background-color: #000046;
+    opacity: .7;
+    border-radius: 10px;
+}
+
+#Block_arrow.custom-block span {
+    font-family: "hisqaida_2018bold";
+    font-size: 12px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#Block_arrow:hover #Icon_arrow {
+    color: #E606B3;
 }

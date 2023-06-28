@@ -17,7 +17,7 @@ export default function Header() {
                                                 backgroundSize: "cover"
         }}>
             <div id="Header" className="w-100">
-                <img src={logo}></img>
+                <img src={logo} onClick={() => window.scrollTo(0, 0)} style={{cursor: "pointer"}}></img>
                 <div style={{fontFamily: "hisqaida_2018bold",
                     color: "white",
                     fontWeight: "bold",
