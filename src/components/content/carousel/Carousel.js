@@ -9,7 +9,7 @@ import CarouselList from "./CarouselList"
 import CarouselButtons from "./CarouselButtons"
 
 export default function Carousel(props) {
-    const { header_text, list_type, has_sliders, first_item } = props.data
+    const { header_text, list_type, has_sliders, first_item, auto_scroll } = props.data
 
     let carouselId
     let margin
@@ -32,7 +32,7 @@ export default function Carousel(props) {
     const carouselClassList = `carousel slide Carousel d-flex container-gap flex-column ${ margin }`
 
     return (
-        <div id={ carouselId } className={ carouselClassList } data-bs-ride="true">
+        <div id={ carouselId } className={ carouselClassList } data-bs-ride={ auto_scroll? "true" : "false" }>
             {
                 typeof header_text === 'string'?
                     <ComponentHeader header_text={ header_text } />

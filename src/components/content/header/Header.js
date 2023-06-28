@@ -2,7 +2,6 @@ import React from "react"
 
 import logo from "../../../assets/pics/logo.svg"
 import "../../../styles/header.css"
-import nerpa_intro from "../../../assets/pics/nerpa_intro.svg";
 
 
 export default function Header() {
@@ -15,62 +14,22 @@ export default function Header() {
 
     return (
         <div id="Header" className="w-100">
-            <img src={logo}></img>
+            <img src={logo} onClick={ () => window.scrollTo(0, 0) }></img>
             <div style={{fontFamily: "hisqaida_2018bold",
                 fontWeight: "bold",
-                fontSize: 20,
+                fontSize: 18,
                 display: "flex",
                 justifyContent: "space-between",
                 alignItems: "center",
                 gap: 50,
-                marginRight: 50
+                marginRight: 50,
+                marginLeft: "auto"
             }}>
                 <a onClick={() => scrollToSection('News')}>Новости</a>
-                <a onClick={() => scrollToSection('Gallery')}>Фотогалерея</a>
                 <a onClick={() => scrollToSection('News')}>Организационный<br/>комитет</a>
                 <a onClick={() => scrollToSection('Forum-programme')}>Программа<br/>форума</a>
                 <a onClick={() => scrollToSection('event-carousel')}>Мероприятия</a>
             </div>
-
-
-
-//TODO: Марго
-            <div
-                style={{
-                    display: "flex",
-                    alignItems: "center",
-                    marginTop: "20px",
-                }}
-            >
-            <img src={nerpa_intro} id="NerpaIntro" style={{marginLeft: "-90px",marginTop: '100px' }}></img>
-
-            <div
-                style={{
-                    fontFamily: "hisqaida_2018bold",
-                    color: "white",
-                    fontWeight: "bold",
-                    fontSize: 30,
-                    display: "flex",
-                    justifyContent: "center",
-                    flexDirection: "column",
-                    alignItems: "flex-start",
-                    textAlign: "center",
-                    gap: 10,
-                    marginRight: 50,
-                    marginTop: '350px'
-                }}
-            >
-                   <span>
-            ИРНИТУ приглашает молодежь<br />
-            Сибири и Дальнего востока к<br />
-            участию в конкурсе IT-проектов
-          </span>
-            </div>
-
-
-
-            </div>
-
         </div>
     )
 }

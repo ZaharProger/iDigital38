@@ -486,6 +486,40 @@ const initialState = {
             id: 5,
             image: require('..//assets//pics//gallery//5.png')
         }
+    ],
+    organizers: [
+        {
+            id: 1,
+            name: 'Ситников Руслан Леонидович',
+            role: 'Первый заместитель Председателя Правительства Иркутской области',
+            additional_role: 'Председатель',
+            image: require('../assets/pics/organizers/sitnikov.png')
+        },
+        {
+            id: 2,
+            name: 'Корняков Михаил Викторович',
+            role: 'Ректор, Иркутский национальный исследовательский технический университет',
+            additional_role: 'Зам. Председателя',
+            image: require('../assets/pics/organizers/korniakov.png')
+        },
+        {
+            id: 3,
+            name: 'Шевцова Ирина Леонидовна',
+            role: 'Председатель Совета Директоров, Группа Компаний "ФОРУС"',
+            image: require('../assets/pics/organizers/shevtsova.png')
+        },
+        {
+            id: 4,
+            name: 'Рыморенко Игорь Александрович',
+            role: 'Министр, Министерство цифрового развития и связи Иркутской области',
+            image: require('../assets/pics/organizers/rymorenko.png')
+        },
+        {
+            id: 5,
+            name: 'Говорков Алексей Сергеевич',
+            role: 'Директор, Институт информационных технологий и анализа данных ИРНИТУ',
+            image: require('../assets/pics/organizers/govorkov.png')
+        }
     ]
 }
 

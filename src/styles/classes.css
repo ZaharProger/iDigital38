@@ -1,5 +1,5 @@
 .regular-text, .semi-header-text, .header-text, .caption-text,
-.caption-header-text, .footer-text {
+.caption-header-text, .footer-text, .footer-header-text {
     font-family: 'Roboto', sans-serif;
     color: var(--secondary-color);
     letter-spacing: 1px;
@@ -23,15 +23,15 @@
 }
 
 .semi-header-text, .header-text, .caption-header-text,
-.table-header-text, .table-main-data-text, .footer-text {
+.table-header-text, .table-main-data-text, .footer-text, .footer-header-text {
     font-weight: bold;
 }
 
-.semi-header-text, .regular-text {
+.semi-header-text, .regular-text, .footer-text {
     font-size: 1.1em;
 }
 
-.header-text, .footer-text {
+.header-text, .footer-header-text {
     font-size: 1.3em;
 }
 

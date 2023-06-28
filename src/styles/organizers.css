@@ -1,8 +1,8 @@
-.organizer-container {
+.Organizer-container {
     display: flex;
     align-items: center;
 }
-#organizer-block {
+.organizer-block {
     background-color: var(--on-primary-color);
     box-shadow: 0 3px 10px var(--border-color);
     border-radius: 30px;

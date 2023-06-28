@@ -1,5 +1,32 @@
 #NerpaIntro{
-    height: 350px;
-    width: 350px;
-    /* margin-left: 28px; */
+    height: 500px;
+    width: 500px;
+    margin-top: 70px;
+    margin-right: 150px;
+}
+
+#Salutation > div > div {
+    animation: salutation-text-reveal 0.8s ease-out 0s 1 forwards;
+}
+
+#Salutation > div >div > h2 {
+    color: var(--border-color);
+    text-shadow: 5px 5px 10px var(--border-color);
+    font-size: 3.2em;
+    margin-top: 250px;
+}
+
+#Salutation > div > div > span {
+    margin-bottom: 80px;
+}
+
+@keyframes salutation-text-reveal {
+    from {
+        transform: scale(0);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
