@@ -7,19 +7,9 @@
     box-shadow: 0 3px 10px var(--border-color);
     border-radius: 30px;
 }
-.organizer-image {
-    width: 200px;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 50%;
-    margin-left: 30px;
-    margin-right: 30px;
-    overflow: hidden;
-}
 
 .organizer-text {
     /*margin-top: 10px;*/
-    margin-left: 40px;
     color: var(--secondary-color);
 }
 

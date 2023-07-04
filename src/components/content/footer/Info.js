@@ -1,17 +1,20 @@
-import React from "react"
+import React, {useContext} from "react"
 
 import telegram from "../../../assets/pics/icon/telegram.svg"
 import vk from "../../../assets/pics/icon/vk.svg"
 import logo from "../../../assets/pics/logo.svg"
+import {contentContext} from "../../../context"
 
 export default function Info() {
+    const isMobile = useContext(contentContext)
+
     return (
         <div id="Info" className="w-100 footer-text" style={{
-            flexDirection: "row",
+            flexDirection: isMobile? "column" : "row",
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center"}}>
-            <div>
+            <div className={ isMobile? "d-flex me-auto ms-auto" : "" }>
                 <a href="https://t.me/+mwjvF2r0mRoyYjY6" target="_blank">
                     <img src={telegram} className="Icon" />
                 </a>
@@ -21,7 +24,8 @@ export default function Info() {
             </div>
             <h2>
                 <a href="https://www.istu.edu/" className="footer-text" style={{
-                    marginLeft: 165,
+                    marginLeft: isMobile? "auto" : 165,
+                    marginRight: isMobile? "auto" : 0,
                     fontSize: "0.75em"
                 }}>
                     ФГБОУ ВО ИРНИТУ

@@ -12,13 +12,13 @@ export default function Organizers() {
     return (
         <div id="Organizers" className="d-flex flex-column me-auto ms-auto container-gap">
             <ComponentHeader header_text={HEADERS.organizers} />
-            <div className="organizer-block regular-text d-flex flex-column px-4 py-4 mb-5">
+            <div className="organizer-block regular-text d-flex flex-column mb-5">
                 <OrganizerContainer key={ organizers[0].id } organizer_props={{
                     item_data: organizers[0],
                     is_last: true
                 }} />
             </div>
-            <div className="organizer-block regular-text d-flex flex-column px-4 py-4 mb-5">
+            <div className="organizer-block regular-text d-flex flex-column mb-5">
                 {
                     organizers.slice(1).map(organizer => {
                         return <OrganizerContainer key={ organizer.id } organizer_props={{

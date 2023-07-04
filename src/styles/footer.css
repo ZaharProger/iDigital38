@@ -13,10 +13,10 @@
 }
 
 #Security_block{
-    height: 52px;
-    margin-left: 350px;
-    margin-right: 350px;
-    margin-top: -40px;
+    padding: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -28,7 +28,6 @@
 }
 
 #Info{
-    height: 90px;
     background-color: var(--primary-color);
     opacity: .7;
     padding: 10px;

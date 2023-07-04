@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useContext} from "react"
 import {useSelector} from "react-redux"
 
 import ComponentHeader from "../componentHeader/ComponentHeader"
@@ -7,16 +7,18 @@ import '../../../styles/carousel.css'
 import {LIST_TYPES} from "../../../globalConstants"
 import CarouselList from "./CarouselList"
 import CarouselButtons from "./CarouselButtons"
+import {contentContext} from "../../../context"
 
 export default function Carousel(props) {
     const { header_text, list_type, has_sliders, first_item, auto_scroll } = props.data
+    const isMobile = useContext(contentContext)
 
     let carouselId
     let margin
     const carouselItems = useSelector(state => {
         switch (list_type) {
             case LIST_TYPES.events:
-                margin = 'mt-5 me-auto ms-auto'
+                margin = 'me-auto ms-auto'
                 carouselId = 'event-carousel'
                 return state.events
             case LIST_TYPES.gallery_items:
@@ -44,7 +46,9 @@ export default function Carousel(props) {
                 list_type,
                 first_item
             }} />
-            <CarouselButtons carousel_id={ carouselId } />
+            {
+                isMobile? null : <CarouselButtons carousel_id={ carouselId } />
+            }
             {
                 has_sliders?
                     <CarouselSliderBox slider_box_props={{

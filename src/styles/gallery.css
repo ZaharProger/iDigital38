@@ -14,6 +14,7 @@
 
 #Gallery-item-fullscreen-view > i {
     cursor: pointer;
+    z-index: 102;
 }
 
 .Gallery-item > img {

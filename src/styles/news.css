@@ -1,5 +1,7 @@
 #News {
-    margin: 0px auto 150px auto;
+    margin-top: 0;
+    margin-right: auto;
+    margin-left: auto;
     max-width: 1100px;
 }
 

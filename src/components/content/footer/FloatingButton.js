@@ -1,8 +1,11 @@
-import React from "react"
+import React, {useContext} from "react"
 
 import nerpa_button from '../../../assets/pics/nerpa_floating_button.svg'
+import {contentContext} from "../../../context"
 
 export default function FloatingButton() {
+    const isMobile = useContext(contentContext)
+
     return(
         <div id="Floating-button" className="mt-auto ms-auto" style={{ cursor: "pointer" }}
              onClick={() => window.scrollTo(0, 0)}>
@@ -11,10 +14,14 @@ export default function FloatingButton() {
                 alt="Image"
                 data-tip="Наверх"
                 data-place="top"
-                style={{height: 200, pointerEvents: "none"}}
-            />
+                style={{
+                    height: isMobile? 100 : 200,
+                    pointerEvents: "none",
+                    display: "flex",
+                    margin: "auto"
+            }}/>
             <div id="Block_arrow" className="custom-block" style={{
-                marginLeft: 30,
+                margin: "auto",
                 display: "flex",
                 alignItems: "center",
                 paddingLeft: 6,

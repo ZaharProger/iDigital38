@@ -12,6 +12,7 @@ import Gallery from "./gallery/Gallery"
 import GalleryItemFullscreenView from "./gallery/GalleryItemFullscreenView"
 import Organizers from "./organizers/Organizers"
 import Salutation from "./salutation/Salutation"
+import {contentContext} from "../../context"
 
 
 // Это обертка над всем контентом страницы (я пока хз пихать ли сюда навбар, но
@@ -67,33 +68,35 @@ export default function ContentWrap() {
     }, [])
 
     return (
-        <div id="Content-wrap" className="d-flex flex-column h-100">
-            <Header is_mobile={ isMobile } />
-            {
-                fullscreenData.is_active?
-                    <GalleryItemFullscreenView fullscreen_props={{
-                        selected_image: fullscreenData.id,
-                        close_callback: () => setFullscreenData({
-                            is_active: false,
-                            id: '0'
-                        })
-                    }} />
-                    :
-                    null
-            }
-            <Salutation />
-            <News/>
-            <Organizers/>
-            <Gallery />
-            <ForumProgramme />
-            <Carousel data={ {
-                header_text: HEADERS.events,
-                list_type: LIST_TYPES.events,
-                has_sliders: true,
-                first_item: null,
-                auto_scroll: true
-            } } />
-            <Footer/>
-        </div>
+        <contentContext.Provider value={ isMobile }>
+            <div id="Content-wrap" className="d-flex flex-column h-100">
+                <Header />
+                {
+                    fullscreenData.is_active?
+                        <GalleryItemFullscreenView fullscreen_props={{
+                            selected_image: fullscreenData.id,
+                            close_callback: () => setFullscreenData({
+                                is_active: false,
+                                id: '0'
+                            })
+                        }} />
+                        :
+                        null
+                }
+                <Salutation />
+                <News/>
+                <Organizers/>
+                <Gallery />
+                <ForumProgramme />
+                <Carousel data={ {
+                    header_text: HEADERS.events,
+                    list_type: LIST_TYPES.events,
+                    has_sliders: true,
+                    first_item: null,
+                    auto_scroll: true
+                } } />
+                <Footer/>
+            </div>
+        </contentContext.Provider>
     )
 }

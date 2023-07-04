@@ -1,9 +1,3 @@
-.Event-list-item > div > img {
-    border-radius: 30px;
-    width: 600px;
-    height: 350px;
-}
-
 .Event-list-item > div > div > a {
     text-decoration: none;
     background-color: var(--border-color);
