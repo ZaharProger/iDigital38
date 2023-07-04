@@ -17,10 +17,15 @@ import Salutation from "./salutation/Salutation"
 // Это обертка над всем контентом страницы (я пока хз пихать ли сюда навбар, но
 // вообще все содержимое страницы размещать здесь (App будет использоваться для перенаправления по роутам)
 export default function ContentWrap() {
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 1300)
     const [fullscreenData, setFullscreenData] = useState({
         is_active: false,
         id: '0'
     })
+
+    window.onresize = () => {
+        setIsMobile(window.innerWidth <= 1300)
+    }
 
     useEffect(() => {
         const gallery = document.querySelector('#Gallery')
@@ -63,7 +68,7 @@ export default function ContentWrap() {
 
     return (
         <div id="Content-wrap" className="d-flex flex-column h-100">
-            <Header/>
+            <Header is_mobile={ isMobile } />
             {
                 fullscreenData.is_active?
                     <GalleryItemFullscreenView fullscreen_props={{

@@ -2,11 +2,10 @@
     top: 0;
     position: fixed;
     display: flex;
-    height: 104px;
-    background-color: rgba(0, 0, 70, .7);
     align-items: center;
     justify-content: space-between;
     z-index: 99;
+    background-color: rgba(0, 0, 70, .7);
     -webkit-backdrop-filter: blur(8px);
     backdrop-filter: blur(8px);
     animation: header-reveal 0.8s ease-out 0s 1 forwards;
@@ -21,20 +20,57 @@
     }
 }
 
-a {
-    cursor: pointer;
+.nav-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-item:last-child {
+    margin-right: 0;
+}
+
+.nav-link {
     text-align: center;
 }
 
-#Header > img {
+.nav-link:hover, .navbar-toggler:hover {
+    color: var(--border-color)!important;
+}
+
+.navbar-toggler:focus {
+    color: var(--secondary-color);
+    box-shadow: none;
+}
+
+.container-fluid > img, .navbar-toggler, .nav-link, #drawer > div > i {
     cursor: pointer;
 }
 
-#Header > div > a {
-    transition: 0.3s ease-out;
-    color: var(--secondary-color);
+.navbar-toggler {
+    font-size: 2.5em;
 }
 
-#Header > div > a:hover {
+.navbar-toggler, .nav-link {
+    color: var(--secondary-color)!important;
+    transition: 0.3s ease-out!important;
+}
+
+.navbar-toggler {
+    border-style: none;
+}
+
+.drawer-active {
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+}
+
+#drawer > div > i {
+    font-size: 2.3em;
+    color: var(--secondary-color);
+    transition: 0.3s ease-out;
+}
+
+#drawer > div > i:hover {
     color: var(--border-color);
 }
