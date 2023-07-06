@@ -11,6 +11,10 @@
     animation: header-reveal 0.8s ease-out 0s 1 forwards;
 }
 
+.container-fluid > img {
+    width: 250px;
+}
+
 @keyframes header-reveal {
     from {
         transform: translateY(-500px);

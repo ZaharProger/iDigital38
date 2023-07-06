@@ -19,7 +19,7 @@ export default function Salutation() {
                     fontFamily: "hisqaida_2018bold",
                     color: "white",
                     fontWeight: "bold",
-                    fontSize: 30,
+                    fontSize: 25,
                     display: "flex",
                     flexDirection: "column",
                     alignItems: "flex-start",
@@ -28,10 +28,13 @@ export default function Salutation() {
                     margin: "auto"
                 }}>
                     <h2 className="me-auto ms-auto mb-2" style={{
-                        marginTop: isMobile? 0 : 250
+                        marginTop: isMobile? 0 : 180
                     }}>2023</h2>
-                    <span className="mt-auto me-auto">ИРНИТУ приглашает молодежь<br />Сибири и Дальнего востока к
-                    <br />участию в конкурсе IT-проектов</span>
+                    <span className="mt-auto me-auto">Организаторы форума приглашают ИТ компании, производственные
+                        компании и образовательные учреждения Сибири и Дальнего востока принять участие в
+                        форуме iDigital38. <br /> Форум – это площадка для обмена опыта внедрений и использования цифровой
+                        трансформации на предприятиях региона с помощью  современных инновационных подходов и
+                        сквозных информационных технологий (BigData, AI, CV, IoT и других).</span>
                 </div>
             </div>
         </div>

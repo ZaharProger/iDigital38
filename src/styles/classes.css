@@ -48,5 +48,5 @@
 }
 
 .neon {
-    box-shadow: 0 3px 10px var(--border-color);
+    box-shadow: 0 3px 5px var(--border-color);
 }

@@ -16,7 +16,7 @@ export default function OrganizerContainer(props) {
                 marginRight: 30,
                 overflow: "hidden"
             }} />
-            <div className="organizer-text" style={{marginLeft: isMobile? 0 : 40}}>
+            <div className={ `organizer-text${isMobile? ' text-center' : ''}` } style={{marginLeft: isMobile? 0 : 40}}>
                 {
                     additional_role !== undefined?
                         <h2 className="organizer-heading">{ `${additional_role}:` }</h2>

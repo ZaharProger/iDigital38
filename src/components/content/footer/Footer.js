@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useContext} from "react"
 
 import footer from "../../../assets/pics/footer.svg"
 
@@ -7,9 +7,12 @@ import History from "./History"
 import Info from "./Info"
 import FloatingButton from "./FloatingButton"
 import Contacts from "./Contacts"
+import {contentContext} from "../../../context"
 
 
 export default function Footer(){
+    const isMobile = useContext(contentContext)
+
     return(
         <div id="Footer" style={{
             backgroundImage: `linear-gradient(var(--primary-color), transparent 80%), url(${footer})`,
@@ -19,7 +22,7 @@ export default function Footer(){
             flexDirection: "column",
             marginTop: "auto"
         }}>
-            <div className="d-flex flex-row">
+            <div className={ `d-flex flex-${isMobile? 'column' : 'row'}` }>
                 <Contacts />
                 <FloatingButton />
             </div>

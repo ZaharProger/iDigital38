@@ -15,8 +15,7 @@ export default function GalleryItemFullscreenView(props) {
                 header_text: null,
                 list_type: LIST_TYPES.gallery_items,
                 has_sliders: false,
-                first_item: selected_image,
-                auto_scroll: false
+                first_item: selected_image
             } } />
         </div>
     )

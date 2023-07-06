@@ -12,16 +12,16 @@ export default function Header() {
     const scrollToSection = useCallback((sectionId) => {
         const element = document.getElementById(sectionId)
         if (element) {
-            if (isMobile) {
-                setIsExpanded(false)
-            }
             element.scrollIntoView( {
                 behavior: "smooth",
                 block: "center",
                 inline: "nearest"
             });
+            if (isMobile) {
+                setIsExpanded(false)
+            }
         }
-    }, [])
+    }, [isMobile])
 
     const navbarTogglerClasslist =
         `fa-regular fa-${ isExpanded? 'xmark' : 'bars' } navbar-toggler d-flex justify-content-center${isExpanded? ' mb-4' : ''}`

@@ -10,7 +10,7 @@ import CarouselButtons from "./CarouselButtons"
 import {contentContext} from "../../../context"
 
 export default function Carousel(props) {
-    const { header_text, list_type, has_sliders, first_item, auto_scroll } = props.data
+    const { header_text, list_type, has_sliders, first_item } = props.data
     const isMobile = useContext(contentContext)
 
     let carouselId
@@ -34,7 +34,8 @@ export default function Carousel(props) {
     const carouselClassList = `carousel slide Carousel d-flex container-gap flex-column ${ margin }`
 
     return (
-        <div id={ carouselId } className={ carouselClassList } data-bs-ride={ auto_scroll? "true" : "false" }>
+        <div id={ carouselId } className={ carouselClassList } data-bs-touch="true"
+             data-bs-ride="true">
             {
                 typeof header_text === 'string'?
                     <ComponentHeader header_text={ header_text } />

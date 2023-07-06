@@ -92,8 +92,7 @@ export default function ContentWrap() {
                     header_text: HEADERS.events,
                     list_type: LIST_TYPES.events,
                     has_sliders: true,
-                    first_item: null,
-                    auto_scroll: true
+                    first_item: null
                 } } />
                 <Footer/>
             </div>

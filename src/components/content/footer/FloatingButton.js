@@ -7,8 +7,8 @@ export default function FloatingButton() {
     const isMobile = useContext(contentContext)
 
     return(
-        <div id="Floating-button" className="mt-auto ms-auto" style={{ cursor: "pointer" }}
-             onClick={() => window.scrollTo(0, 0)}>
+        <div id="Floating-button" className={ `mt-auto ms-auto${isMobile? ' me-auto' : ''}` }
+             style={{ cursor: "pointer" }} onClick={() => window.scrollTo(0, 0)}>
             <img
                 src={nerpa_button}
                 alt="Image"
