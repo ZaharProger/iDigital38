@@ -1,0 +1,94 @@
+#Admin-page {
+    background: var(--secondary-color);
+}
+
+#Admin-header {
+    background: var(--primary-color);
+}
+
+#Admin-header > div > button {
+    background: var(--border-color);
+    transition: 0.3s ease-out;
+    border-radius: 20px;
+    border-style: none;
+}
+
+#Admin-header > div > button:hover {
+    box-shadow: 0 2px 8px var(--secondary-color);
+}
+
+#Admin-menu {
+    overflow-y: auto;
+}
+
+#admin-menu-content {
+    border-radius: 20px;
+    background: var(--primary-color);
+}
+
+.Admin-menu-item {
+    cursor: pointer;
+    color: var(--secondary-color);
+}
+
+.Admin-menu-item > i {
+    font-size: 2em;
+    transition: 0.3s ease-out;
+}
+
+.Admin-menu-item > span {
+    transition: 0.3s ease-out;
+}
+
+#Warning-label {
+    margin-top: 250px;
+    background-color: var(--primary-color);
+    border-radius: 10px;
+}
+
+#Warning-label > i {
+    font-size: 3.4em;
+    color: var(--border-color);
+    transform: rotateZ(15deg);
+    position: relative;
+    top: -60px;
+    left: 60px;
+}
+
+#Admin-edit-panel {
+    animation: admin-edit-panel-reveal 0.5s ease-out 0s 1 forwards;
+}
+
+@keyframes admin-edit-panel-reveal {
+    from {
+        opacity: 0;
+        transform: scale(0);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.Tool {
+    cursor: pointer;
+}
+
+.Tool > i {
+    color: var(--secondary-color);
+    font-size: 1.5em;
+}
+
+.Tool > i, .Tool > span {
+    transition: 0.3s ease-out;
+}
+
+.Tool, #panel-header {
+    background: var(--primary-color);
+    border-radius: 10px;
+}
+
+#Panel-content {
+    background-color: #c2c2c2;
+    border-radius: 20px;
+}
