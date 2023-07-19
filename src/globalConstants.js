@@ -1,7 +1,12 @@
+export const HOST = 'https://localhost:8000'
+
 export const ROUTES = {
     main: '/',
     admin: '/admin',
-    admin_auth: 'admin-auth/'
+    admin_auth: '/admin-auth',
+    admin_events: '/admin/events',
+    admin_organizers: '/admin/organizers',
+    admin_forum_programme: '/admin/forum-programme'
 }
 
 export const LIST_TYPES = {
@@ -31,11 +36,6 @@ export const ACTIVE_PANELS = {
 }
 
 export const PANEL_TOOLS = {
-    view: {
-        id: 1,
-        caption: 'Представление',
-        icon_class: 'bars'
-    },
     create: {
         id: 2,
         caption: 'Создать',
@@ -53,18 +53,21 @@ export const ADMIN_MENU = [
         id: 1,
         caption: 'Программа форума',
         icon_class: 'calendar-days',
-        panel: ACTIVE_PANELS.forum_programme
+        panel: ACTIVE_PANELS.forum_programme,
+        route: ROUTES.admin_forum_programme
     },
     {
         id: 2,
         caption: 'Организационный комитет',
         icon_class: 'people-pants-simple',
-        panel: ACTIVE_PANELS.organizers
+        panel: ACTIVE_PANELS.organizers,
+        route: ROUTES.admin_organizers
     },
     {
         id: 3,
         caption: 'Мероприятия',
         icon_class: 'calendar-star',
-        panel: ACTIVE_PANELS.events
+        panel: ACTIVE_PANELS.events,
+        route: ROUTES.admin_events
     }
 ]

@@ -50,3 +50,7 @@
 .neon {
     box-shadow: 0 3px 5px var(--border-color);
 }
+
+.selected-view-item {
+    background-color: #262662AA;
+}

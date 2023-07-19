@@ -6,7 +6,7 @@ import WarningLabel from "./warning-label/WarningLabel"
 
 export default function AdminViewport(props) {
     return (
-        <div id="Admin-viewport" className="d-flex flex-row pe-3 ps-3 pb-2">
+        <div id="Admin-viewport" className="d-flex flex-row pb-2">
             <AdminMenu menu_props={ props.viewport_props } />
             {
                 props.viewport_props.active_panel !== null?

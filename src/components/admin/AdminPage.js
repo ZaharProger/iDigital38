@@ -1,11 +1,14 @@
-import React, {useEffect, useState} from "react"
+import React, {useEffect} from "react"
+import {useLocation, useNavigate} from "react-router-dom"
 
 import AdminHeader from "./header/AdminHeader"
 import '../../styles/admin.css'
 import AdminViewport from "./AdminViewport"
 
-export default function AdminPage() {
-    const [activePanel, setActivePanel] = useState(null)
+export default function AdminPage(props) {
+    const location = useLocation()
+    const navigate = useNavigate()
+    const activePanel = location.state !== null? location.state.panel : props.active_panel
 
     useEffect(() => {
         document.querySelectorAll('.Admin-menu-item, .Tool').forEach(menuItem => {
@@ -25,7 +28,7 @@ export default function AdminPage() {
             <AdminHeader />
             <AdminViewport viewport_props={{
                 active_panel: activePanel,
-                callback: (newPanel) => setActivePanel(newPanel)
+                callback: (route, data) => navigate(route, { state: data })
             }} />
         </div>
     )

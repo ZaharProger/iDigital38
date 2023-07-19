@@ -1,0 +1,9 @@
+#Loading-bar > img {
+    width: 180px;
+    animation: floating-button 0.8s ease-out 0s infinite forwards alternate;
+}
+
+#Loading-bar > span {
+    background-color: var(--primary-color);
+    border-radius: 10px;
+}
