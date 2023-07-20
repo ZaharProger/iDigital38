@@ -6,11 +6,11 @@ import WarningLabel from "./warning-label/WarningLabel"
 
 export default function AdminViewport(props) {
     return (
-        <div id="Admin-viewport" className="d-flex flex-row pb-2">
+        <div id="Admin-viewport" className="d-flex flex-row">
             <AdminMenu menu_props={ props.viewport_props } />
             {
                 props.viewport_props.active_panel !== null?
-                    <AdminEditPanel active_panel={ props.viewport_props.active_panel } />
+                    <AdminEditPanel panel_props={ props.viewport_props } />
                     :
                     <WarningLabel />
             }

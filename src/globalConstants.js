@@ -39,12 +39,20 @@ export const PANEL_TOOLS = {
     create: {
         id: 2,
         caption: 'Создать',
-        icon_class: 'plus'
+        icon_class: 'plus',
+        route: ROUTES.admin
     },
     delete: {
         id: 3,
         caption: 'Пометить на удаление',
-        icon_class: 'trash-can-list'
+        icon_class: 'trash-can-list',
+        route: ROUTES.admin
+    },
+    back: {
+        id: 1,
+        caption: 'Назад',
+        icon_class: 'arrow-left',
+        route: -1
     }
 }
 

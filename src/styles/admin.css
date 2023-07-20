@@ -4,6 +4,7 @@
 
 #Admin-header {
     background: var(--primary-color);
+    z-index: 1000;
 }
 
 #Admin-header > div > image {
@@ -55,6 +56,10 @@
     left: 60px;
 }
 
+#Admin-viewport {
+    height: 100vh;
+}
+
 #Admin-edit-panel {
     animation: admin-edit-panel-reveal 0.5s ease-out 0s 1 forwards;
 }
@@ -70,17 +75,42 @@
     }
 }
 
+#Panel-content {
+    flex: 1;
+    position: relative;
+    overflow: auto;
+    scrollbar-color: var(--primary-color) #c2c2c2;
+    scrollbar-width: thin;
+}
+
+#Panel-content::-webkit-scrollbar{
+    width: 8px;
+    height: 8px;
+    background-color: #c2c2c2;
+    border-radius: 20px;
+}
+
+#Panel-content::-webkit-scrollbar-thumb{
+    background-color: var(--primary-color);
+    border-radius: 20px;
+}
+
+#Panel-content::-webkit-scrollbar-corner{
+    background-color: #c2c2c2;
+}
+
 .Tool {
     cursor: pointer;
+    transition: 0.3s ease-out;
+}
+
+.Tool:hover {
+    background-color: var(--border-color);
 }
 
 .Tool > i {
     color: var(--secondary-color);
     font-size: 1.5em;
-}
-
-.Tool > i, .Tool > span {
-    transition: 0.3s ease-out;
 }
 
 .Tool, #panel-header {
@@ -97,9 +127,68 @@
     border-radius: 10px;
     box-shadow: 0 1px 5px var(--primary-color);
     transition: 0.3s ease-out;
+    margin-bottom: 16px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.view-item:first-child {
+    margin-top: 10px;
 }
 
 .view-item > img {
     width: 50px;
     border-radius: 10px;
+}
+
+form {
+    font-family: 'Roboto', sans-serif;
+    margin: 10px;
+    max-width: 700px;
+}
+
+form > label {
+    color: var(--primary-color);
+    font-weight: bold;
+    margin-bottom: 2px;
+}
+
+form > input {
+    color: var(--on-secondary-color);
+    margin-bottom: 10px;
+    border-radius: 10px;
+    border: 1px solid var(--primary-color);
+    box-shadow: 0 1px 3px transparent;
+    padding: 5px;
+    outline: none;
+}
+
+form > input:focus {
+    box-shadow: 0 1px 3px var(--primary-color);
+}
+
+form > input[type=date] {
+    width: 200px;
+}
+
+form > input[type=file] {
+    width: 400px;
+}
+
+form > img {
+    border-radius: 10px;
+    width: 400px;
+}
+
+form > button {
+    padding: 10px 20px;
+    margin: 36px auto 30px auto;
+    background-color: var(--primary-color);
+    border-style: none;
+    border-radius: 20px;
+    transition: 0.3s ease-out;
+}
+
+form > button:hover {
+    background-color: var(--border-color);
 }

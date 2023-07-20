@@ -10,17 +10,30 @@ export default function App() {
     <div id="App" className="h-100">
       <Routes>
           <Route path={ ROUTES.main } element={ <ContentWrap /> } />
-          <Route path={ ROUTES.admin } element={ <AdminPage active_panel={ null } /> } />
-          <Route path={ ROUTES.admin_events }
-                 element={ <AdminPage active_panel={ ACTIVE_PANELS.events } /> } />
-          <Route path={ ROUTES.admin_organizers }
-                 element={ <AdminPage active_panel={ ACTIVE_PANELS.organizers } /> } />
-          <Route path={ ROUTES.admin_forum_programme }
-                 element={ <AdminPage active_panel={ ACTIVE_PANELS.forum_programme } /> } />
-          <Route path={ `${ROUTES.admin_events}/:id` }
-                 element={ <AdminPage active_panel={ ACTIVE_PANELS.events } /> } />
-          <Route path={ `${ROUTES.admin_organizers}/:id` }
-                 element={ <AdminPage active_panel={ ACTIVE_PANELS.organizers } /> } />
+          <Route path={ ROUTES.admin } element={ <AdminPage admin_props={{
+              active_panel: null,
+              is_single: false
+          }} /> } />
+          <Route path={ ROUTES.admin_events } element={ <AdminPage admin_props={{
+                     active_panel: ACTIVE_PANELS.events,
+                     is_single: false
+                 }} /> } />
+          <Route path={ ROUTES.admin_organizers } element={ <AdminPage admin_props={{
+                     active_panel: ACTIVE_PANELS.organizers,
+                     is_single: false
+                 }} /> } />
+          <Route path={ ROUTES.admin_forum_programme } element={ <AdminPage admin_props={{
+                     active_panel: null,
+                     is_single: false
+                 }} /> } />
+          <Route path={ `${ROUTES.admin_events}/:id` } element={ <AdminPage admin_props={{
+                     active_panel: ACTIVE_PANELS.events,
+                     is_single: true
+                 }} /> } />
+          <Route path={ `${ROUTES.admin_organizers}/:id` } element={ <AdminPage admin_props={{
+                     active_panel: ACTIVE_PANELS.organizers,
+                     is_single: true
+                 }} /> } />
       </Routes>
     </div>
   )

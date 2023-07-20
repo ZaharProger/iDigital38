@@ -5,30 +5,21 @@ import PanelTools from "./PanelTools"
 import PanelContent from "./PanelContent"
 import useApi from "../../../hooks/useApi"
 import LoadingBar from "../loading/LoadingBar"
-import {ACTIVE_PANELS, HOST} from "../../../globalConstants"
+import {HOST} from "../../../globalConstants"
+import useEndpoint from "../../../hooks/useEndpoint";
 
 export default function AdminEditPanel(props) {
-    const itemId = useParams().id
-    const isSingleView = itemId !== undefined
+    const urlParams = useParams()
     const performApiCall = useApi()
     const [data, setData] = useState(Array())
     const [isLoading, setIsLoading] = useState(false)
 
-    useEffect(() => {
-        let endpoint
-        switch (props.active_panel) {
-            case ACTIVE_PANELS.events:
-                endpoint = 'api/events'
-                break
-            case ACTIVE_PANELS.organizers:
-                endpoint = 'api/organizers'
-                break
-            default:
-                endpoint = ''
-                break
-        }
+    const { active_panel, is_single } = props.panel_props
+    let endpoint = useEndpoint(active_panel)
 
-        if (isSingleView) {
+    useEffect(() => {
+        if (is_single) {
+            const itemId = urlParams.id !== undefined? urlParams.id : 0
             endpoint += `?id=${itemId}`
         }
 
@@ -37,24 +28,24 @@ export default function AdminEditPanel(props) {
             setIsLoading(false)
             setData(responseData.data)
         })
-    }, [props.active_panel, isSingleView])
+    }, [active_panel, is_single])
 
     return(
-        <div id='Admin-edit-panel' className="d-flex flex-column mt-5 mb-auto me-2 ms-3 w-100 pe-2 ps-2">
-            {
-                isSingleView?
-                    null
-                    :
-                    <PanelTools panel_props={ props.active_panel } />
-            }
+        <div id='Admin-edit-panel' className="d-flex flex-column mt-5 me-2 ms-3 w-100 pe-2 ps-2">
+            <PanelTools panel_props={{
+                active_panel,
+                is_single,
+                has_id: urlParams.id !== undefined
+            }} />
             {
                 isLoading?
                     <LoadingBar />
                     :
                     <PanelContent panel_props={{
-                        active_panel: props.active_panel,
+                        active_panel,
                         data,
-                        is_single: isSingleView
+                        is_single,
+                        id_from_url: urlParams.id
                     }} />
             }
         </div>

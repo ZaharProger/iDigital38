@@ -1,19 +1,33 @@
 import React from "react"
+import {HOST} from "../../../../globalConstants";
 
 export default function EventForm(props) {
-    const { name, date, ref, image_uri } = props.item_props
+    const { data, has_id } = props.item_props
+    const isDefined = data !== undefined
+    const editedDate = isDefined? new Date(data.date * 1000).toLocaleDateString('en-CA') : ''
 
     return(
         <form id="Event-form" className="d-flex flex-column justify-content-center">
             <label>Название мероприятия</label>
-            <input name="name" type="text" value={ name } />
+            <input name="name" type="text" defaultValue={ isDefined? data.name : '' } />
             <label>Дата проведения</label>
-            <input name="date" type="date" value={ new Date(date * 1000).toLocaleDateString() } />
-            <label>Картинка мероприятия (необязательное поле)</label>
-            <input name="image_uri" type="text" value={ image_uri } />
+            <input name="date" type="date" defaultValue={ editedDate } />
             <label>Ссылка на мероприятие</label>
-            <input name="ref" type="text" value={ ref } />
-            <button type="submit" className="d-flex regular-text pt-1 pb-1 pe-3 ps-3"></button>
+            <input name="ref" type="text" defaultValue={ isDefined? data.ref : '' } />
+            <label>Картинка мероприятия (необязательное поле)</label>
+            <input name="image_uri" type="file" accept="image/*" formEncType="multipart/form-data" />
+            <label id="preview-label">
+                {
+                    isDefined && data.image_uri !== null?
+                        'Предпросмотр (файл получен с сервера)' : 'Нет данных для предпросмотра'
+                }
+            </label>
+            <img src={ isDefined && data.image_uri !== null? `${HOST}/${data.image_uri}` : '' } />
+            <button type="submit" className="d-flex regular-text">
+                {
+                    has_id? 'Сохранить изменения' : 'Создать запись'
+                }
+            </button>
         </form>
     )
 }

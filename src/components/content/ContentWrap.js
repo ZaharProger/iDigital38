@@ -29,6 +29,8 @@ export default function ContentWrap() {
     }
 
     useEffect(() => {
+        document.querySelector('body').style.overflow = 'auto'
+
         const gallery = document.querySelector('#Gallery')
         if (gallery !== null) {
             gallery.querySelectorAll('img').forEach(image => {
