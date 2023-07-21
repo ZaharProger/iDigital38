@@ -104,6 +104,26 @@
     transition: 0.3s ease-out;
 }
 
+.tool-anim {
+    animation: tool-reveal 0.3s ease-out 0s 1 forwards;
+}
+
+.tool-anim-back {
+    animation: tool-reveal 0.3s ease-out 0s 1 backwards;
+}
+
+@keyframes tool-reveal {
+    from {
+        transform: translateX(100px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+
 .Tool:hover {
     background-color: var(--border-color);
 }
@@ -182,7 +202,7 @@ form > img {
 
 form > button {
     padding: 10px 20px;
-    margin: 36px auto 30px auto;
+    margin: 36px auto 10px auto;
     background-color: var(--primary-color);
     border-style: none;
     border-radius: 20px;
@@ -191,4 +211,9 @@ form > button {
 
 form > button:hover {
     background-color: var(--border-color);
+}
+
+#error-message {
+    border-radius: 10px;
+    background-color: red;
 }

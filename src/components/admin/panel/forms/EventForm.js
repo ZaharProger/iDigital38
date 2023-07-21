@@ -15,7 +15,8 @@ export default function EventForm(props) {
             <label>Ссылка на мероприятие</label>
             <input name="ref" type="text" defaultValue={ isDefined? data.ref : '' } />
             <label>Картинка мероприятия (необязательное поле)</label>
-            <input name="image_uri" type="file" accept="image/*" formEncType="multipart/form-data" />
+            <input name="image_uri" type="file" accept="image/*"
+                   formEncType="multipart/form-data" className="optional" />
             <label id="preview-label">
                 {
                     isDefined && data.image_uri !== null?

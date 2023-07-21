@@ -4,7 +4,7 @@ import Tool from "./Tool"
 import {ADMIN_MENU, PANEL_TOOLS} from "../../../globalConstants"
 
 export default function PanelTools(props) {
-    const { active_panel, is_single, has_id } = props.panel_props
+    const { active_panel, is_single, id_from_url } = props.panel_props
 
     const tools = is_single? [PANEL_TOOLS.back] : [PANEL_TOOLS.create, PANEL_TOOLS.delete]
 
@@ -13,24 +13,27 @@ export default function PanelTools(props) {
     if (foundMenuItem.length != 0) {
         panelCaption = foundMenuItem[0].caption
         if (is_single) {
-            panelCaption += has_id? ' (Изменение записи)' : ' (Новая запись)'
+            panelCaption += id_from_url !== undefined? ' (Изменение записи)' : ' (Новая запись)'
         }
     }
 
+    const captionClasslist = `d-flex me-${is_single? '3' : 'auto'} mt-auto semi-header-text pt-2 pb-2 pe-3 ps-3 tool-anim mb-1`
+
     return(
-        <div id="Panel-tools" className="d-flex flex-row w-100 mt-5 mb-1">
+        <div id="Panel-tools" className="d-flex flex-row w-100 mt-5 flex-wrap">
             {
                 is_single?
                     tools.map(tool => {
                         return <Tool key={ `tool_${tool.id}` } item_props={{
                             item: tool,
-                            is_single
+                            is_single,
+                            active_panel
                         }} />
                     })
                     :
                     null
             }
-            <span id="panel-header" className="d-flex me-auto mt-auto mb-auto semi-header-text pt-2 pb-2 pe-3 ps-3">
+            <span id="panel-header" className={ captionClasslist }>
                 {
                     panelCaption
                 }
@@ -42,7 +45,8 @@ export default function PanelTools(props) {
                     tools.map(tool => {
                         return <Tool key={ `tool_${tool.id}` } item_props={{
                             item: tool,
-                            is_single
+                            is_single,
+                            active_panel
                         }} />
                     })
             }

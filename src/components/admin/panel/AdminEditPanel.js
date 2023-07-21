@@ -15,19 +15,34 @@ export default function AdminEditPanel(props) {
     const [isLoading, setIsLoading] = useState(false)
 
     const { active_panel, is_single } = props.panel_props
-    let endpoint = useEndpoint(active_panel)
+    let { backend_endpoint } = useEndpoint(active_panel)
 
     useEffect(() => {
-        if (is_single) {
-            const itemId = urlParams.id !== undefined? urlParams.id : 0
-            endpoint += `?id=${itemId}`
+        const errorMessage = document.getElementById('error-message')
+        if (errorMessage !== null) {
+            document.getElementById('Panel-tools').removeChild(errorMessage)
         }
 
-        setIsLoading(true)
-        performApiCall(`${HOST}/${endpoint}`, 'GET', null, null).then(responseData => {
-            setIsLoading(false)
-            setData(responseData.data)
-        })
+        let method = 'GET'
+        if (is_single) {
+            if (urlParams.id === undefined) {
+                method = 'POST'
+            }
+            else {
+                backend_endpoint += `?id=${urlParams.id}`
+            }
+        }
+
+        if (method == 'GET') {
+            setIsLoading(true)
+            performApiCall(`${HOST}/${backend_endpoint}`, method, null, null).then(responseData => {
+                setIsLoading(false)
+                setData(responseData.data)
+            })
+        }
+        else {
+            setData(Array())
+        }
     }, [active_panel, is_single])
 
     return(
@@ -35,7 +50,7 @@ export default function AdminEditPanel(props) {
             <PanelTools panel_props={{
                 active_panel,
                 is_single,
-                has_id: urlParams.id !== undefined
+                id_from_url: urlParams.id
             }} />
             {
                 isLoading?

@@ -6,7 +6,8 @@ export const ROUTES = {
     admin_auth: '/admin-auth',
     admin_events: '/admin/events',
     admin_organizers: '/admin/organizers',
-    admin_forum_programme: '/admin/forum-programme'
+    admin_forum_programme: '/admin/forum-programme',
+    admin_create: '/create'
 }
 
 export const LIST_TYPES = {
@@ -40,19 +41,19 @@ export const PANEL_TOOLS = {
         id: 2,
         caption: 'Создать',
         icon_class: 'plus',
-        route: ROUTES.admin
+        route: ROUTES.admin_create
     },
     delete: {
         id: 3,
         caption: 'Пометить на удаление',
         icon_class: 'trash-can-list',
-        route: ROUTES.admin
+        route: null
     },
     back: {
         id: 1,
         caption: 'Назад',
         icon_class: 'arrow-left',
-        route: -1
+        route: undefined
     }
 }
 

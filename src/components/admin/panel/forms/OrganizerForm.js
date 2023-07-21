@@ -13,9 +13,11 @@ export default function OrganizerForm(props) {
             <label>Должность</label>
             <input name="role" type="text" defaultValue={ isDefined? data.role : '' } />
             <label>Должность на форуме (необязательное поле)</label>
-            <input name="additional_role" type="text" defaultValue={ isDefined? data.additional_role : '' } />
+            <input name="additional_role" type="text"
+                   defaultValue={ isDefined? data.additional_role : '' } className="optional" />
             <label>Фотография (необязательное поле)</label>
-            <input name="image_uri" type="file" accept="image/*" formEncType="multipart/form-data" />
+            <input name="image_uri" type="file" accept="image/*"
+                   formEncType="multipart/form-data" className="optional" />
             <label id="preview-label">
                 {
                     isDefined && data.image_uri !== null?

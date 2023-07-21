@@ -1,18 +1,25 @@
-import {ACTIVE_PANELS} from "../globalConstants"
+import {ACTIVE_PANELS, ROUTES} from "../globalConstants"
 
 export default function useEndpoint(activePanel, isGetRequest=true) {
-    let endpoint
+    let backendEndpoint
+    let frontendEndpoint
     switch (activePanel) {
         case ACTIVE_PANELS.events:
-            endpoint = 'api/events'
+            backendEndpoint = 'api/events'
+            frontendEndpoint = ROUTES.admin_events
             break
         case ACTIVE_PANELS.organizers:
-            endpoint = 'api/organizers'
+            backendEndpoint = 'api/organizers'
+            frontendEndpoint = ROUTES.admin_organizers
             break
         default:
-            endpoint = ''
+            backendEndpoint = ''
+            frontendEndpoint = ''
             break
     }
 
-    return isGetRequest? endpoint : endpoint + '/'
+    return {
+        backend_endpoint: isGetRequest? backendEndpoint : backendEndpoint + '/',
+        frontend_endpoint: frontendEndpoint
+    }
 }

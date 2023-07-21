@@ -8,13 +8,15 @@ import EventForm from "./forms/EventForm"
 import OrganizerForm from "./forms/OrganizerForm"
 import useApi from "../../../hooks/useApi"
 import useEndpoint from "../../../hooks/useEndpoint"
+import useValidation from "../../../hooks/useValidation"
 
 export default function PanelContent(props) {
     const location = useLocation()
     const navigate = useNavigate()
     const performApiCall = useApi()
+    const validate = useValidation()
     let { active_panel, data, is_single, id_from_url } = props.panel_props
-    const endpoint = useEndpoint(active_panel, false)
+    const { frontend_endpoint, backend_endpoint } = useEndpoint(active_panel, false)
 
     const getContent = useCallback(() => {
         let content
@@ -106,24 +108,59 @@ export default function PanelContent(props) {
             form.onsubmit = (e) => {
                 e.preventDefault()
 
-                const requestMethod = id_from_url !== undefined? 'PUT' : 'POST'
-                const requestBody = new FormData(form)
-
-                if (requestMethod == 'PUT') {
-                    requestBody.append('id', id_from_url)
-                }
-                if (requestBody.has('date')) {
-                    const dateTimestamp = new Date(requestBody.get('date')).getTime() / 1000
-                    requestBody.set('date', dateTimestamp.toString())
-                }
-                if (requestBody.has('image_uri') && requestBody.get('image_uri').size == 0 &&
-                    form.querySelector('img').getAttribute('src') != '') {
-                    requestBody.delete('image_uri')
+                let errorMessage = document.getElementById('error-message')
+                if (errorMessage !== null) {
+                    document.getElementById('Panel-tools').removeChild(errorMessage)
                 }
 
-                performApiCall(`${HOST}/${endpoint}`, requestMethod, requestBody, null).then(responseData => {
-                    console.log(responseData)
+                const inputsToValidate = Array.from(document.getElementsByTagName('input'))
+                    .filter(input => !input.classList.contains('optional'))
+                const validationResult = validate(inputsToValidate, (inputValue) =>
+                    !RegExp(/^\s*$/).test(inputValue))
+
+                form.querySelectorAll('input').forEach(input => {
+                    if (validationResult.includes(input)) {
+                        input.classList.add('error')
+                    }
+                    else {
+                        input.classList.remove('error')
+                    }
                 })
+
+                if (validationResult.length == 0) {
+                    const requestMethod = id_from_url !== undefined? 'PUT' : 'POST'
+                    const requestBody = new FormData(form)
+
+                    if (requestMethod == 'PUT') {
+                        requestBody.append('id', id_from_url)
+                    }
+                    if (requestBody.has('date')) {
+                        const dateTimestamp = new Date(requestBody.get('date')).getTime() / 1000
+                        requestBody.set('date', dateTimestamp.toString())
+                    }
+                    if (requestBody.has('image_uri') && requestBody.get('image_uri').size == 0 &&
+                        form.querySelector('img').getAttribute('src') != '') {
+                        requestBody.delete('image_uri')
+                    }
+
+                    performApiCall(`${HOST}/${backend_endpoint}`, requestMethod, requestBody, null)
+                        .then(responseData => {
+                        if (responseData !== null) {
+                            navigate(frontend_endpoint)
+                        }
+                    })
+                }
+                else {
+                    errorMessage = document.createElement('span')
+                    errorMessage.id = 'error-message'
+                    errorMessage.innerText = 'Заполните все обязательные поля'
+                    errorMessage.classList.add(
+                        'd-flex', 'me-auto', 'mt-auto',
+                        'semi-header-text', 'pt-2', 'pb-2', 'pe-3',
+                        'ps-3', 'tool-anim', 'mb-1'
+                    )
+                    document.getElementById('Panel-tools').appendChild(errorMessage)
+                }
             }
         }
     }, [data])

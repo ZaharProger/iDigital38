@@ -54,3 +54,7 @@
 .selected-view-item {
     background-color: #262662AA;
 }
+
+.error {
+    box-shadow: 0 1px 3px red!important;
+}
