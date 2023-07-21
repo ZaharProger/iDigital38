@@ -4,6 +4,7 @@ import {Route, Routes} from "react-router-dom"
 import ContentWrap from "./content/ContentWrap"
 import {ACTIVE_PANELS, ROUTES} from "../globalConstants"
 import AdminPage from "./admin/AdminPage"
+import Auth from "./admin/Auth"
 
 export default function App() {
   return (
@@ -42,6 +43,7 @@ export default function App() {
               active_panel: ACTIVE_PANELS.organizers,
               is_single: true
           }} /> } />
+          <Route path={ ROUTES.admin_auth } element={ <Auth /> } />
       </Routes>
     </div>
   )
