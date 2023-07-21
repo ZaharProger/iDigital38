@@ -4,7 +4,7 @@ import {Route, Routes} from "react-router-dom"
 import ContentWrap from "./content/ContentWrap"
 import {ACTIVE_PANELS, ROUTES} from "../globalConstants"
 import AdminPage from "./admin/AdminPage"
-import Auth from "./admin/Auth"
+import Auth from "./admin/auth/Auth"
 
 export default function App() {
   return (
