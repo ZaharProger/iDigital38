@@ -80,3 +80,7 @@ export const ADMIN_MENU = [
         route: ROUTES.admin_events
     }
 ]
+
+export const HINTS = {
+    DRAG_AND_DROP: 'В этом списке можно изменять порядок записей, удерживая левую клавишу мыши и перетаскивая записи'
+}

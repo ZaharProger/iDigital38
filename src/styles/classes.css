@@ -57,4 +57,15 @@
 
 .error {
     box-shadow: 0 1px 3px red!important;
+    border-color: red;
+    animation: error-detection 0.5s ease-out 0s 1 forwards;
+}
+
+@keyframes error-detection {
+    from {
+        transform: translateY(-10px);
+    }
+    to {
+        transform: translateY(0);
+    }
 }

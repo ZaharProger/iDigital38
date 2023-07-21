@@ -19,7 +19,12 @@ export default function DeletionModal(props) {
         }).map(item => item.id)
         backend_endpoint += `?ids=${idsToRemove.join(',')}`
 
+        const deleteButton = document.getElementById('delete-button')
+        const prevButtonText = deleteButton.innerText
+        deleteButton.innerText = 'Удаление записей...'
+
         performApiCall(`${HOST}/${backend_endpoint}`, 'DELETE', null, null).then(_ => {
+            deleteButton.innerText = prevButtonText
             window.location.reload()
         })
     }, [data])
@@ -60,7 +65,7 @@ export default function DeletionModal(props) {
                     <div className="modal-footer">
                         {
                             is_deletion_available?
-                                <button type="button" onClick={ () => deleteData() }
+                                <button id="delete-button" type="button" onClick={ () => deleteData() }
                                         className="regular-text flex-grow-1 d-flex justify-content-center me-2">
                                     Удалить
                                 </button>

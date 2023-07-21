@@ -7,7 +7,7 @@ export default function OrganizerView(props) {
     const viewClasslist = `Organizer-view d-flex flex-row p-2 align-items-center ${is_static? 'view-item-static' : 'view-item'}`
 
     return(
-        <div className={ viewClasslist }>
+        <div className={ viewClasslist } draggable={ true }>
             {
                 image_uri !== null?
                     <img src={ `${HOST}/${image_uri}` } alt='event' className="me-2" />

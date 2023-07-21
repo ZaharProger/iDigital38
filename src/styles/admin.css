@@ -22,6 +22,13 @@
     box-shadow: 0 2px 8px var(--secondary-color);
 }
 
+#Admin-menu {
+    flex-shrink: 2;
+    z-index: 99;
+    flex: 0 0 auto;
+    width: 20%;
+}
+
 #admin-menu-content {
     border-radius: 20px;
     background: var(--primary-color);
@@ -219,4 +226,28 @@ form > button:hover, .modal-footer > button:hover {
 #error-message {
     border-radius: 10px;
     background-color: red;
+}
+
+#Hint {
+    border-radius: 10px;
+    background-color: var(--on-primary-color);
+    animation: hint-reveal 0.3s ease-out 0s 1 forwards;
+}
+
+@keyframes hint-reveal {
+    from {
+        opacity: 0;
+        transform: translateY(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    #Admin-menu {
+        flex: 1;
+        width: auto;
+    }
 }

@@ -1,7 +1,8 @@
 import React, {useEffect} from "react"
 
 import AdminMenuItem from "./AdminMenuItem"
-import {ADMIN_MENU} from "../../../globalConstants"
+import {ACTIVE_PANELS, ADMIN_MENU, HINTS} from "../../../globalConstants"
+import Hint from "./Hint"
 
 export default function AdminMenu(props) {
     useEffect(() => {
@@ -31,6 +32,12 @@ export default function AdminMenu(props) {
                     })
                 }
             </div>
+            {
+                 [ACTIVE_PANELS.organizers].includes(props.menu_props.active_panel)?
+                     <Hint hint_text={ HINTS.DRAG_AND_DROP } />
+                     :
+                     null
+            }
         </div>
     )
 }

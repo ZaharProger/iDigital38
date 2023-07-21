@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react"
+import React, {useCallback, useEffect, useRef, useState} from "react"
 import {useNavigate, useParams} from "react-router-dom"
 
 import AdminHeader from "./header/AdminHeader"
@@ -19,7 +19,29 @@ export default function AdminPage(props) {
     const [isLoading, setIsLoading] = useState(false)
     const [isDeletionAvailable, setIsDeletionAvailable] = useState(false)
 
-    let { backend_endpoint } = useEndpoint(active_panel)
+    let { backend_endpoint: backendGetEndpoint } = useEndpoint(active_panel)
+    const { backend_endpoint: backendPatchEndpoint } = useEndpoint(active_panel, false)
+
+    const dragItem = useRef()
+    const dragOverItem = useRef()
+
+    const prepareData = useCallback((data) => {
+        let preparedData
+        switch (active_panel) {
+            case ACTIVE_PANELS.events:
+                preparedData = data
+                    .sort((first, second) => first.date - second.date)
+                break
+            case ACTIVE_PANELS.organizers:
+                preparedData = data
+                    .sort((first, second) => first.order - second.order)
+                break
+            default:
+                preparedData = Array()
+        }
+
+        return preparedData
+    }, [active_panel])
 
     useEffect(() => {
         const errorMessage = document.getElementById('error-message')
@@ -34,30 +56,15 @@ export default function AdminPage(props) {
                     method = 'POST'
                 }
                 else {
-                    backend_endpoint += `?id=${urlParams.id}`
+                    backendGetEndpoint += `?id=${urlParams.id}`
                 }
             }
 
             if (method == 'GET') {
                 setIsLoading(true)
-                performApiCall(`${HOST}/${backend_endpoint}`, method, null, null).then(responseData => {
+                performApiCall(`${HOST}/${backendGetEndpoint}`, method, null, null).then(responseData => {
                     setIsLoading(false)
-
-                    let preparedData
-                    switch (active_panel) {
-                        case ACTIVE_PANELS.events:
-                            preparedData = responseData.data
-                                .sort((first, second) => first.date - second.date)
-                            break
-                        case ACTIVE_PANELS.organizers:
-                            preparedData = responseData.data
-                                .sort((first, second) => first.order - second.order)
-                            break
-                        default:
-                            preparedData = Array()
-                    }
-
-                    setData(preparedData)
+                    setData(prepareData(responseData.data))
                 })
             }
             else {
@@ -85,6 +92,54 @@ export default function AdminPage(props) {
 
             viewItem.addEventListener('mouseleave', () => {
                 viewItem.classList.remove('selected-view-item')
+            })
+
+            viewItem.addEventListener('dragstart', (e) => {
+                dragItem.current = viewItems.indexOf(viewItem)
+            })
+
+            viewItem.addEventListener('dragover', (e) => {
+                e.preventDefault()
+                e.target.classList.add('selected-view-item')
+            })
+
+            viewItem.addEventListener('dragleave', (e) => {
+                e.target.classList.remove('selected-view-item')
+            })
+
+            viewItem.addEventListener('dragenter', (e) => {
+                e.preventDefault()
+                dragOverItem.current = viewItems.indexOf(viewItem)
+            })
+
+            viewItem.addEventListener('drop', (e) => {
+                e.preventDefault()
+
+                if (dragItem.current != dragOverItem.current) {
+                    const copiedData = [...data]
+                    const dragItemContent = copiedData[dragItem.current]
+
+                    copiedData.splice(dragItem.current, 1)
+                    copiedData.splice(dragOverItem.current, 0, dragItemContent)
+
+                    dragItem.current = null
+                    dragOverItem.current = null
+
+                    const requestBody = new FormData()
+                    let order = -1
+                    copiedData.forEach(item => {
+                        requestBody.append(item.id, ++order)
+                    })
+
+                    setIsLoading(true)
+
+                    performApiCall(`${HOST}/${backendPatchEndpoint}`, 'PATCH', requestBody, null).then(_ => {
+                        performApiCall(`${HOST}/${backendGetEndpoint}`, 'GET', null, null).then(responseData => {
+                            setIsLoading(false)
+                            setData(prepareData(responseData.data))
+                        })
+                    })
+                }
             })
         })
 

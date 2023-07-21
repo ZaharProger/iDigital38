@@ -103,11 +103,10 @@ export default function PanelContent(props) {
                     !RegExp(/^\s*$/).test(inputValue))
 
                 form.querySelectorAll('input').forEach(input => {
+                    input.classList.remove('error')
+
                     if (validationResult.includes(input)) {
                         input.classList.add('error')
-                    }
-                    else {
-                        input.classList.remove('error')
                     }
                 })
 
@@ -127,12 +126,18 @@ export default function PanelContent(props) {
                         requestBody.delete('image_uri')
                     }
 
+                    const submitButton = form.querySelector('button')
+                    const prevButtonText = submitButton.innerText
+                    submitButton.innerText = 'Отправка данных...'
+
                     performApiCall(`${HOST}/${backend_endpoint}`, requestMethod, requestBody, null)
                         .then(responseData => {
-                        if (responseData !== null) {
-                            navigate(frontend_endpoint)
-                        }
-                    })
+                            submitButton.innerText = prevButtonText
+
+                            if (responseData !== null) {
+                                navigate(frontend_endpoint)
+                            }
+                        })
                 }
                 else {
                     errorMessage = document.createElement('span')
