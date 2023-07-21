@@ -1,11 +1,28 @@
-import React from "react"
+import React, {useCallback} from "react"
 
-import {ACTIVE_PANELS} from "../../../globalConstants"
+import {ACTIVE_PANELS, HOST} from "../../../globalConstants"
 import EventView from "../panel/views/EventView"
 import OrganizerView from "../panel/views/OrganizerView"
+import useApi from "../../../hooks/useApi"
+import useEndpoint from "../../../hooks/useEndpoint"
 
 export default function DeletionModal(props) {
     const { data, active_panel, is_deletion_available } = props.modal_props
+
+    const performApiCall = useApi()
+    let { backend_endpoint } = useEndpoint(active_panel)
+
+    const deleteData = useCallback(() => {
+        const selectedViews = Array.from(document.getElementsByClassName('view-item-static'))
+        const idsToRemove = data.filter(item => {
+            return selectedViews[data.indexOf(item)].classList.contains('selected-view-item')
+        }).map(item => item.id)
+        backend_endpoint += `?ids=${idsToRemove.join(',')}`
+
+        performApiCall(`${HOST}/${backend_endpoint}`, 'DELETE', null, null).then(_ => {
+            window.location.reload()
+        })
+    }, [data])
 
     return(
         <div id="Deletion-modal" className="modal fade" tabIndex="-1" aria-labelledby="deletion-modal-label"
@@ -43,7 +60,7 @@ export default function DeletionModal(props) {
                     <div className="modal-footer">
                         {
                             is_deletion_available?
-                                <button type="button"
+                                <button type="button" onClick={ () => deleteData() }
                                         className="regular-text flex-grow-1 d-flex justify-content-center me-2">
                                     Удалить
                                 </button>
