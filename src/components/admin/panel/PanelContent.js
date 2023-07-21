@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect} from "react"
-import {useLocation, useNavigate} from "react-router-dom"
+import {useNavigate} from "react-router-dom"
 
 import {ACTIVE_PANELS, HOST} from "../../../globalConstants"
 import EventView from "./views/EventView"
@@ -11,7 +11,6 @@ import useEndpoint from "../../../hooks/useEndpoint"
 import useValidation from "../../../hooks/useValidation"
 
 export default function PanelContent(props) {
-    const location = useLocation()
     const navigate = useNavigate()
     const performApiCall = useApi()
     const validate = useValidation()
@@ -30,10 +29,11 @@ export default function PanelContent(props) {
                     }} />
                 }
                 else {
-                    content = data.sort((first, second) => first.date - second.date).map(item => {
+                    content = data.map(item => {
                         return <EventView key={ `event_${item.id}` } item_props={{
                             item_data: item,
-                            is_last: data.indexOf(item) == data.length - 1
+                            is_last: data.indexOf(item) == data.length - 1,
+                            is_static: false
                         }} />
                     })
                 }
@@ -46,10 +46,11 @@ export default function PanelContent(props) {
                     }} />
                 }
                 else {
-                    content = data.sort((first, second) => first.order - second.order).map(item => {
+                    content = data.map(item => {
                         return <OrganizerView key={ `organizer_${item.id}` } item_props={{
                             item_data: item,
-                            is_last: data.indexOf(item) == data.length - 1
+                            is_last: data.indexOf(item) == data.length - 1,
+                            is_static: false
                         }} />
                     })
                 }
@@ -63,23 +64,6 @@ export default function PanelContent(props) {
     }, [active_panel, data])
 
     useEffect(() => {
-        const viewItems = Array.from(document.getElementsByClassName('view-item'))
-        viewItems.forEach(viewItem => {
-            viewItem.addEventListener('click', () => {
-                navigate(`${location.pathname}/${data[viewItems.indexOf(viewItem)].id}`)
-            })
-
-            viewItem.addEventListener('mouseover', () => {
-                viewItem.classList.add('selected-view-item')
-            })
-
-            viewItem.addEventListener('mouseleave', () => {
-                document.querySelectorAll('.view-item').forEach(anotherItem => {
-                    anotherItem.classList.remove('selected-view-item')
-                })
-            })
-        })
-
         document.querySelectorAll('input').forEach(input => {
             if (input.type === 'file') {
                 input.addEventListener('change', () => {

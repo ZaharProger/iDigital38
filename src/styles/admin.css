@@ -79,23 +79,26 @@
     flex: 1;
     position: relative;
     overflow: auto;
+}
+
+.modal-body, #Panel-content {
     scrollbar-color: var(--primary-color) #c2c2c2;
     scrollbar-width: thin;
 }
 
-#Panel-content::-webkit-scrollbar{
+#Panel-content::-webkit-scrollbar, .modal-body::-webkit-scrollbar {
     width: 8px;
     height: 8px;
     background-color: #c2c2c2;
     border-radius: 20px;
 }
 
-#Panel-content::-webkit-scrollbar-thumb{
+#Panel-content::-webkit-scrollbar-thumb, .modal-body::-webkit-scrollbar-thumb {
     background-color: var(--primary-color);
     border-radius: 20px;
 }
 
-#Panel-content::-webkit-scrollbar-corner{
+#Panel-content::-webkit-scrollbar-corner, .modal-body::-webkit-scrollbar-corner {
     background-color: #c2c2c2;
 }
 
@@ -133,7 +136,7 @@
     font-size: 1.5em;
 }
 
-.Tool, #panel-header {
+.Tool, #panel-header, #deletion-modal-label {
     background: var(--primary-color);
     border-radius: 10px;
 }
@@ -142,7 +145,7 @@
     width: 300px;
 }
 
-.view-item {
+.view-item, .view-item-static {
     cursor: pointer;
     border-radius: 10px;
     box-shadow: 0 1px 5px var(--primary-color);
@@ -152,11 +155,11 @@
     margin-right: 10px;
 }
 
-.view-item:first-child {
+.view-item:first-child, .view-item-static:first-child {
     margin-top: 10px;
 }
 
-.view-item > img {
+.view-item > img, .view-item-static > img {
     width: 50px;
     border-radius: 10px;
 }
@@ -200,7 +203,7 @@ form > img {
     width: 400px;
 }
 
-form > button {
+form > button, .modal-footer > button {
     padding: 10px 20px;
     margin: 36px auto 10px auto;
     background-color: var(--primary-color);
@@ -209,7 +212,7 @@ form > button {
     transition: 0.3s ease-out;
 }
 
-form > button:hover {
+form > button:hover, .modal-footer > button:hover {
     background-color: var(--border-color);
 }
 

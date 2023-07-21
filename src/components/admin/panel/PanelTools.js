@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useEffect} from "react"
 
 import Tool from "./Tool"
 import {ADMIN_MENU, PANEL_TOOLS} from "../../../globalConstants"
@@ -18,6 +18,17 @@ export default function PanelTools(props) {
     }
 
     const captionClasslist = `d-flex me-${is_single? '3' : 'auto'} mt-auto semi-header-text pt-2 pb-2 pe-3 ps-3 tool-anim mb-1`
+
+    useEffect(() => {
+        for (let i = 0; i< tools.length; ++i) {
+            if (tools[i] === PANEL_TOOLS.delete) {
+                const toolView = Array.from(document.getElementsByClassName('Tool'))[i]
+                toolView.setAttribute('data-bs-toggle', 'modal')
+                toolView.setAttribute('data-bs-target', '#Deletion-modal')
+                break
+            }
+        }
+    }, [is_single])
 
     return(
         <div id="Panel-tools" className="d-flex flex-row w-100 mt-5 flex-wrap">

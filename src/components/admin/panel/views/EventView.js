@@ -3,11 +3,13 @@ import React from "react"
 import {HOST} from "../../../../globalConstants"
 
 export default function EventView(props) {
-    const { item_data: { name, date, ref, image_uri } } = props.item_props
+    const { item_data: { name, date, ref, image_uri }, is_static } = props.item_props
     const convertedDate = new Date(date * 1000).toLocaleDateString()
 
+    const viewClasslist = `Event-view d-flex flex-row p-2 align-items-center ${is_static? 'view-item-static' : 'view-item'}`
+
     return(
-        <div className={ `Event-view d-flex flex-row p-2 view-item align-items-center` }>
+        <div className={ viewClasslist }>
             {
                 image_uri !== null?
                     <img src={ `${HOST}/${image_uri}` } alt='event' className="me-2" />

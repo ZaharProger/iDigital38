@@ -2,7 +2,6 @@ import React from "react"
 
 import {useNavigate} from "react-router-dom"
 import useEndpoint from "../../../hooks/useEndpoint"
-import {PANEL_TOOLS} from "../../../globalConstants"
 
 export default function Tool(props) {
     const navigate = useNavigate()
@@ -17,11 +16,6 @@ export default function Tool(props) {
                 }
                 else if (route !== null) {
                     navigate(frontend_endpoint + route)
-                }
-                else {
-                    if (props.item_props.item === PANEL_TOOLS.delete) {
-
-                    }
                 }
             } }>
             <i className={ `fa-solid fa-${icon_class} mt-auto mb-auto me-2` } />
