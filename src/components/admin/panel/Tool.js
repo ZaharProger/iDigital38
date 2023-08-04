@@ -5,7 +5,7 @@ import useEndpoint from "../../../hooks/useEndpoint"
 
 export default function Tool(props) {
     const navigate = useNavigate()
-    const { item: { caption, icon_class, route }, is_single, active_panel } = props.item_props
+    const { item: { caption, icon_class, route }, is_single, active_panel, callback } = props.item_props
     const { frontend_endpoint } = useEndpoint(active_panel)
 
     return(
@@ -15,6 +15,7 @@ export default function Tool(props) {
                     navigate(frontend_endpoint)
                 }
                 else if (route !== null) {
+                    callback()
                     navigate(frontend_endpoint + route)
                 }
             } }>

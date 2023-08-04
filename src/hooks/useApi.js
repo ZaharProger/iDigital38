@@ -13,12 +13,9 @@ export default function useApi() {
         }
 
         const response = await fetch(url, settings)
-        let responseData = null
-
-        if (response.ok) {
-            responseData = await response.json()
+        return {
+            status: response.status,
+            data: await response.json()
         }
-
-        return responseData
     }
 }

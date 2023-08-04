@@ -48,12 +48,6 @@
     transition: 0.3s ease-out;
 }
 
-#Warning-label {
-    margin-top: 250px;
-    background-color: var(--primary-color);
-    border-radius: 10px;
-}
-
 #Warning-label > i {
     font-size: 3.4em;
     color: var(--border-color);

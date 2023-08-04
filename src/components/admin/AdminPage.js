@@ -18,6 +18,7 @@ export default function AdminPage(props) {
     const [data, setData] = useState(Array())
     const [isLoading, setIsLoading] = useState(false)
     const [isDeletionAvailable, setIsDeletionAvailable] = useState(false)
+    const [warning, setWarning] = useState(null)
 
     let { backend_endpoint: backendGetEndpoint } = useEndpoint(active_panel)
     const { backend_endpoint: backendPatchEndpoint } = useEndpoint(active_panel, false)
@@ -37,7 +38,7 @@ export default function AdminPage(props) {
                     .sort((first, second) => first.order - second.order)
                 break
             default:
-                preparedData = Array()
+                preparedData = data
         }
 
         return preparedData
@@ -64,7 +65,16 @@ export default function AdminPage(props) {
                 setIsLoading(true)
                 performApiCall(`${HOST}/${backendGetEndpoint}`, method, null, null).then(responseData => {
                     setIsLoading(false)
-                    setData(prepareData(responseData.data))
+                    if (responseData.status == 200) {
+                        setWarning(null)
+                        setData(prepareData(responseData.data.data))
+                    }
+                    else {
+                        const warningMessage = responseData.status != 500? responseData.data.message :
+                            'Произошла внутренняя ошибка сервера. Пожалуйста, повторите запрос позже'
+                        setWarning(warningMessage)
+                        setData(Array())
+                    }
                 })
             }
             else {
@@ -136,7 +146,16 @@ export default function AdminPage(props) {
                     performApiCall(`${HOST}/${backendPatchEndpoint}`, 'PATCH', requestBody, null).then(_ => {
                         performApiCall(`${HOST}/${backendGetEndpoint}`, 'GET', null, null).then(responseData => {
                             setIsLoading(false)
-                            setData(prepareData(responseData.data))
+                            if (responseData.status == 200) {
+                                setWarning(null)
+                                setData(prepareData(responseData.data.data))
+                            }
+                            else {
+                                const warningMessage = responseData.status != 500? responseData.data.message :
+                                    'Произошла внутренняя ошибка сервера. Пожалуйста, повторите запрос позже'
+                                setWarning(warningMessage)
+                                setData(Array())
+                            }
                         })
                     })
                 }
@@ -180,13 +199,15 @@ export default function AdminPage(props) {
                 active_panel,
                 is_deletion_available: isDeletionAvailable
             }} />
-            <AdminHeader />
+            <AdminHeader callback={ () => setWarning(null) }  />
             <AdminViewport viewport_props={{
                 active_panel,
                 is_single,
                 data,
                 is_loading: isLoading,
-                id_from_url: urlParams.id
+                id_from_url: urlParams.id,
+                warning: warning,
+                callback: () => setWarning(null)
             }} />
         </div>
     )

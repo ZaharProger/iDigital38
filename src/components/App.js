@@ -24,7 +24,7 @@ export default function App() {
               is_single: false
           }} /> } />
           <Route path={ ROUTES.admin_forum_programme } element={ <AdminPage admin_props={{
-              active_panel: null,
+              active_panel: ACTIVE_PANELS.forum_programme,
               is_single: false
           }} /> } />
           <Route path={ `${ROUTES.admin_events}/:id` } element={ <AdminPage admin_props={{
@@ -33,6 +33,10 @@ export default function App() {
           }} /> } />
           <Route path={ `${ROUTES.admin_organizers}/:id` } element={ <AdminPage admin_props={{
               active_panel: ACTIVE_PANELS.organizers,
+              is_single: true
+          }} /> } />
+          <Route path={ `${ROUTES.admin_forum_programme}/:id` } element={ <AdminPage admin_props={{
+              active_panel: ACTIVE_PANELS.forum_programme,
               is_single: true
           }} /> } />
           <Route path={ `${ROUTES.admin_events}${ROUTES.admin_create}` } element={ <AdminPage admin_props={{

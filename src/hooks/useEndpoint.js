@@ -12,6 +12,10 @@ export default function useEndpoint(activePanel, isGetRequest=true) {
             backendEndpoint = 'api/organizers'
             frontendEndpoint = ROUTES.admin_organizers
             break
+        case ACTIVE_PANELS.forum_programme:
+            backendEndpoint = 'api/forum-programme'
+            frontendEndpoint = ROUTES.admin_forum_programme
+            break
         default:
             backendEndpoint = ''
             frontendEndpoint = ''

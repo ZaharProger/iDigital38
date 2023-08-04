@@ -4,9 +4,10 @@ import Tool from "./Tool"
 import {ADMIN_MENU, PANEL_TOOLS} from "../../../globalConstants"
 
 export default function PanelTools(props) {
-    const { active_panel, is_single, id_from_url } = props.panel_props
+    const { active_panel, is_single, id_from_url, warning, callback } = props.panel_props
 
-    const tools = is_single? [PANEL_TOOLS.back] : [PANEL_TOOLS.create, PANEL_TOOLS.delete]
+    const tools = is_single? [PANEL_TOOLS.back] :
+        warning === null? [PANEL_TOOLS.create, PANEL_TOOLS.delete] : [PANEL_TOOLS.create]
 
     const foundMenuItem = ADMIN_MENU.filter(item => item.panel === active_panel)
     let panelCaption = ''
@@ -38,7 +39,8 @@ export default function PanelTools(props) {
                         return <Tool key={ `tool_${tool.id}` } item_props={{
                             item: tool,
                             is_single,
-                            active_panel
+                            active_panel,
+                            callback
                         }} />
                     })
                     :
@@ -57,7 +59,8 @@ export default function PanelTools(props) {
                         return <Tool key={ `tool_${tool.id}` } item_props={{
                             item: tool,
                             is_single,
-                            active_panel
+                            active_panel,
+                            callback
                         }} />
                     })
             }

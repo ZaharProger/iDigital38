@@ -9,6 +9,7 @@ import OrganizerForm from "./forms/OrganizerForm"
 import useApi from "../../../hooks/useApi"
 import useEndpoint from "../../../hooks/useEndpoint"
 import useValidation from "../../../hooks/useValidation"
+import ProgrammeDayView from "./views/ProgrammeDayView"
 
 export default function PanelContent(props) {
     const navigate = useNavigate()
@@ -48,6 +49,20 @@ export default function PanelContent(props) {
                 else {
                     content = data.map(item => {
                         return <OrganizerView key={ `organizer_${item.id}` } item_props={{
+                            item_data: item,
+                            is_last: data.indexOf(item) == data.length - 1,
+                            is_static: false
+                        }} />
+                    })
+                }
+                break
+            case ACTIVE_PANELS.forum_programme:
+                if (is_single){
+                    return Array()
+                }
+                else {
+                    content = data.map(item => {
+                        return <ProgrammeDayView key={ `programme_day_${item.id}` } item_props={{
                             item_data: item,
                             is_last: data.indexOf(item) == data.length - 1,
                             is_static: false

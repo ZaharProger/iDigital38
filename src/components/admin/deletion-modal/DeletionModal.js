@@ -5,6 +5,7 @@ import EventView from "../panel/views/EventView"
 import OrganizerView from "../panel/views/OrganizerView"
 import useApi from "../../../hooks/useApi"
 import useEndpoint from "../../../hooks/useEndpoint"
+import ProgrammeDayView from "../panel/views/ProgrammeDayView"
 
 export default function DeletionModal(props) {
     const { data, active_panel, is_deletion_available } = props.modal_props
@@ -52,6 +53,12 @@ export default function DeletionModal(props) {
                                         }} />
                                     case ACTIVE_PANELS.organizers:
                                         return <OrganizerView key={ `organizer_${item.id}` } item_props={{
+                                            item_data: item,
+                                            is_last: data.indexOf(item) == data.length - 1,
+                                            is_static: true
+                                        }} />
+                                    case ACTIVE_PANELS.forum_programme:
+                                        return <ProgrammeDayView key={ `programme_day_${item.id}` } item_props={{
                                             item_data: item,
                                             is_last: data.indexOf(item) == data.length - 1,
                                             is_static: true

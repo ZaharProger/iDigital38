@@ -27,7 +27,8 @@ export default function AdminMenu(props) {
                             item,
                             is_last: ADMIN_MENU.indexOf(item) == ADMIN_MENU.length - 1,
                             active_panel: props.menu_props.active_panel,
-                            is_single: props.menu_props.is_single
+                            is_single: props.menu_props.is_single,
+                            callback: props.menu_props.callback
                         }}/>
                     })
                 }
