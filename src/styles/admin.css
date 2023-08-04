@@ -82,24 +82,27 @@
     overflow: auto;
 }
 
-.modal-body, #Panel-content {
+.modal-body, #Panel-content, form > textarea, .nested-form > textarea {
     scrollbar-color: var(--primary-color) #c2c2c2;
     scrollbar-width: thin;
 }
 
-#Panel-content::-webkit-scrollbar, .modal-body::-webkit-scrollbar {
+#Panel-content::-webkit-scrollbar, .modal-body::-webkit-scrollbar,
+form > textarea::-webkit-scrollbar, .nested-form > textarea::-webkit-scrollbar {
     width: 8px;
     height: 8px;
     background-color: #c2c2c2;
     border-radius: 20px;
 }
 
-#Panel-content::-webkit-scrollbar-thumb, .modal-body::-webkit-scrollbar-thumb {
+#Panel-content::-webkit-scrollbar-thumb, .modal-body::-webkit-scrollbar-thumb,
+form > textarea::-webkit-scrollbar-thumb, .nested-form > textarea::-webkit-scrollbar-thumb {
     background-color: var(--primary-color);
     border-radius: 20px;
 }
 
-#Panel-content::-webkit-scrollbar-corner, .modal-body::-webkit-scrollbar-corner {
+#Panel-content::-webkit-scrollbar-corner, .modal-body::-webkit-scrollbar-corner,
+.nested-form > textarea::-webkit-scrollbar-corner, form > textarea::-webkit-scrollbar-corner {
     background-color: #c2c2c2;
 }
 
@@ -171,13 +174,14 @@ form {
     max-width: 700px;
 }
 
-form > label {
+form > label, .nested-form > label {
     color: var(--primary-color);
     font-weight: bold;
     margin-bottom: 2px;
 }
 
-form > input {
+form > input, .nested-form > input,
+form > textarea, .nested-form > textarea {
     color: var(--on-secondary-color);
     margin-bottom: 10px;
     border-radius: 10px;
@@ -187,16 +191,21 @@ form > input {
     outline: none;
 }
 
-form > input:focus {
+form > input:focus, .nested-form > input:focus,
+form > textarea:focus, .nested-form > textarea:focus {
     box-shadow: 0 1px 3px var(--primary-color);
 }
 
-form > input[type=date] {
+form > input[type=date], .nested-form > input[type=time] {
     width: 200px;
 }
 
 form > input[type=file] {
     width: 400px;
+}
+
+form > textarea, .nested-form > textarea {
+    min-height: 150px;
 }
 
 form > img {
@@ -215,6 +224,27 @@ form > button, .modal-footer > button {
 
 form > button:hover, .modal-footer > button:hover {
     background-color: var(--border-color);
+}
+
+.nested-form {
+    margin-bottom: 30px;
+}
+
+.nested-form:last-child {
+    margin-bottom: 0;
+}
+
+.wrap-form-block {
+    display: flex;
+    background-color: var(--on-primary-color);
+    border-radius: 10px;
+    padding: 5px 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.wrap-form-block:first-child {
+    margin-top: 0;
 }
 
 #error-message {

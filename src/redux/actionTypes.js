@@ -1,0 +1,3 @@
+export const EVENTS = 'EVENTS'
+export const ORGANIZERS = 'ORGANIZERS'
+export const FORUM_PROGRAMME = 'FORUM_PROGRAMME'

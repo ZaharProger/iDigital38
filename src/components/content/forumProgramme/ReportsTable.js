@@ -1,5 +1,8 @@
 import React from "react"
 
+import {HEADERS} from "../../../globalConstants"
+import {prepareTime} from "../../../utils"
+
 export default function ReportsTable(props) {
     const { headers, items } = props.table_props
 
@@ -23,18 +26,17 @@ export default function ReportsTable(props) {
                     const tableMainItemClass = 'table-main-data-text text-center align-middle'
                     const tableItemClass = 'table-data-text text-center align-middle'
 
-                    const speakers = item.speakers
-                        .map(speaker => {
-                            return `${speaker.name} - ${speaker.role}`
-                        })
-                        .join('\n')
-
                     return <tr key={ tableRowKey }>
-                        <th className={ tableMainItemClass }
-                            scope="row">{ itemIndex + 1 }</th>
+                        {
+                            headers.includes(HEADERS.number)?
+                                <th className={ tableMainItemClass }
+                                    scope="row">{ itemIndex + 1 }</th>
+                                :
+                                null
+                        }
                         <td className={ tableItemClass }>{ item.name }</td>
-                        <td className={ tableItemClass }>{ item.time }</td>
-                        <td className={ tableItemClass }>{ speakers }</td>
+                        <td className={ tableItemClass }>{ prepareTime(item.time_start) }</td>
+                        <td className={ tableItemClass }>{ item.speakers !== null? item.speakers : '' }</td>
                     </tr>
                 })
             }

@@ -15,3 +15,7 @@
 .Wrap-button > button, .Wrap-button > i {
     transition: 0.3s ease-out;
 }
+
+form > div > .Wrap-button {
+    font-size: 0.85em;
+}

@@ -20,7 +20,7 @@ export default function Carousel(props) {
             case LIST_TYPES.events:
                 margin = 'me-auto ms-auto'
                 carouselId = 'event-carousel'
-                return state.events
+                return state.events.sort((first, second) => first.date - second.date)
             case LIST_TYPES.gallery_items:
                 margin = 'mt-auto mb-auto ms-auto me-auto'
                 carouselId = 'gallery-carousel'

@@ -2,9 +2,16 @@ import React, {useContext} from "react"
 
 import '../../../styles/event.css'
 import {contentContext} from "../../../context"
+import {HOST} from "../../../globalConstants"
 
 export default function EventListItem(props) {
     const { item_data, is_active } = props.item_props
+
+    const convertedDate = new Date(item_data.date * 1000).toLocaleDateString('ru-RU', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    })
     const itemClassList = `carousel-item Event-list-item${is_active? ' active' : ''}`
 
     const isMobile = useContext(contentContext)
@@ -14,16 +21,21 @@ export default function EventListItem(props) {
     return (
         <div className={ itemClassList }>
             <div className={ `d-flex flex-${isMobile? 'column' : 'row'}` }>
-                <img src={ item_data.image } alt="Мероприятие" style={{
-                    borderRadius: 30,
-                    margin: isMobile? "15px auto auto auto" : "auto",
-                    width: isMobile? 300 : 600,
-                    height: isMobile? 200 : 350
-                }} />
+                {
+                    item_data.image_uri !== null?
+                        <img src={ `${HOST}/${item_data.image_uri}` } alt="Мероприятие" style={{
+                            borderRadius: 30,
+                            margin: isMobile? "15px auto auto auto" : "auto",
+                            width: isMobile? 300 : 600,
+                            height: isMobile? 200 : 350
+                        }} />
+                        :
+                        null
+                }
                 <div className={ eventCaptionClasslist }>
                     <span className="regular-text text-center mb-5 me-auto ms-auto mt-auto">{ item_data.name }</span>
-                    <span className="header-text text-center mt-5 me-auto ms-auto mb-auto">{ item_data.date }</span>
-                    <a href={ item_data.link }
+                    <span className="header-text text-center mt-5 me-auto ms-auto mb-auto">{ convertedDate }</span>
+                    <a href={ item_data.ref }
                        className="header-text d-flex me-auto ms-auto mt-4 p-3 item-button">Подробнее</a>
                 </div>
             </div>

@@ -17,9 +17,9 @@ export default function ReportsBlock(props) {
             {
                 !getState()?
                     <div className="d-flex flex-column ps-3">
-                        <span className="regular-text me-auto mb-1">{ place }</span>
+                        <span className="regular-text me-auto mb-1">{ place !== null? place : '' }</span>
                         {
-                            moderators.length != 0?
+                            moderators !== null?
                                 <>
                                     <span className="caption-header-text mb-1 me-auto">
                                         {
@@ -27,8 +27,8 @@ export default function ReportsBlock(props) {
                                         }
                                     </span>
                                     {
-                                        moderators.map(item => {
-                                            const personKey = `person_item_${moderators.indexOf(item)}_${item.id}`
+                                        moderators.split('\n').map(item => {
+                                            const personKey = `report_block_person_item_${item}`
                                             return <PersonListItem key={ personKey } person_data={ item } />
                                         })
                                     }
@@ -36,15 +36,22 @@ export default function ReportsBlock(props) {
                                 :
                                 null
                         }
-                        <ReportsTable table_props={{
-                            headers: [
-                                HEADERS.number,
-                                HEADERS.report_name,
-                                HEADERS.time,
-                                HEADERS.main_speakers
-                            ],
-                            items: reports
-                        }} />
+                        {
+                            reports.length != 0?
+                                <ReportsTable table_props={{
+                                    headers: [
+                                        HEADERS.number,
+                                        HEADERS.report_name,
+                                        HEADERS.time,
+                                        HEADERS.main_speakers
+                                    ],
+                                    items: reports
+                                }} />
+                                :
+                                <span className="semi-header-text">
+                                    Программа формируется
+                                </span>
+                        }
                     </div>
                     :
                     null

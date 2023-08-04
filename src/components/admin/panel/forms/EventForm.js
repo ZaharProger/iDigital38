@@ -1,5 +1,6 @@
 import React from "react"
-import {HOST} from "../../../../globalConstants";
+
+import {HOST} from "../../../../globalConstants"
 
 export default function EventForm(props) {
     const { data, has_id } = props.item_props

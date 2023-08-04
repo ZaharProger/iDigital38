@@ -2,14 +2,14 @@
     animation: salutation-text-reveal 0.8s ease-out 0s 1 forwards;
 }
 
-#Salutation > div >div > h2 {
+#Salutation > div > div > h2 {
     color: var(--border-color);
     text-shadow: 5px 5px 10px var(--border-color);
     font-size: 3.2em;
 }
 
-#Salutation > div > div > span {
-    margin-bottom: 80px;
+#Salutation > div > div > span:last-child {
+    font-size: 0.7em;
 }
 
 @keyframes salutation-text-reveal {

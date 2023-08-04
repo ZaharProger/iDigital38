@@ -10,6 +10,7 @@ import useApi from "../../../hooks/useApi"
 import useEndpoint from "../../../hooks/useEndpoint"
 import useValidation from "../../../hooks/useValidation"
 import ProgrammeDayView from "./views/ProgrammeDayView"
+import ProgrammeDayForm from "./forms/ProgrammeDayForm"
 
 export default function PanelContent(props) {
     const navigate = useNavigate()
@@ -58,7 +59,10 @@ export default function PanelContent(props) {
                 break
             case ACTIVE_PANELS.forum_programme:
                 if (is_single){
-                    return Array()
+                    content = <ProgrammeDayForm item_props={{
+                        data: data[0],
+                        has_id: id_from_url !== undefined
+                    }} />
                 }
                 else {
                     content = data.map(item => {

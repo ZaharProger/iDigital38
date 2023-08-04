@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react"
+import {useDispatch} from "react-redux"
 
-import {HEADERS, LIST_TYPES} from "../../globalConstants"
+import {ACTIVE_PANELS, HEADERS, HOST, LIST_TYPES} from "../../globalConstants"
 import '../../styles/content-wrap.css'
 import '../../styles/classes.css'
 import Header from "./header/Header"
@@ -13,11 +14,38 @@ import GalleryItemFullscreenView from "./gallery/GalleryItemFullscreenView"
 import Organizers from "./organizers/Organizers"
 import Salutation from "./salutation/Salutation"
 import {contentContext} from "../../context"
+import useApi from "../../hooks/useApi"
+import useEndpoint from "../../hooks/useEndpoint"
+import setEvents from "../../redux/actions/setEvents"
+import setForumProgramme from "../../redux/actions/setForumProgramme"
+import setOrganizers from "../../redux/actions/setOrganizers"
 
 
 // Это обертка над всем контентом страницы (я пока хз пихать ли сюда навбар, но
 // вообще все содержимое страницы размещать здесь (App будет использоваться для перенаправления по роутам)
 export default function ContentWrap() {
+    const performApiCall = useApi()
+    const dispatch = useDispatch()
+
+    const eventsEndpoint = useEndpoint(ACTIVE_PANELS.events)
+    const organizersEndpoint = useEndpoint(ACTIVE_PANELS.organizers)
+    const forumProgrammeEndpoint = useEndpoint(ACTIVE_PANELS.forum_programme)
+
+    const endpoints = [
+        {
+            endpoint: eventsEndpoint.backend_endpoint,
+            callback: (data) => setEvents(data)
+        },
+        {
+            endpoint: organizersEndpoint.backend_endpoint,
+            callback: (data) => setOrganizers(data)
+        },
+        {
+            endpoint: forumProgrammeEndpoint.backend_endpoint,
+            callback: (data) => setForumProgramme(data)
+        }
+    ]
+
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 1300)
     const [fullscreenData, setFullscreenData] = useState({
         is_active: false,
@@ -67,6 +95,14 @@ export default function ContentWrap() {
                 })
             })
         }
+
+        endpoints.forEach(item => {
+            performApiCall(`${HOST}/${item.endpoint}`, 'GET', null, null).then(responseData => {
+                if (responseData.status == 200) {
+                    dispatch(item.callback(responseData.data.data))
+                }
+            })
+        })
     }, [])
 
     return (
@@ -87,7 +123,7 @@ export default function ContentWrap() {
                 }
                 <Salutation />
                 <News/>
-                <Organizers/>
+                <Organizers />
                 <Gallery />
                 <ForumProgramme />
                 <Carousel data={ {

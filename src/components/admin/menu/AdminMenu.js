@@ -34,7 +34,7 @@ export default function AdminMenu(props) {
                 }
             </div>
             {
-                 [ACTIVE_PANELS.organizers].includes(props.menu_props.active_panel)?
+                 [ACTIVE_PANELS.organizers].includes(props.menu_props.active_panel) && !props.menu_props.is_single?
                      <Hint hint_text={ HINTS.DRAG_AND_DROP } />
                      :
                      null
