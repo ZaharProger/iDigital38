@@ -9,7 +9,7 @@ export default function WrapButton(props) {
     const { set_is_wrapped: setIsWrapped, header_text } = props.wrap_button_props
 
     const buttonCaptionClassList = `header-text p-0 d-flex me-2${isHovered? ' hovered' : ''}`
-    const buttonIconClassList = `fa-regular fa-${isClicked? 'plus' : 'minus'} m-auto${isHovered? ' hovered' : ''}`
+    const buttonIconClassList = `fa-regular fa-${isClicked? 'chevron-down' : 'chevron-up'} m-auto${isHovered? ' hovered' : ''}`
 
     const changeWrappedDataState = useCallback(() => {
         const newValue = !isClicked

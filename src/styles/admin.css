@@ -87,6 +87,25 @@
     scrollbar-width: thin;
 }
 
+.dropdown-menu {
+    overflow: auto;
+    scrollbar-color: #c2c2c2 var(--primary-color);
+    scrollbar-width: thin;
+    height: 200px;
+}
+
+.dropdown-item {
+    cursor: pointer;
+    color: var(--secondary-color);
+    transition: 0.3s ease-out;
+    font-size: 0.9em;
+}
+
+.dropdown-item:hover {
+    background-color: transparent;
+    color: var(--border-color) !important;
+}
+
 #Panel-content::-webkit-scrollbar, .modal-body::-webkit-scrollbar,
 form > textarea::-webkit-scrollbar, .nested-form > textarea::-webkit-scrollbar {
     width: 8px;
@@ -95,15 +114,31 @@ form > textarea::-webkit-scrollbar, .nested-form > textarea::-webkit-scrollbar {
     border-radius: 20px;
 }
 
+.dropdown-menu::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    background-color: var(--primary-color);
+    border-radius: 10px;
+}
+
 #Panel-content::-webkit-scrollbar-thumb, .modal-body::-webkit-scrollbar-thumb,
 form > textarea::-webkit-scrollbar-thumb, .nested-form > textarea::-webkit-scrollbar-thumb {
     background-color: var(--primary-color);
     border-radius: 20px;
 }
 
+.dropdown-menu::-webkit-scrollbar-thumb {
+    background-color: #c2c2c2;
+    border-radius: 10px;
+}
+
 #Panel-content::-webkit-scrollbar-corner, .modal-body::-webkit-scrollbar-corner,
 .nested-form > textarea::-webkit-scrollbar-corner, form > textarea::-webkit-scrollbar-corner {
     background-color: #c2c2c2;
+}
+
+.dropdown-menu::-webkit-scrollbar-corner {
+    background-color: var(--primary-color);
 }
 
 .Tool {
@@ -130,7 +165,6 @@ form > textarea::-webkit-scrollbar-thumb, .nested-form > textarea::-webkit-scrol
     }
 }
 
-
 .Tool:hover {
     background-color: var(--border-color);
 }
@@ -140,7 +174,7 @@ form > textarea::-webkit-scrollbar-thumb, .nested-form > textarea::-webkit-scrol
     font-size: 1.5em;
 }
 
-.Tool, #panel-header, #deletion-modal-label {
+.Tool, #panel-header, #deletion-modal-label, #report-modal-label {
     background: var(--primary-color);
     border-radius: 10px;
 }
@@ -222,16 +256,77 @@ form > button, .modal-footer > button {
     transition: 0.3s ease-out;
 }
 
-form > button:hover, .modal-footer > button:hover {
+form > button:hover, .modal-footer > button:hover, .nested-button > button:hover {
     background-color: var(--border-color);
 }
 
 .nested-form {
     margin-bottom: 30px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: var(--nested-form-color);
 }
 
 .nested-form:last-child {
     margin-bottom: 0;
+}
+
+.nested-form > .Tool, form > .Tool {
+    margin: 10px auto!important;
+    justify-content: center!important;
+    font-size: 0.8em;
+}
+
+.nested-form-header {
+    margin-bottom: 20px;
+}
+
+.nested-form-header > div:first-child {
+    margin-bottom: 0.25rem;
+    background-color: var(--primary-color);
+    font-weight: bold;
+    padding: 6px;
+    margin-right: 10px;
+    border-radius: 10px;
+}
+
+.nested-button {
+    justify-content: center;
+    width: 350px;
+    position: fixed;
+    background-color: var(--primary-color);
+    border-style: none;
+    border-radius: 10px;
+    transition: 0.3s ease-out;
+    animation: nested-button-reveal 0.3s ease-out 0s 1 forwards;
+}
+
+.nested-button > button, .nested-button > ul {
+    background-color: var(--primary-color);
+    padding: 10px;
+    border-style: none;
+    border-radius: 10px;
+    transition: 0.3s ease-out;
+}
+
+.dropdown-toggle::before {
+    display: flex!important;
+    margin: auto 10px auto 0!important;
+}
+
+.report-label {
+    font-size: 1.2em;
+}
+
+@keyframes nested-button-reveal {
+    from {
+        opacity: 0;
+        transform: translateY(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .wrap-form-block {

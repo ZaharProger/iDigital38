@@ -16,6 +16,7 @@
     --on-primary-color: #262662;
     --border-color: #e606b3;
     --on-secondary-color: black;
+    --nested-form-color: rgba(0, 0, 70, 0.2);
 }
 
 html, body {

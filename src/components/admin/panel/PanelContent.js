@@ -83,27 +83,20 @@ export default function PanelContent(props) {
     }, [active_panel, data])
 
     useEffect(() => {
-        document.querySelectorAll('input').forEach(input => {
-            if (input.type === 'file') {
-                input.addEventListener('change', () => {
-                    const [file] = input.files
-                    const previewLabel = document.getElementById('preview-label')
+        document.querySelectorAll('input[type=file]').forEach(input => {
+            input.addEventListener('change', () => {
+                const [file] = input.files
+                const previewLabel = document.getElementById('preview-label')
 
-                    if (file) {
-                        previewLabel.innerText = 'Предпросмотр (файл загружен с устройства)'
-                        input.parentElement.querySelector('img').src = URL.createObjectURL(file)
-                    }
-                    else {
-                        previewLabel.innerText = 'Нет данных для предпросмотра'
-                        input.parentElement.querySelector('img').src = ''
-                    }
-                })
-            }
-            else {
-                input.addEventListener('input', (e) => {
-                    input.value = e.target.value
-                })
-            }
+                if (file) {
+                    previewLabel.innerText = 'Предпросмотр (файл загружен с устройства)'
+                    input.parentElement.querySelector('img').src = URL.createObjectURL(file)
+                }
+                else {
+                    previewLabel.innerText = 'Нет данных для предпросмотра'
+                    input.parentElement.querySelector('img').src = ''
+                }
+            })
         })
 
         const form = document.querySelector('form')

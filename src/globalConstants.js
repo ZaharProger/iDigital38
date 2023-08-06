@@ -43,10 +43,22 @@ export const PANEL_TOOLS = {
         icon_class: 'plus',
         route: ROUTES.admin_create
     },
-    delete: {
+    create_nested: {
+        id: 5,
+        caption: 'Добавить',
+        icon_class: 'plus',
+        route: null
+    },
+    mark_delete: {
         id: 3,
         caption: 'Пометить на удаление',
         icon_class: 'trash-can-list',
+        route: null
+    },
+    delete: {
+        id: 4,
+        caption: 'Удалить',
+        icon_class: 'trash',
         route: null
     },
     back: {

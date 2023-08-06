@@ -47,6 +47,10 @@ export default function App() {
               active_panel: ACTIVE_PANELS.organizers,
               is_single: true
           }} /> } />
+          <Route path={ `${ROUTES.admin_forum_programme}${ROUTES.admin_create}` } element={ <AdminPage admin_props={{
+              active_panel: ACTIVE_PANELS.forum_programme,
+              is_single: true
+          }} /> } />
           <Route path={ ROUTES.admin_auth } element={ <Auth /> } />
       </Routes>
     </div>

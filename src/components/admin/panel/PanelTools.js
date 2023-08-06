@@ -7,7 +7,7 @@ export default function PanelTools(props) {
     const { active_panel, is_single, id_from_url, warning, callback } = props.panel_props
 
     const tools = is_single? [PANEL_TOOLS.back] :
-        warning === null? [PANEL_TOOLS.create, PANEL_TOOLS.delete] : [PANEL_TOOLS.create]
+        warning === null? [PANEL_TOOLS.create, PANEL_TOOLS.mark_delete] : [PANEL_TOOLS.create]
 
     const foundMenuItem = ADMIN_MENU.filter(item => item.panel === active_panel)
     let panelCaption = ''
@@ -22,7 +22,7 @@ export default function PanelTools(props) {
 
     useEffect(() => {
         for (let i = 0; i< tools.length; ++i) {
-            if (tools[i] === PANEL_TOOLS.delete) {
+            if (tools[i] === PANEL_TOOLS.mark_delete) {
                 const toolView = Array.from(document.getElementsByClassName('Tool'))[i]
                 toolView.setAttribute('data-bs-toggle', 'modal')
                 toolView.setAttribute('data-bs-target', '#Deletion-modal')
