@@ -23,9 +23,11 @@ export default function DeletionModal(props) {
         const deleteButton = document.getElementById('delete-button')
         const prevButtonText = deleteButton.innerText
         deleteButton.innerText = 'Удаление записей...'
+        deleteButton.disabled = true
 
         performApiCall(`${HOST}/${backend_endpoint}`, 'DELETE', null, null).then(_ => {
             deleteButton.innerText = prevButtonText
+            deleteButton.disabled = false
             window.location.reload()
         })
     }, [data])

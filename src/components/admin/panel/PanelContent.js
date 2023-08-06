@@ -141,10 +141,12 @@ export default function PanelContent(props) {
                     const submitButton = form.querySelector('button')
                     const prevButtonText = submitButton.innerText
                     submitButton.innerText = 'Отправка данных...'
+                    submitButton.disabled = true
 
                     performApiCall(`${HOST}/${backend_endpoint}`, requestMethod, requestBody, null)
                         .then(responseData => {
                             submitButton.innerText = prevButtonText
+                            submitButton.disabled = false
 
                             if (responseData !== null) {
                                 navigate(frontend_endpoint)
