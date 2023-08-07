@@ -1,4 +1,5 @@
 import React, {useCallback} from "react"
+import {v4 as uuidV4} from "uuid"
 
 import {HEADERS} from "../../../globalConstants"
 import PersonListItem from "./PersonListItem"
@@ -12,7 +13,7 @@ export default function TimetableListItem(props) {
 
     const getNestedItems = useCallback((items) => {
         return items.split('\n').map(item => {
-            const personKey = `day_timetable_person_item_${item}`
+            const personKey = `day_timetable_person_item_${uuidV4()}`
             return <PersonListItem key={ personKey } person_data={ item } />
         })
     }, [])

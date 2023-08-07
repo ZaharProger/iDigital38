@@ -1,87 +1,3 @@
-#Admin-page {
-    background: var(--secondary-color);
-}
-
-#Admin-header {
-    background: var(--primary-color);
-    z-index: 1000;
-}
-
-#Admin-header > div > image {
-    cursor: pointer;
-}
-
-#Admin-header > div > button {
-    background: var(--border-color);
-    transition: 0.3s ease-out;
-    border-radius: 20px;
-    border-style: none;
-}
-
-#Admin-header > div > button:hover {
-    box-shadow: 0 2px 8px var(--secondary-color);
-}
-
-#Admin-menu {
-    flex-shrink: 2;
-    z-index: 99;
-    flex: 0 0 auto;
-    width: 20%;
-}
-
-#admin-menu-content {
-    border-radius: 20px;
-    background: var(--primary-color);
-}
-
-.Admin-menu-item {
-    cursor: pointer;
-    color: var(--secondary-color);
-}
-
-.Admin-menu-item > i {
-    font-size: 2em;
-    transition: 0.3s ease-out;
-}
-
-.Admin-menu-item > span {
-    transition: 0.3s ease-out;
-}
-
-#Warning-label > i {
-    font-size: 3.4em;
-    color: var(--border-color);
-    transform: rotateZ(15deg);
-    position: relative;
-    top: -60px;
-    left: 60px;
-}
-
-#Admin-viewport {
-    height: 100vh;
-}
-
-#Admin-edit-panel {
-    animation: admin-edit-panel-reveal 0.5s ease-out 0s 1 forwards;
-}
-
-@keyframes admin-edit-panel-reveal {
-    from {
-        opacity: 0;
-        transform: scale(0);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-#Panel-content {
-    flex: 1;
-    position: relative;
-    overflow: auto;
-}
-
 .modal-body, #Panel-content, form > textarea, .nested-form > textarea {
     scrollbar-color: var(--primary-color) #c2c2c2;
     scrollbar-width: thin;
@@ -139,39 +55,6 @@ form > textarea::-webkit-scrollbar-thumb, .nested-form > textarea::-webkit-scrol
 
 .dropdown-menu::-webkit-scrollbar-corner {
     background-color: var(--primary-color);
-}
-
-.Tool {
-    cursor: pointer;
-    transition: 0.3s ease-out;
-}
-
-.tool-anim {
-    animation: tool-reveal 0.3s ease-out 0s 1 forwards;
-}
-
-.tool-anim-back {
-    animation: tool-reveal 0.3s ease-out 0s 1 backwards;
-}
-
-@keyframes tool-reveal {
-    from {
-        transform: translateX(100px);
-        opacity: 0;
-    }
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
-
-.Tool:hover {
-    background-color: var(--border-color);
-}
-
-.Tool > i {
-    color: var(--secondary-color);
-    font-size: 1.5em;
 }
 
 .Tool, #panel-header, #deletion-modal-label, #report-modal-label {
@@ -256,7 +139,7 @@ form > button, .modal-footer > button {
     transition: 0.3s ease-out;
 }
 
-form > button:hover, .modal-footer > button:hover, .nested-button > button:hover {
+form > button:hover, .modal-footer > button:hover {
     background-color: var(--border-color);
 }
 
@@ -290,18 +173,86 @@ form > button:hover, .modal-footer > button:hover, .nested-button > button:hover
     border-radius: 10px;
 }
 
-.nested-button {
-    justify-content: center;
-    width: 350px;
-    position: fixed;
-    background-color: var(--primary-color);
-    border-style: none;
+.nested-menu {
+    inset-inline: auto 3vmin;
+    inset-block: auto 50vmin;
     border-radius: 10px;
-    transition: 0.3s ease-out;
-    animation: nested-button-reveal 0.3s ease-out 0s 1 forwards;
+    background-color: var(--primary-color);
+    animation: nested-menu-reveal 0.3s ease-out 0s 1 forwards;
 }
 
-.nested-button > button, .nested-button > ul {
+.nested-floating-button, .nested-menu > i {
+    color: var(--secondary-color);
+    font-size: 2em;
+    transition: 0.3s ease-out;
+    cursor: pointer;
+}
+
+.nested-floating-button {
+    inset-inline: auto 10vmin;
+    inset-block: auto 60vmin;
+    background-color: var(--primary-color);
+    border-radius: 100%;
+    animation: floating-button-reveal 1s ease-out 0s 1 forwards;
+}
+
+.nested-menu > i {
+    margin-left: auto;
+}
+
+@keyframes nested-menu-reveal {
+    from {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes floating-button-reveal {
+    0% {
+        opacity: 0;
+        transform: translateY(100px);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.nested-button, .nested-button > button {
+    margin-right: auto;
+    justify-content: center;
+    border-style: none;
+    background-color: transparent;
+    border-radius: 10px;
+    transition: 0.3s ease-out;
+    margin-bottom: 10px;
+}
+
+.nested-button:hover, .nested-menu > i:hover, .nested-button > button:hover {
+    color: var(--border-color) !important;
+}
+
+.nested-floating-button:hover {
+    background-color: var(--border-color);
+}
+
+.nested-button:last-child {
+    margin-bottom: 0;
+}
+
+.nested-button:disabled, .nested-button > button:disabled,
+form > button:disabled, .modal-footer > button:disabled {
+    opacity: 0.5;
+}
+
+.nested-button > ul {
     background-color: var(--primary-color);
     padding: 10px;
     border-style: none;
@@ -316,17 +267,6 @@ form > button:hover, .modal-footer > button:hover, .nested-button > button:hover
 
 .report-label {
     font-size: 1.2em;
-}
-
-@keyframes nested-button-reveal {
-    from {
-        opacity: 0;
-        transform: translateY(100px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
 }
 
 .wrap-form-block {
@@ -345,28 +285,4 @@ form > button:hover, .modal-footer > button:hover, .nested-button > button:hover
 #error-message {
     border-radius: 10px;
     background-color: red;
-}
-
-#Hint {
-    border-radius: 10px;
-    background-color: var(--on-primary-color);
-    animation: hint-reveal 0.3s ease-out 0s 1 forwards;
-}
-
-@keyframes hint-reveal {
-    from {
-        opacity: 0;
-        transform: translateY(100px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@media screen and (max-width: 1200px) {
-    #Admin-menu {
-        flex: 1;
-        width: auto;
-    }
 }

@@ -1,5 +1,6 @@
 import React from "react"
 import {useSelector} from "react-redux"
+import {v4 as uuidV4} from "uuid"
 
 import ComponentHeader from "../componentHeader/ComponentHeader"
 import {HEADERS} from "../../../globalConstants"
@@ -15,11 +16,11 @@ export default function ForumProgramme() {
             <ComponentHeader header_text={ HEADERS.forum_programme } />
             <div id="forum-programme-list" className="d-flex flex-column pe-4 ps-4 pt-3 pb-3">
                 {
-                    items.map(item => {
+                    items.map((item, index) => {
                         return <ForumProgrammeListItem
-                            key={`forum_programme_item_${item.id}`} item_props={{
+                            key={`forum_programme_item_${uuidV4()}`} item_props={{
                                 item_data: item,
-                                is_last: items.indexOf(item) == items.length - 1
+                                is_last: index  == items.length - 1
                         }} />
                     })
                 }

@@ -9,7 +9,7 @@ export default function ReportForm(props) {
     const { item_data, callback, item_index } = props.item_props
     const isDefined = item_data !== undefined
 
-    const [formHeader, setFormHeader] = useState(isDefined? item_data.name : `Доклад ${item_index}`)
+    const [formHeader, setFormHeader] = useState(isDefined? item_data.name : '')
     const nestedFormClasslist = `Report-form d-flex flex-column justify-content-center nested-form`
 
     const [getState, wrap] = useWrap(formHeader)
@@ -35,7 +35,7 @@ export default function ReportForm(props) {
             </label>
             <input name="name" type="text"
                    className={ isNestedWrapped? 'hidden' : '' }
-                   defaultValue={ isDefined? item_data.name : `Доклад ${item_index}` }
+                   defaultValue={ isDefined? item_data.name : '' }
                    onInput={ (event) => setFormHeader(event.target.value) } />
             <label className={ isNestedWrapped? 'hidden' : '' }>
                 Время

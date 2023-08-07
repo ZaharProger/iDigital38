@@ -1,4 +1,5 @@
 import React, {useEffect} from "react"
+import {v4 as uuidV4} from "uuid"
 
 import Tool from "./Tool"
 import {ADMIN_MENU, PANEL_TOOLS} from "../../../globalConstants"
@@ -21,7 +22,7 @@ export default function PanelTools(props) {
     const captionClasslist = `d-flex me-${is_single? '3' : 'auto'} mt-auto semi-header-text pt-2 pb-2 pe-3 ps-3 tool-anim mb-1`
 
     useEffect(() => {
-        for (let i = 0; i< tools.length; ++i) {
+        for (let i = 0; i < tools.length; ++i) {
             if (tools[i] === PANEL_TOOLS.mark_delete) {
                 const toolView = Array.from(document.getElementsByClassName('Tool'))[i]
                 toolView.setAttribute('data-bs-toggle', 'modal')
@@ -29,14 +30,14 @@ export default function PanelTools(props) {
                 break
             }
         }
-    }, [is_single])
+    }, [tools])
 
     return(
         <div id="Panel-tools" className="d-flex flex-row w-100 mt-5 flex-wrap">
             {
                 is_single?
                     tools.map(tool => {
-                        return <Tool key={ `tool_${tool.id}` } item_props={{
+                        return <Tool key={ `tool_${uuidV4()}` } item_props={{
                             item: tool,
                             is_single,
                             active_panel,
@@ -56,7 +57,7 @@ export default function PanelTools(props) {
                     null
                     :
                     tools.map(tool => {
-                        return <Tool key={ `tool_${tool.id}` } item_props={{
+                        return <Tool key={ `tool_${uuidV4()}` } item_props={{
                             item: tool,
                             is_single,
                             active_panel,

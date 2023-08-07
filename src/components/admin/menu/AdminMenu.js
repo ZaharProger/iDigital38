@@ -1,8 +1,10 @@
 import React, {useEffect} from "react"
+import {v4 as uuidV4} from "uuid"
 
 import AdminMenuItem from "./AdminMenuItem"
 import {ACTIVE_PANELS, ADMIN_MENU, HINTS} from "../../../globalConstants"
 import Hint from "./Hint"
+import '../../../styles/admin-menu.css'
 
 export default function AdminMenu(props) {
     useEffect(() => {
@@ -16,14 +18,14 @@ export default function AdminMenu(props) {
                 menuItem.querySelector('span').style.color = 'var(--secondary-color'
             })
         })
-    }, [])
+    }, [props.menu_props.data, props.menu_props.active_panel, props.menu_props.is_single])
     
     return (
         <div id="Admin-menu" className="d-flex flex-column mb-auto mt-5 ms-3">
             <div id="admin-menu-content" className="d-flex flex-column p-4 me-auto ms-auto mt-5">
                 {
                     ADMIN_MENU.map(item => {
-                        return <AdminMenuItem key={ `admin_menu_item_${item.id}` } item_props={{
+                        return <AdminMenuItem key={ `admin_menu_item_${uuidV4()}` } item_props={{
                             item,
                             is_last: ADMIN_MENU.indexOf(item) == ADMIN_MENU.length - 1,
                             active_panel: props.menu_props.active_panel,

@@ -3,6 +3,7 @@ import {useNavigate} from "react-router-dom"
 
 import logo from "../../../assets/pics/logo.svg"
 import {ROUTES} from "../../../globalConstants"
+import '../../../styles/admin-header.css'
 
 export default function AdminHeader(props) {
     const navigate = useNavigate()

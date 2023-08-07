@@ -3,14 +3,13 @@ import React, {useState} from "react"
 import Tool from "../Tool"
 import {ACTIVE_PANELS, PANEL_TOOLS} from "../../../../globalConstants"
 import {prepareTime} from "../../../../utils"
-import useWrap from "../../../../hooks/useWrap";
+import useWrap from "../../../../hooks/useWrap"
 
 export default function DayTimetableForm(props) {
     const { item_data, is_wrapped, callback, item_index } = props.item_props
     const isDefined = item_data !== undefined
 
-    const [formHeader, setFormHeader] = useState(isDefined?
-        item_data.name : `Запись в расписании ${item_index}`)
+    const [formHeader, setFormHeader] = useState(isDefined? item_data.name : '')
 
     const [getState, wrap] = useWrap(formHeader)
     const nestedFormClasslist = `Day-timetable-form d-flex flex-column justify-content-center nested-form${is_wrapped? ' hidden' : ''}`
@@ -35,7 +34,7 @@ export default function DayTimetableForm(props) {
             <label className={ isNestedWrapped || is_wrapped? 'hidden' : '' }>Название</label>
             <input name="name" type="text"
                    className={ isNestedWrapped || is_wrapped? 'hidden' : '' }
-                   defaultValue={ isDefined? item_data.name : `Запись в расписании ${item_index}` }
+                   defaultValue={ isDefined? item_data.name : '' }
                    onInput={ (event) => setFormHeader(event.target.value) } />
             <label className={ isNestedWrapped || is_wrapped? 'hidden' : '' }>Начало</label>
             <input name="time_start" type="time"

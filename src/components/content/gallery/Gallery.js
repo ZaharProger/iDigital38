@@ -1,5 +1,6 @@
 import React, {useCallback} from "react"
 import {useSelector} from "react-redux"
+import {v4 as uuidV4} from "uuid"
 
 import ComponentHeader from "../componentHeader/ComponentHeader"
 import {HEADERS} from "../../../globalConstants"
@@ -7,14 +8,15 @@ import '../../../styles/gallery.css'
 import GalleryItem from "./GalleryItem"
 
 export default function Gallery() {
+    const photos = useSelector(state => state.gallery_items)
+
     const getGalleryItems = useCallback(() => {
-        const photos = useSelector(state => state.gallery_items)
         const galleryItems = []
 
         let isReversed = false
         for (let i = 0; i < photos.length - 1; i += 2) {
             galleryItems.push(
-                <GalleryItem key={ `gallery_item_${i == 0? 0 : i - 1}` } gallery_item_props={{
+                <GalleryItem key={ `gallery_item_${uuidV4()}` } gallery_item_props={{
                     first: photos[i],
                     second: i + 1 <= photos.length - 1? photos[i + 1] : null,
                     reversed: isReversed
@@ -24,7 +26,7 @@ export default function Gallery() {
         }
 
         return galleryItems
-    }, [])
+    }, [photos])
 
     return (
         <div id="Gallery" className="d-flex flex-column container-gap me-5 ms-5">

@@ -1,4 +1,5 @@
 import React from "react"
+import {v4 as uuidV4} from "uuid"
 
 import {HEADERS} from "../../../globalConstants"
 import ReportsTable from "./ReportsTable"
@@ -28,7 +29,7 @@ export default function ReportsBlock(props) {
                                     </span>
                                     {
                                         moderators.split('\n').map(item => {
-                                            const personKey = `report_block_person_item_${item}`
+                                            const personKey = `report_block_person_item_${uuidV4()}`
                                             return <PersonListItem key={ personKey } person_data={ item } />
                                         })
                                     }

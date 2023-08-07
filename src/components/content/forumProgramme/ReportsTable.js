@@ -1,4 +1,5 @@
 import React from "react"
+import {v4 as uuidV4} from "uuid"
 
 import {HEADERS} from "../../../globalConstants"
 import {prepareTime} from "../../../utils"
@@ -11,7 +12,7 @@ export default function ReportsTable(props) {
             <thead>
             {
                 headers.map(header => {
-                    const tableHeaderKey = `table_header_${header}${Math.random() * 10000}`
+                    const tableHeaderKey = `table_header_${header}${uuidV4()}`
                     return <th key={ tableHeaderKey } scope="col"
                                className="table-header-text text-center">{ header }</th>
                 })
@@ -19,10 +20,8 @@ export default function ReportsTable(props) {
             </thead>
             <tbody>
             {
-                items.map(item => {
-                    const itemIndex = items.indexOf(item)
-
-                    const tableRowKey = `table_row_${items.indexOf(item)}_${item.id}`
+                items.sort((first, second) => first.time_start - second.time_start).map((item, index) => {
+                    const tableRowKey = `table_row_${index}_${uuidV4()}`
                     const tableMainItemClass = 'table-main-data-text text-center align-middle'
                     const tableItemClass = 'table-data-text text-center align-middle'
 
@@ -30,7 +29,7 @@ export default function ReportsTable(props) {
                         {
                             headers.includes(HEADERS.number)?
                                 <th className={ tableMainItemClass }
-                                    scope="row">{ itemIndex + 1 }</th>
+                                    scope="row">{ index + 1 }</th>
                                 :
                                 null
                         }

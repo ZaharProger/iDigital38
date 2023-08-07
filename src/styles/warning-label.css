@@ -1,0 +1,8 @@
+#Warning-label > i {
+    font-size: 3.4em;
+    color: var(--border-color);
+    transform: rotateZ(15deg);
+    position: relative;
+    top: -60px;
+    left: 60px;
+}

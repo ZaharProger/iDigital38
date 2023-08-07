@@ -3,6 +3,7 @@ import React, {useState} from "react"
 import {useNavigate} from "react-router-dom"
 import useEndpoint from "../../../hooks/useEndpoint"
 import {PANEL_TOOLS} from "../../../globalConstants"
+import '../../../styles/tool.css'
 
 export default function Tool(props) {
     const navigate = useNavigate()
@@ -12,7 +13,9 @@ export default function Tool(props) {
 
     const [isSubmit, setIsSubmit] = useState(false)
 
-    let toolClasslist = `Tool d-flex flex-row ${is_single? 'me-3 tool-anim-back' : 'ms-3 tool-anim'} p-2 mb-1`
+    const additionalClasslist = is_single? [PANEL_TOOLS.create_nested, PANEL_TOOLS.delete]
+        .includes(props.item_props.item)? 'me-3' : 'me-3 tool-anim-back' : 'ms-3 tool-anim'
+    let toolClasslist = `Tool d-flex flex-row ${additionalClasslist} p-2 mb-1`
     if (special_class !== undefined) {
         toolClasslist += ` ${special_class}`
     }

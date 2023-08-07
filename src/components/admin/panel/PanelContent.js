@@ -1,5 +1,6 @@
 import React, {useCallback, useEffect} from "react"
 import {useNavigate} from "react-router-dom"
+import {v4 as uuidV4} from "uuid"
 
 import {ACTIVE_PANELS, HOST} from "../../../globalConstants"
 import EventView from "./views/EventView"
@@ -11,6 +12,7 @@ import useEndpoint from "../../../hooks/useEndpoint"
 import useValidation from "../../../hooks/useValidation"
 import ProgrammeDayView from "./views/ProgrammeDayView"
 import ProgrammeDayForm from "./forms/ProgrammeDayForm"
+import '../../../styles/panel-content.css'
 
 export default function PanelContent(props) {
     const navigate = useNavigate()
@@ -31,10 +33,10 @@ export default function PanelContent(props) {
                     }} />
                 }
                 else {
-                    content = data.map(item => {
-                        return <EventView key={ `event_${item.id}` } item_props={{
+                    content = data.map((item, index) => {
+                        return <EventView key={ `event_${uuidV4()}` } item_props={{
                             item_data: item,
-                            is_last: data.indexOf(item) == data.length - 1,
+                            is_last: index == data.length - 1,
                             is_static: false
                         }} />
                     })
@@ -48,10 +50,10 @@ export default function PanelContent(props) {
                     }} />
                 }
                 else {
-                    content = data.map(item => {
-                        return <OrganizerView key={ `organizer_${item.id}` } item_props={{
+                    content = data.map((item, index) => {
+                        return <OrganizerView key={ `organizer_${uuidV4()}` } item_props={{
                             item_data: item,
-                            is_last: data.indexOf(item) == data.length - 1,
+                            is_last: index == data.length - 1,
                             is_static: false
                         }} />
                     })
@@ -65,10 +67,10 @@ export default function PanelContent(props) {
                     }} />
                 }
                 else {
-                    content = data.map(item => {
-                        return <ProgrammeDayView key={ `programme_day_${item.id}` } item_props={{
+                    content = data.map((item, index) => {
+                        return <ProgrammeDayView key={ `programme_day_${uuidV4()}` } item_props={{
                             item_data: item,
-                            is_last: data.indexOf(item) == data.length - 1,
+                            is_last: index == data.length - 1,
                             is_static: false
                         }} />
                     })

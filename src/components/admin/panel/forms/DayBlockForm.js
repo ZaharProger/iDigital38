@@ -1,4 +1,5 @@
 import React, {useState} from "react"
+import {v4 as uuidV4} from "uuid"
 
 import {ACTIVE_PANELS, PANEL_TOOLS} from "../../../../globalConstants"
 import Tool from "../Tool"
@@ -9,14 +10,15 @@ export default function DayBlockForm(props) {
     const { item_data, is_wrapped, callback, item_index } = props.item_props
     const isDefined = item_data !== undefined
 
-    const [formHeader, setFormHeader] = useState(isDefined? item_data.name : `Блок докладов ${item_index}`)
+    const [formHeader, setFormHeader] = useState(isDefined? item_data.name : '')
     const nestedFormClasslist = `Day-block-form d-flex flex-column justify-content-center nested-form${is_wrapped? ' hidden' : ''}`
 
     const [getState, wrap] = useWrap(formHeader)
-
-    const [reports, setReports] = useState(isDefined? item_data.reports : Array())
-
     const isNestedWrapped = getState()
+
+    const [reports, setReports] = useState(isDefined? item_data.reports.sort((first, second) => {
+        return first.time_start - second.time_start
+    }) : Array())
 
     return(
         <div className={ nestedFormClasslist }>
@@ -37,7 +39,7 @@ export default function DayBlockForm(props) {
             <input name="name" type="text"
                    className={ isNestedWrapped || is_wrapped? 'hidden' : '' }
                    onInput={ (event) => setFormHeader(event.target.value) }
-                   defaultValue={ isDefined? item_data.name : `Блок докладов ${item_index}` }/>
+                   defaultValue={ isDefined? item_data.name : '' }/>
             <label className={ isNestedWrapped || is_wrapped? 'hidden' : '' }>
                 Место проведения (необязательное поле)
             </label>
@@ -51,31 +53,24 @@ export default function DayBlockForm(props) {
             </label>
             <textarea name="moderators" defaultValue={ isDefined? item_data.moderators : '' }
                       className={ isNestedWrapped || is_wrapped? 'hidden optional' : 'optional' } />
-            <label className={ `text-center report-label${isNestedWrapped || is_wrapped? ' hidden' : ''}` }>
+            <label className={ `text-center report-label${is_wrapped? ' hidden' : ''}` }>
                 Список докладов
             </label>
-            <div className={ `d-flex flex-column reports${isNestedWrapped || is_wrapped? ' hidden' : ''}` }>
+            <div className={ `d-flex flex-column reports${is_wrapped? ' hidden' : ''}` }>
                 {
-                    reports.map(item => {
-                        const itemIndex = reports.indexOf(item)
-
-                        return <ReportForm key={ `report_${item.id}` } item_props={{
-                            item_data:  {
-                                ...item,
-                                name: item.name === undefined? `Доклад ${itemIndex}` : item.name
-                            },
+                    reports.map((item, itemIndex) => {
+                        return <ReportForm key={ `report_${uuidV4()}` } item_props={{
+                            item_data:  item,
                             item_index: itemIndex,
                             callback: (index) => {
-                                const newReports = [...reports]
-                                newReports.splice(index, 1)
-                                setReports(newReports)
+                                setReports(reports.filter((_, itemIndex) => itemIndex != index))
                             }
                         }} />
                     })
                 }
             </div>
             {
-                isNestedWrapped || is_wrapped?
+                is_wrapped?
                     null
                     :
                     <Tool item_props={{
@@ -84,12 +79,11 @@ export default function DayBlockForm(props) {
                         active_panel: ACTIVE_PANELS.forum_programme,
                         special_class: `reports-tool-${item_index}`,
                         special_caption: ' доклад',
-                        callback: () => setReports([...reports, {
-                            id: Math.random() * 1000000000 + 1,
-                            name: undefined,
+                        callback: () => setReports(reports.concat({
+                            name: `Доклад ${Math.round(Math.random() * 100000 + 1)}`,
                             time_start: 0,
                             speakers: ''
-                        }])
+                        }))
                     }} />
             }
         </div>

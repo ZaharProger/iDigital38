@@ -1,0 +1,16 @@
+#Hint {
+    border-radius: 10px;
+    background-color: var(--on-primary-color);
+    animation: hint-reveal 0.3s ease-out 0s 1 forwards;
+}
+
+@keyframes hint-reveal {
+    from {
+        opacity: 0;
+        transform: translateY(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

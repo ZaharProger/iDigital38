@@ -3,6 +3,7 @@ import React from "react"
 import AdminMenu from "./menu/AdminMenu"
 import AdminEditPanel from "./panel/AdminEditPanel"
 import WarningLabel from "./warning-label/WarningLabel"
+import '../../styles/admin-viewport.css'
 
 export default function AdminViewport(props) {
     const { active_panel, is_single, data, is_loading, id_from_url, warning, callback } = props.viewport_props
@@ -12,7 +13,8 @@ export default function AdminViewport(props) {
             <AdminMenu menu_props={{
                 active_panel,
                 is_single,
-                callback
+                callback,
+                data
             }} />
             {
                 active_panel !== null?

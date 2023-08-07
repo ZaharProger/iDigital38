@@ -1,0 +1,32 @@
+#Admin-menu {
+    flex-shrink: 2;
+    z-index: 99;
+    flex: 0 0 auto;
+    width: 20%;
+}
+
+#admin-menu-content {
+    border-radius: 20px;
+    background: var(--primary-color);
+}
+
+.Admin-menu-item {
+    cursor: pointer;
+    color: var(--secondary-color);
+}
+
+.Admin-menu-item > i {
+    font-size: 2em;
+    transition: 0.3s ease-out;
+}
+
+.Admin-menu-item > span {
+    transition: 0.3s ease-out;
+}
+
+@media screen and (max-width: 1200px) {
+    #Admin-menu {
+        flex: 1;
+        width: auto;
+    }
+}

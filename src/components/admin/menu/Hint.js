@@ -1,5 +1,7 @@
 import React from "react"
 
+import '../../../styles/hint.css'
+
 export default function Hint(props) {
     return(
         <div id="Hint" className="d-flex flex-column mt-2 mb-auto me-auto ms-auto p-2">

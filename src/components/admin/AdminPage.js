@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect, useRef, useState} from "react"
-import {useNavigate, useParams} from "react-router-dom"
+import {useNavigate, useParams, useLocation} from "react-router-dom"
 
 import AdminHeader from "./header/AdminHeader"
 import '../../styles/admin.css'
@@ -8,16 +8,17 @@ import DeletionModal from "./deletion-modal/DeletionModal"
 import useApi from "../../hooks/useApi"
 import useEndpoint from "../../hooks/useEndpoint"
 import {ACTIVE_PANELS, HOST} from "../../globalConstants"
+import '../../styles/admin-page.css'
 
 export default function AdminPage(props) {
     const { active_panel, is_single } = props.admin_props
 
+    const location = useLocation()
     const navigate = useNavigate()
     const urlParams = useParams()
     const performApiCall = useApi()
     const [data, setData] = useState(Array())
     const [isLoading, setIsLoading] = useState(false)
-    const [isDeletionAvailable, setIsDeletionAvailable] = useState(false)
     const [warning, setWarning] = useState(null)
 
     let { backend_endpoint: backendGetEndpoint } = useEndpoint(active_panel)
@@ -89,8 +90,6 @@ export default function AdminPage(props) {
 
     useEffect(() => {
         const viewItems = Array.from(document.getElementsByClassName('view-item'))
-        const staticViewItems = Array.from(document.getElementsByClassName('view-item-static'))
-
         viewItems.forEach(viewItem => {
             viewItem.addEventListener('click', () => {
                 navigate(`${location.pathname}/${data[viewItems.indexOf(viewItem)].id}`)
@@ -163,6 +162,9 @@ export default function AdminPage(props) {
         })
 
         let viewCounter = 0
+        const staticViewItems = Array.from(document.getElementsByClassName('view-item-static'))
+        const deleteButton = document.getElementById('delete-button')
+
         staticViewItems.forEach(viewItem => {
             viewItem.addEventListener('click', () => {
                 if (viewItem.classList.contains('selected-view-item')) {
@@ -175,17 +177,17 @@ export default function AdminPage(props) {
                 }
 
                 if (viewCounter == 0) {
-                    setIsDeletionAvailable(false)
+                    deleteButton.disabled = true
                 }
                 else if (viewCounter == 1) {
-                    setIsDeletionAvailable(true)
+                    deleteButton.disabled = false
                 }
             })
         })
 
         document.getElementById('Deletion-modal').addEventListener('hide.bs.modal', () => {
             viewCounter = 0
-            setIsDeletionAvailable(false)
+            deleteButton.disabled = true
             staticViewItems.forEach(viewItem => {
                 viewItem.classList.remove('selected-view-item')
             })
@@ -196,8 +198,7 @@ export default function AdminPage(props) {
         <div id="Admin-page" className="d-flex flex-column h-100">
             <DeletionModal modal_props={{
                 data,
-                active_panel,
-                is_deletion_available: isDeletionAvailable
+                active_panel
             }} />
             <AdminHeader callback={ () => setWarning(null) }  />
             <AdminViewport viewport_props={{

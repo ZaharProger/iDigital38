@@ -1,0 +1,32 @@
+.Tool {
+    cursor: pointer;
+    transition: 0.3s ease-out;
+}
+
+.tool-anim {
+    animation: tool-reveal 0.3s ease-out 0s 1 forwards;
+}
+
+.tool-anim-back {
+    animation: tool-reveal 0.3s ease-out 0s 1 backwards;
+}
+
+@keyframes tool-reveal {
+    from {
+        transform: translateX(100px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.Tool:hover {
+    background-color: var(--border-color);
+}
+
+.Tool > i {
+    color: var(--secondary-color);
+    font-size: 1.5em;
+}

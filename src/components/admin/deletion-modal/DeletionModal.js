@@ -1,4 +1,5 @@
 import React, {useCallback} from "react"
+import {v4 as uuidV4} from "uuid"
 
 import {ACTIVE_PANELS, HOST} from "../../../globalConstants"
 import EventView from "../panel/views/EventView"
@@ -8,15 +9,15 @@ import useEndpoint from "../../../hooks/useEndpoint"
 import ProgrammeDayView from "../panel/views/ProgrammeDayView"
 
 export default function DeletionModal(props) {
-    const { data, active_panel, is_deletion_available } = props.modal_props
+    const { data, active_panel } = props.modal_props
 
     const performApiCall = useApi()
     let { backend_endpoint } = useEndpoint(active_panel)
 
     const deleteData = useCallback(() => {
         const selectedViews = Array.from(document.getElementsByClassName('view-item-static'))
-        const idsToRemove = data.filter(item => {
-            return selectedViews[data.indexOf(item)].classList.contains('selected-view-item')
+        const idsToRemove = data.filter((item, index) => {
+            return selectedViews[index].classList.contains('selected-view-item')
         }).map(item => item.id)
         backend_endpoint += `?ids=${idsToRemove.join(',')}`
 
@@ -45,24 +46,24 @@ export default function DeletionModal(props) {
                     </div>
                     <div className="modal-body">
                         {
-                            data.map(item => {
+                            data.map((item, index) => {
                                 switch (active_panel) {
                                     case ACTIVE_PANELS.events:
-                                        return <EventView key={ `event_${item.id}` } item_props={{
+                                        return <EventView key={ `event_${uuidV4()}` } item_props={{
                                             item_data: item,
-                                            is_last: data.indexOf(item) == data.length - 1,
+                                            is_last: index == data.length - 1,
                                             is_static: true
                                         }} />
                                     case ACTIVE_PANELS.organizers:
-                                        return <OrganizerView key={ `organizer_${item.id}` } item_props={{
+                                        return <OrganizerView key={ `organizer_${uuidV4()}` } item_props={{
                                             item_data: item,
-                                            is_last: data.indexOf(item) == data.length - 1,
+                                            is_last: index == data.length - 1,
                                             is_static: true
                                         }} />
                                     case ACTIVE_PANELS.forum_programme:
-                                        return <ProgrammeDayView key={ `programme_day_${item.id}` } item_props={{
+                                        return <ProgrammeDayView key={ `programme_day_${uuidV4()}` } item_props={{
                                             item_data: item,
-                                            is_last: data.indexOf(item) == data.length - 1,
+                                            is_last: index == data.length - 1,
                                             is_static: true
                                         }} />
                                     default:
@@ -72,15 +73,10 @@ export default function DeletionModal(props) {
                         }
                     </div>
                     <div className="modal-footer">
-                        {
-                            is_deletion_available?
-                                <button id="delete-button" type="button" onClick={ () => deleteData() }
-                                        className="regular-text flex-grow-1 d-flex justify-content-center me-2">
-                                    Удалить
-                                </button>
-                                :
-                                null
-                        }
+                        <button id="delete-button" type="button" onClick={ () => deleteData() }
+                                className="regular-text flex-grow-1 d-flex justify-content-center me-2">
+                            Удалить
+                        </button>
                         <button type="button" data-bs-dismiss="modal"
                                 className="regular-text flex-grow-1 d-flex justify-content-center ms-2">
                             Отмена

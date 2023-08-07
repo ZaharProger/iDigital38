@@ -3,7 +3,6 @@ import {useDispatch} from "react-redux"
 
 import {ACTIVE_PANELS, HEADERS, HOST, LIST_TYPES} from "../../globalConstants"
 import '../../styles/content-wrap.css'
-import '../../styles/classes.css'
 import Header from "./header/Header"
 import News from "./news/News"
 import Carousel from "./carousel/Carousel"

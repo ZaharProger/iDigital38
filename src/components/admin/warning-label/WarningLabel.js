@@ -1,5 +1,7 @@
 import React from "react"
 
+import '../../../styles/warning-label.css'
+
 export default function WarningLabel(props) {
     return(
         <div id="Warning-label" className="d-flex me-auto ms-auto mb-auto p-5"

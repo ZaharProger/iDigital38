@@ -1,10 +1,11 @@
 import React, {useCallback, useEffect, useState} from "react"
+import {v4 as uuidV4} from "uuid"
 
 import useWrap from "../../../../hooks/useWrap"
 import DayTimetableForm from "./DayTimetableForm"
 import DayBlockForm from "./DayBlockForm"
-import {ACTIVE_PANELS, PANEL_TOOLS} from "../../../../globalConstants";
-import Tool from "../Tool";
+import {ACTIVE_PANELS, PANEL_TOOLS} from "../../../../globalConstants"
+import Tool from "../Tool"
 
 export default function ProgrammeDayForm(props) {
     const [getTimetableState, timetableWrap] = useWrap('Расписание на день')
@@ -13,50 +14,46 @@ export default function ProgrammeDayForm(props) {
     const { data, has_id } = props.item_props
     const isDefined = data !== undefined
 
-    const [timetable, setTimetable] = useState(isDefined? data.day_timetable : Array())
+    const [timetable, setTimetable] = useState(isDefined? data.day_timetable.sort((first, second) => {
+        return first.time_start - second.time_start
+    }) : Array())
     const [blocks, setBlocks] = useState(isDefined? data.day_blocks : Array())
+    const [isMenu, setIsMenu] = useState(true)
 
-    const getDropdownItems = useCallback(() => {
-        const blocks = Array.from(document.getElementsByClassName('Day-block-form'))
-        return blocks.map(block => {
-            const itemIndex = blocks.indexOf(block)
-            const itemKey = `dropdown_item_${itemIndex}`
-            const isLast = itemIndex == blocks.length - 1
-            const itemName = block.querySelector('.nested-form-header')
-                .querySelector('.Wrap-button').querySelector('button').innerText
-            const itemClasslist = `dropdown-item d-flex text-start regular-text mb-${isLast? '0' : '4'}`
+    const navigateToAnchor = useCallback((anchorName) => {
+        const anchor = document.querySelector(`.${anchorName}`)
 
-            return <span key={ itemKey } className={ itemClasslist }
-                         onClick={ () => {
-                             document.querySelector(`.reports-tool-${itemIndex}`).scrollIntoView({
-                                 behavior: "smooth",
-                                 block: "center",
-                                 inline: "nearest"
-                             })
-                         }}> { itemName }</span>
+        anchor.classList.remove('tool-anim-back')
+        anchor.classList.add('highlight')
+        setTimeout(() => anchor.classList.remove('highlight'), 1100)
+
+        anchor.scrollIntoView({
+            behavior: "smooth",
+            block: "center",
+            inline: "nearest"
         })
     }, [])
 
     useEffect(() => {
         document.querySelectorAll('.nested-button').forEach(button => {
             button.addEventListener('click', () => {
+                let buttonClassName = ''
                 if (button.classList.contains('timetable')) {
-                    document.querySelector('.timetable-tool').scrollIntoView({
-                        behavior: "smooth",
-                        block: "center",
-                        inline: "nearest"
-                    })
+                    buttonClassName = 'timetable-tool'
                 }
                 else if (button.classList.contains('block')) {
-                    document.querySelector('.blocks-tool').scrollIntoView({
-                        behavior: "smooth",
-                        block: "center",
-                        inline: "nearest"
-                    })
+                    buttonClassName = 'blocks-tool'
+                }
+                else if (!button.classList.contains('report')) {
+                    buttonClassName = 'submit-button'
+                }
+
+                if (buttonClassName != '') {
+                    navigateToAnchor(buttonClassName)
                 }
             })
         })
-    }, [getBlockState(), getTimetableState()])
+    }, [getBlockState(), getTimetableState(), isMenu])
 
     return(
         <form id="Programme-day-form" className="d-flex flex-column justify-content-center">
@@ -71,21 +68,13 @@ export default function ProgrammeDayForm(props) {
             </div>
             <div className="d-flex flex-column day-timetable">
                 {
-                    timetable.map(item => {
-                        const wrap_state = getTimetableState()
-                        const itemIndex = timetable.indexOf(item)
-
-                        return <DayTimetableForm key={ `day_timetable_${item.id}` } item_props={{
-                            item_data: {
-                                ...item,
-                                name: item.name === undefined? `Запись в расписании ${itemIndex}` : item.name
-                            },
+                    timetable.map((item, itemIndex) => {
+                        return <DayTimetableForm key={ `day_timetable_${uuidV4()}` } item_props={{
+                            item_data: item,
                             item_index: itemIndex,
-                            is_wrapped: wrap_state,
+                            is_wrapped: getTimetableState(),
                             callback: (index) => {
-                                const newTimetable = [...timetable]
-                                newTimetable.splice(index, 1)
-                                setTimetable(newTimetable)
+                                setTimetable(timetable.filter((_, itemIndex) => itemIndex != index))
                             }
                         }} />
                     })
@@ -93,27 +82,20 @@ export default function ProgrammeDayForm(props) {
             </div>
             {
                 !getTimetableState()?
-                    <>
-                        <Tool item_props={{
-                            item: PANEL_TOOLS.create_nested,
-                            is_single: true,
-                            active_panel: ACTIVE_PANELS.forum_programme,
-                            special_class: 'timetable-tool',
-                            special_caption: ' запись в расписание',
-                            callback: () => setTimetable([...timetable, {
-                                id: Math.random() * 1000000000 + 1,
-                                name: undefined,
-                                time_start: 0,
-                                time_end: 0,
-                                moderators: '',
-                                speakers: ''
-                            }])
-                        }} />
-                        <button type="button" className="d-flex regular-text nested-button timetable"
-                                style={{ insetBlock: 'auto 51vmin', insetInline: 'auto 5vmin' }}>
-                            Перейти к добавлению записи в расписание
-                        </button>
-                    </>
+                    <Tool item_props={{
+                        item: PANEL_TOOLS.create_nested,
+                        is_single: true,
+                        active_panel: ACTIVE_PANELS.forum_programme,
+                        special_class: 'timetable-tool',
+                        special_caption: ' запись в расписание',
+                        callback: () => setTimetable(timetable.concat({
+                            name: `Запись в расписании ${Math.round(Math.random() * 100000 + 1)}`,
+                            time_start: 0,
+                            time_end: 0,
+                            moderators: '',
+                            speakers: ''
+                        }))
+                    }} />
                     :
                     null
             }
@@ -124,21 +106,13 @@ export default function ProgrammeDayForm(props) {
             </div>
             <div className="d-flex flex-column day-blocks">
                 {
-                    blocks.map(item => {
-                        const wrap_state = getBlockState()
-                        const itemIndex = blocks.indexOf(item)
-
-                        return <DayBlockForm key={ `day_block_${item.id}` } item_props={{
-                            item_data: {
-                                ...item,
-                                name: item.name === undefined? `Блок докладов ${itemIndex}` : item.name
-                            },
+                    blocks.map((item, itemIndex) => {
+                        return <DayBlockForm key={ `day_block_${uuidV4()}` } item_props={{
+                            item_data: item,
                             item_index: itemIndex,
-                            is_wrapped: wrap_state,
+                            is_wrapped: getBlockState(),
                             callback: (index) => {
-                                const newBlocks = [...blocks]
-                                newBlocks.splice(index, 1)
-                                setBlocks(newBlocks)
+                                setBlocks(blocks.filter((_, itemIndex) => itemIndex != index))
                             }
                         }} />
                     })
@@ -146,44 +120,69 @@ export default function ProgrammeDayForm(props) {
             </div>
             {
                 !getBlockState()?
-                    <>
-                        <Tool item_props={{
-                            item: PANEL_TOOLS.create_nested,
-                            is_single: true,
-                            active_panel: ACTIVE_PANELS.forum_programme,
-                            special_class: 'blocks-tool',
-                            special_caption: ' блок докладов',
-                            callback: () => setBlocks([...blocks, {
-                                id: Math.random() * 1000000000 + 1,
-                                name: undefined,
-                                place: '',
-                                moderators: '',
-                                reports: []
-                            }])
-                        }} />
+                    <Tool item_props={{
+                        item: PANEL_TOOLS.create_nested,
+                        is_single: true,
+                        active_panel: ACTIVE_PANELS.forum_programme,
+                        special_class: 'blocks-tool',
+                        special_caption: ' блок докладов',
+                        callback: () => setBlocks(blocks.concat({
+                            name: `Блок докладов ${Math.round(Math.random() * 100000 + 1)}`,
+                            place: '',
+                            moderators: '',
+                            reports: Array()
+                        }))
+                    }} />
+                    :
+                    null
+            }
+            {
+                isMenu?
+                    <div className="nested-menu position-fixed d-flex flex-column p-2">
+                        <i className="fa-solid fa-xmark d-flex mb-2"
+                           onClick={ () => setIsMenu(false) }></i>
+                        <button type="button" className="d-flex regular-text nested-button timetable"
+                                disabled={ getTimetableState() }>
+                            Перейти к добавлению записи в расписание
+                        </button>
                         <button type="button" className="d-flex regular-text nested-button block"
-                                style={{ insetBlock: 'auto 38vmin', insetInline: 'auto 5vmin' }}>
+                                disabled={ getBlockState() }>
                             Перейти к добавлению блока докладов
                         </button>
-                        <div className="btn-group dropstart nested-button report align-items-center d-flex"
-                             style={{ insetBlock: 'auto 30vmin', insetInline: 'auto 5vmin' }}>
+                        <div className="btn-group dropstart nested-button report align-items-center d-flex">
                             <button type="button"
                                     className="dropdown-toggle regular-text w-100 justify-content-center d-flex"
                                     data-bs-toggle="dropdown"
-                                    aria-expanded="false">
+                                    aria-expanded="false"
+                                    disabled={ getBlockState() }>
                                 Перейти к добавлению доклада
                             </button>
                             <ul className="dropdown-menu">
                                 {
-                                    getDropdownItems()
+                                    blocks.map((block, index) => {
+                                        const itemKey = `dropdown_item_${uuidV4()}`
+                                        const isLast = index == blocks.length - 1
+                                        const itemName = block.name
+                                        const itemClasslist = `dropdown-item d-flex text-start regular-text mb-${isLast? '0' : '4'}`
+
+                                        return <span key={ itemKey } className={ itemClasslist }
+                                                     onClick={ () => navigateToAnchor(`reports-tool-${index}`) }>
+                                            { itemName }</span>
+                                    })
                                 }
                             </ul>
                         </div>
-                    </>
+                        <button type="button" className="d-flex regular-text nested-button">
+                            {
+                                has_id? 'Перейти к сохранению изменений' : 'Перейти к созданию записи'
+                            }
+                        </button>
+                    </div>
                     :
-                    null
+                    <i className="nested-floating-button fa-solid fa-bars d-flex mb-2 p-3 position-fixed"
+                        onClick={ () => setIsMenu(true) }></i>
             }
-            <button type="submit" className="d-flex regular-text">
+            <button type="submit" className="d-flex regular-text submit-button">
                 {
                     has_id? 'Сохранить изменения' : 'Создать запись'
                 }

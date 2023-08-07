@@ -1,0 +1,5 @@
+#Panel-content {
+    flex: 1;
+    position: relative;
+    overflow: auto;
+}

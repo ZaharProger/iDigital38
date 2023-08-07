@@ -4,6 +4,7 @@ import PanelTools from "./PanelTools"
 import PanelContent from "./PanelContent"
 import LoadingBar from "../loading/LoadingBar"
 import WarningLabel from "../warning-label/WarningLabel"
+import '../../../styles/admin-edit-panel.css'
 
 export default function AdminEditPanel(props) {
     const { active_panel, is_single, is_loading, data, id_from_url, warning, callback } = props.panel_props

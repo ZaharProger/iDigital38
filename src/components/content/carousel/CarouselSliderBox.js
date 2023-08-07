@@ -1,4 +1,5 @@
 import React from "react"
+import {v4 as uuidV4} from "uuid"
 
 import Slider from "./Slider"
 import {LIST_TYPES} from "../../../globalConstants";
@@ -22,13 +23,12 @@ export default function CarouselSliderBox(props) {
     return (
         <div className="Carousel-slider-box carousel-indicators d-flex flex-row me-auto ms-auto p-2">
             {
-                items.map(item => {
-                    const itemIndex = items.indexOf(item)
-                    const sliderKey = `${sliderKeyHeader}_slider_${itemIndex}`
+                items.map((item, index) => {
+                    const sliderKey = `${sliderKeyHeader}_slider_${uuidV4()}`
 
                     return <Slider key={ sliderKey } slider_props={{
-                        item_index: itemIndex,
-                        is_active: first_item !== null? first_item == item.id : itemIndex == 0,
+                        item_index: index,
+                        is_active: first_item !== null? first_item == item.id : index == 0,
                         carousel_id
                     }}/>
                 })
