@@ -25,7 +25,7 @@ export default function EventForm(props) {
                 }
             </label>
             <img src={ isDefined && data.image_uri !== null? `${HOST}/${data.image_uri}` : '' } />
-            <button type="submit" className="d-flex regular-text">
+            <button type="submit" className="submit-button d-flex regular-text">
                 {
                     has_id? 'Сохранить изменения' : 'Создать запись'
                 }

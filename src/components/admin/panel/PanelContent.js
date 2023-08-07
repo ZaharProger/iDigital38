@@ -140,7 +140,7 @@ export default function PanelContent(props) {
                         requestBody.delete('image_uri')
                     }
 
-                    const submitButton = form.querySelector('button')
+                    const submitButton = form.querySelector('.submit-button')
                     const prevButtonText = submitButton.innerText
                     submitButton.innerText = 'Отправка данных...'
                     submitButton.disabled = true

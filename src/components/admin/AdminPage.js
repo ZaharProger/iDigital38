@@ -164,6 +164,7 @@ export default function AdminPage(props) {
         let viewCounter = 0
         const staticViewItems = Array.from(document.getElementsByClassName('view-item-static'))
         const deleteButton = document.getElementById('delete-button')
+        deleteButton.disabled = true
 
         staticViewItems.forEach(viewItem => {
             viewItem.addEventListener('click', () => {
