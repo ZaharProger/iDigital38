@@ -1,13 +1,21 @@
 import React, {useState} from "react"
 import {v4 as uuidV4} from "uuid"
+import {useDispatch, useSelector} from "react-redux"
 
 import {ACTIVE_PANELS, PANEL_TOOLS} from "../../../../globalConstants"
 import Tool from "../Tool"
 import ReportForm from "./ReportForm"
-import useWrap from "../../../../hooks/useWrap";
+import useWrap from "../../../../hooks/useWrap"
+import {
+    mapBlockFormsToObjects,
+    mapMainFormToObject,
+    mapTimetableFormsToObjects
+} from "../../../../utils"
+import setData from "../../../../redux/actions/setData"
+import setRemovedReports from "../../../../redux/actions/setRemovedReports"
 
 export default function DayBlockForm(props) {
-    const { item_data, is_wrapped, callback, item_index } = props.item_props
+    const { item_data, is_wrapped, callback, item_index, data } = props.item_props
     const isDefined = item_data !== undefined
 
     const [formHeader, setFormHeader] = useState(isDefined? item_data.name : '')
@@ -16,9 +24,8 @@ export default function DayBlockForm(props) {
     const [getState, wrap] = useWrap(formHeader)
     const isNestedWrapped = getState()
 
-    const [reports, setReports] = useState(isDefined? item_data.reports.sort((first, second) => {
-        return first.time_start - second.time_start
-    }) : Array())
+    const dispatch = useDispatch()
+    const removedReports = useSelector(state => state.removed_reports)
 
     return(
         <div className={ nestedFormClasslist }>
@@ -58,15 +65,25 @@ export default function DayBlockForm(props) {
             </label>
             <div className={ `d-flex flex-column reports${is_wrapped? ' hidden' : ''}` }>
                 {
-                    reports.map((item, itemIndex) => {
-                        return <ReportForm key={ `report_${uuidV4()}` } item_props={{
-                            item_data:  item,
-                            item_index: itemIndex,
-                            callback: (index) => {
-                                setReports(reports.filter((_, itemIndex) => itemIndex != index))
-                            }
-                        }} />
-                    })
+                    isDefined?
+                        item_data.reports.map((item, itemIndex) => {
+                            return <ReportForm key={ `report_${uuidV4()}` } item_props={{
+                                item_data:  item,
+                                item_index: itemIndex,
+                                callback: (index) => {
+                                    const newData = mapMainFormToObject(data)
+                                    newData.day_timetable = mapTimetableFormsToObjects(data.day_timetable)
+                                    newData.day_blocks = mapBlockFormsToObjects(data.day_blocks)
+                                    newData.day_blocks[item_index].reports = newData.day_blocks[item_index].reports
+                                        .filter((_, itemIndex) => itemIndex != index)
+
+                                    dispatch(setData([newData]))
+                                    dispatch(setRemovedReports(removedReports.concat(item.id)))
+                                }
+                            }} />
+                        })
+                        :
+                        null
                 }
             </div>
             {
@@ -79,11 +96,18 @@ export default function DayBlockForm(props) {
                         active_panel: ACTIVE_PANELS.forum_programme,
                         special_class: `reports-tool-${item_index}`,
                         special_caption: ' доклад',
-                        callback: () => setReports(reports.concat({
-                            name: `Доклад ${Math.round(Math.random() * 100000 + 1)}`,
-                            time_start: 0,
-                            speakers: ''
-                        }))
+                        callback: () => {
+                            const newData = mapMainFormToObject(data)
+                            newData.day_timetable = mapTimetableFormsToObjects(data.day_timetable)
+                            newData.day_blocks = mapBlockFormsToObjects(data.day_blocks)
+                            newData.day_blocks[item_index].reports.push({
+                                name: `Доклад ${Math.round(Math.random() * 100000 + 1)}`,
+                                time_start: 0,
+                                speakers: ''
+                            })
+
+                            dispatch(setData([newData]))
+                        }
                     }} />
             }
         </div>

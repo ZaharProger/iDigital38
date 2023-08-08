@@ -22,7 +22,7 @@ export default function TimetableListItem(props) {
         <div className="Timetable-list-item d-flex flex-column mb-1 me-auto">
             <span className="semi-header-text me-auto mb-1">{ itemHeader }</span>
             {
-                moderators !== null?
+                moderators !== null && moderators !== ''?
                     <>
                         <span className="caption-header-text mb-1 me-auto">{ `${HEADERS.moderators}:` }</span>
                         { getNestedItems(moderators) }
@@ -31,7 +31,7 @@ export default function TimetableListItem(props) {
                     null
             }
             {
-                speakers !== null?
+                speakers !== null && speakers !== ''?
                     <>
                         <span className="caption-header-text mb-1 me-auto">{ `${HEADERS.speakers}:` }</span>
                         { getNestedItems(speakers) }

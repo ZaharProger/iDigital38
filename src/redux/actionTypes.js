@@ -1,3 +1,7 @@
 export const EVENTS = 'EVENTS'
 export const ORGANIZERS = 'ORGANIZERS'
 export const FORUM_PROGRAMME = 'FORUM_PROGRAMME'
+export const DATA = 'DATA'
+export const REMOVED_TIMETABLE = 'REMOVED_TIMETABLE'
+export const REMOVED_BLOCKS = 'REMOVED_BLOCKS'
+export const REMOVED_REPORTS = 'REMOVED_REPORTS'

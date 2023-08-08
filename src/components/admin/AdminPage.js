@@ -1,5 +1,6 @@
 import React, {useCallback, useEffect, useRef, useState} from "react"
 import {useNavigate, useParams, useLocation} from "react-router-dom"
+import {useDispatch, useSelector} from "react-redux"
 
 import AdminHeader from "./header/AdminHeader"
 import '../../styles/admin.css'
@@ -9,6 +10,10 @@ import useApi from "../../hooks/useApi"
 import useEndpoint from "../../hooks/useEndpoint"
 import {ACTIVE_PANELS, HOST} from "../../globalConstants"
 import '../../styles/admin-page.css'
+import setData from '../../redux/actions/setData'
+import setRemovedTimetable from '../../redux/actions/setRemovedTimetable'
+import setRemovedBlocks from '../../redux/actions/setRemovedBlocks'
+import setRemovedReports from "../../redux/actions/setRemovedReports"
 
 export default function AdminPage(props) {
     const { active_panel, is_single } = props.admin_props
@@ -17,9 +22,11 @@ export default function AdminPage(props) {
     const navigate = useNavigate()
     const urlParams = useParams()
     const performApiCall = useApi()
-    const [data, setData] = useState(Array())
     const [isLoading, setIsLoading] = useState(false)
     const [warning, setWarning] = useState(null)
+
+    const dispatch = useDispatch()
+    const data = useSelector(state => state.data)
 
     let { backend_endpoint: backendGetEndpoint } = useEndpoint(active_panel)
     const { backend_endpoint: backendPatchEndpoint } = useEndpoint(active_panel, false)
@@ -38,11 +45,40 @@ export default function AdminPage(props) {
                 preparedData = data
                     .sort((first, second) => first.order - second.order)
                 break
+            case ACTIVE_PANELS.forum_programme:
+                if (data.day_timetable !== undefined && data.day_blocks !== undefined) {
+                    data.day_timetable = data.day_timetable
+                        .sort((first, second) => first.time_start - second.time_start)
+                    data.day_blocks.forEach(block => {
+                        block.reports = block.reports
+                            .sort((first, second) => first.time_start - second.time_start)
+                    })
+                }
+
+                preparedData = data
+                break
             default:
                 preparedData = data
         }
 
         return preparedData
+    }, [active_panel, data])
+    const updateData = useCallback((responseData) => {
+        setIsLoading(false)
+        if (responseData.status == 200) {
+            setWarning(null)
+            dispatch(setData(prepareData(responseData.data.data)))
+        }
+        else {
+            const warningMessage = responseData.status != 500? responseData.data.message :
+                'Произошла внутренняя ошибка сервера. Пожалуйста, повторите запрос позже'
+            setWarning(warningMessage)
+            dispatch(setData(Array()))
+        }
+
+        dispatch(setRemovedReports(Array()))
+        dispatch(setRemovedTimetable(Array()))
+        dispatch(setRemovedBlocks(Array()))
     }, [active_panel])
 
     useEffect(() => {
@@ -65,21 +101,11 @@ export default function AdminPage(props) {
             if (method == 'GET') {
                 setIsLoading(true)
                 performApiCall(`${HOST}/${backendGetEndpoint}`, method, null, null).then(responseData => {
-                    setIsLoading(false)
-                    if (responseData.status == 200) {
-                        setWarning(null)
-                        setData(prepareData(responseData.data.data))
-                    }
-                    else {
-                        const warningMessage = responseData.status != 500? responseData.data.message :
-                            'Произошла внутренняя ошибка сервера. Пожалуйста, повторите запрос позже'
-                        setWarning(warningMessage)
-                        setData(Array())
-                    }
+                    updateData(responseData)
                 })
             }
             else {
-                setData(Array())
+                dispatch(setData(Array()))
             }
         }
     }, [active_panel, is_single])
@@ -121,6 +147,10 @@ export default function AdminPage(props) {
                 dragOverItem.current = viewItems.indexOf(viewItem)
             })
 
+            viewItem.addEventListener('click', () => {
+                navigate(`${location.pathname}/${data[viewItems.indexOf(viewItem)].id}`)
+            })
+
             viewItem.addEventListener('drop', (e) => {
                 e.preventDefault()
 
@@ -144,17 +174,7 @@ export default function AdminPage(props) {
 
                     performApiCall(`${HOST}/${backendPatchEndpoint}`, 'PATCH', requestBody, null).then(_ => {
                         performApiCall(`${HOST}/${backendGetEndpoint}`, 'GET', null, null).then(responseData => {
-                            setIsLoading(false)
-                            if (responseData.status == 200) {
-                                setWarning(null)
-                                setData(prepareData(responseData.data.data))
-                            }
-                            else {
-                                const warningMessage = responseData.status != 500? responseData.data.message :
-                                    'Произошла внутренняя ошибка сервера. Пожалуйста, повторите запрос позже'
-                                setWarning(warningMessage)
-                                setData(Array())
-                            }
+                            updateData(responseData)
                         })
                     })
                 }
@@ -193,15 +213,16 @@ export default function AdminPage(props) {
                 viewItem.classList.remove('selected-view-item')
             })
         })
-    }, [data])
+    }, [isLoading])
 
     return (
         <div id="Admin-page" className="d-flex flex-column h-100">
             <DeletionModal modal_props={{
+                active_panel,
                 data,
-                active_panel
+                callback: (value) => setWarning(value)
             }} />
-            <AdminHeader callback={ () => setWarning(null) }  />
+            <AdminHeader callback={ () => setWarning(null) } />
             <AdminViewport viewport_props={{
                 active_panel,
                 is_single,
@@ -209,7 +230,8 @@ export default function AdminPage(props) {
                 is_loading: isLoading,
                 id_from_url: urlParams.id,
                 warning: warning,
-                callback: () => setWarning(null)
+                callback: () => setWarning(null),
+                controlled_callback: (value) => setWarning(value)
             }} />
         </div>
     )

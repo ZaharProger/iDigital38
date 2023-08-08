@@ -1,7 +1,15 @@
-import initialState from "./initialState"
-import {EVENTS, FORUM_PROGRAMME, ORGANIZERS} from "./actionTypes"
+import {initialLandingState, initialAdminState} from "./initialState"
+import {
+    DATA,
+    EVENTS,
+    FORUM_PROGRAMME,
+    ORGANIZERS,
+    REMOVED_BLOCKS,
+    REMOVED_REPORTS,
+    REMOVED_TIMETABLE
+} from "./actionTypes"
 
-export default function reducer(state=initialState, action) {
+export function landingReducer(state=initialLandingState, action) {
     switch (action.type) {
         case EVENTS:
             return {
@@ -17,6 +25,33 @@ export default function reducer(state=initialState, action) {
             return {
                 ...state,
                 forum_programme: action.forum_programme
+            }
+        default:
+            return state
+    }
+}
+
+export function adminReducer(state=initialAdminState, action) {
+    switch (action.type) {
+        case DATA:
+            return {
+                ...state,
+                data: action.data
+            }
+        case REMOVED_TIMETABLE:
+            return {
+                ...state,
+                removed_timetable: action.removed_timetable
+            }
+        case REMOVED_BLOCKS:
+            return {
+                ...state,
+                removed_blocks: action.removed_blocks
+            }
+        case REMOVED_REPORTS:
+            return {
+                ...state,
+                removed_reports: action.removed_reports
             }
         default:
             return state

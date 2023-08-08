@@ -1,4 +1,4 @@
-const initialState = {
+export const initialLandingState = {
     events: [],
     forum_programme: [],
     gallery_items: [
@@ -30,4 +30,9 @@ const initialState = {
     organizers: []
 }
 
-export default initialState
+export const initialAdminState = {
+    data: Array(),
+    removed_timetable: Array(),
+    removed_blocks: Array(),
+    removed_reports: Array()
+}

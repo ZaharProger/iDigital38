@@ -45,8 +45,6 @@ export default function ReportForm(props) {
                    defaultValue={ isDefined? prepareTime(item_data.time_start) : '' } />
             <label className={ isNestedWrapped? 'hidden' : '' }>
                 Ключевые спикеры (необязательное поле)
-                <br />
-                При вводе разделяйте записи клавишей Enter
             </label>
             <textarea name="speakers"
                       defaultValue={ isDefined? item_data.speakers : '' }

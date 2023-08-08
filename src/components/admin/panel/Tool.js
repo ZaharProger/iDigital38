@@ -13,8 +13,7 @@ export default function Tool(props) {
 
     const [isSubmit, setIsSubmit] = useState(false)
 
-    const additionalClasslist = is_single? [PANEL_TOOLS.create_nested, PANEL_TOOLS.delete]
-        .includes(props.item_props.item)? 'me-3' : 'me-3 tool-anim-back' : 'ms-3 tool-anim'
+    const additionalClasslist = is_single? 'me-3' : 'ms-3'
     let toolClasslist = `Tool d-flex flex-row ${additionalClasslist} p-2 mb-1`
     if (special_class !== undefined) {
         toolClasslist += ` ${special_class}`

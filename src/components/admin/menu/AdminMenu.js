@@ -18,7 +18,7 @@ export default function AdminMenu(props) {
                 menuItem.querySelector('span').style.color = 'var(--secondary-color'
             })
         })
-    }, [props.menu_props.data, props.menu_props.active_panel, props.menu_props.is_single])
+    }, )
     
     return (
         <div id="Admin-menu" className="d-flex flex-column mb-auto mt-5 ms-3">

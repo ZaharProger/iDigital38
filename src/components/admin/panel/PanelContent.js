@@ -1,6 +1,7 @@
 import React, {useCallback, useEffect} from "react"
 import {useNavigate} from "react-router-dom"
 import {v4 as uuidV4} from "uuid"
+import {useSelector} from "react-redux"
 
 import {ACTIVE_PANELS, HOST} from "../../../globalConstants"
 import EventView from "./views/EventView"
@@ -13,13 +14,19 @@ import useValidation from "../../../hooks/useValidation"
 import ProgrammeDayView from "./views/ProgrammeDayView"
 import ProgrammeDayForm from "./forms/ProgrammeDayForm"
 import '../../../styles/panel-content.css'
+import {mapBlockFormsToObjects, mapMainFormToObject, mapTimetableFormsToObjects} from "../../../utils"
 
 export default function PanelContent(props) {
     const navigate = useNavigate()
+
     const performApiCall = useApi()
     const validate = useValidation()
-    let { active_panel, data, is_single, id_from_url } = props.panel_props
-    const { frontend_endpoint, backend_endpoint } = useEndpoint(active_panel, false)
+    let { active_panel, data, is_single, id_from_url, controlled_callback } = props.panel_props
+    const { backend_endpoint, frontend_endpoint } = useEndpoint(active_panel, false)
+
+    const removedTimetable = useSelector(state => state.removed_timetable)
+    const removedBlocks = useSelector(state => state.removed_blocks)
+    const removedReports = useSelector(state => state.removed_reports)
 
     const getContent = useCallback(() => {
         let content
@@ -82,7 +89,56 @@ export default function PanelContent(props) {
         }
 
         return content
-    }, [active_panel, data])
+    }, [active_panel, data, id_from_url])
+
+    const validateFields = useCallback((fields, form) => {
+        const validationResult = validate(fields, (inputValue) =>
+            !RegExp(/^\s*$/).test(inputValue))
+
+        form.querySelectorAll('input').forEach(input => {
+            input.classList.remove('error')
+
+            if (validationResult.includes(input)) {
+                input.classList.add('error')
+            }
+        })
+
+        return validationResult.length == 0
+    }, [data])
+
+    const getFormData = useCallback((form, requestMethod) => {
+        const formData = new FormData(form)
+
+        if (requestMethod == 'PUT') {
+            formData.append('id', data[0].id)
+        }
+        if (formData.has('date')) {
+            const dateTimestamp = new Date(formData.get('date')).getTime() / 1000
+            formData.set('date', dateTimestamp.toString())
+        }
+        if (formData.has('image_uri') && formData.get('image_uri').size == 0 &&
+            form.querySelector('img').getAttribute('src') != '') {
+            formData.delete('image_uri')
+        }
+
+        return formData
+    }, [data])
+
+    const getJsonData = useCallback((form, requestMethod) => {
+        const jsonData = mapMainFormToObject(data.length != 0? data[0] : undefined)
+        if (requestMethod == 'PUT') {
+            jsonData['removed_timetable'] = removedTimetable
+            jsonData['removed_blocks'] = removedBlocks
+            jsonData['removed_reports'] = removedReports
+        }
+
+        jsonData.day_timetable = data.length != 0?
+            mapTimetableFormsToObjects(data[0].day_timetable) : []
+        jsonData.day_blocks = data.length != 0?
+            mapBlockFormsToObjects(data[0].day_blocks) : []
+
+        return JSON.stringify(jsonData)
+    }, [data])
 
     useEffect(() => {
         document.querySelectorAll('input[type=file]').forEach(input => {
@@ -113,45 +169,31 @@ export default function PanelContent(props) {
 
                 const inputsToValidate = Array.from(document.getElementsByTagName('input'))
                     .filter(input => !input.classList.contains('optional'))
-                const validationResult = validate(inputsToValidate, (inputValue) =>
-                    !RegExp(/^\s*$/).test(inputValue))
 
-                form.querySelectorAll('input').forEach(input => {
-                    input.classList.remove('error')
-
-                    if (validationResult.includes(input)) {
-                        input.classList.add('error')
-                    }
-                })
-
-                if (validationResult.length == 0) {
+                if (validateFields(inputsToValidate, form)) {
                     const requestMethod = id_from_url !== undefined? 'PUT' : 'POST'
-                    const requestBody = new FormData(form)
-
-                    if (requestMethod == 'PUT') {
-                        requestBody.append('id', id_from_url)
-                    }
-                    if (requestBody.has('date')) {
-                        const dateTimestamp = new Date(requestBody.get('date')).getTime() / 1000
-                        requestBody.set('date', dateTimestamp.toString())
-                    }
-                    if (requestBody.has('image_uri') && requestBody.get('image_uri').size == 0 &&
-                        form.querySelector('img').getAttribute('src') != '') {
-                        requestBody.delete('image_uri')
-                    }
+                    const requestBody = active_panel === ACTIVE_PANELS.forum_programme?
+                        getJsonData(form ,requestMethod) : getFormData(form, requestMethod)
+                    const requestHeaders = active_panel === ACTIVE_PANELS.forum_programme?
+                        { 'Content-Type': 'application/json' } : null
 
                     const submitButton = form.querySelector('.submit-button')
                     const prevButtonText = submitButton.innerText
                     submitButton.innerText = 'Отправка данных...'
                     submitButton.disabled = true
 
-                    performApiCall(`${HOST}/${backend_endpoint}`, requestMethod, requestBody, null)
+                    performApiCall(`${HOST}/${backend_endpoint}`, requestMethod, requestBody, requestHeaders)
                         .then(responseData => {
                             submitButton.innerText = prevButtonText
                             submitButton.disabled = false
 
-                            if (responseData !== null) {
+                            if (responseData.status == 200) {
                                 navigate(frontend_endpoint)
+                            }
+                            else {
+                                const warningMessage = responseData.status != 500? responseData.data.message :
+                                    'Произошла внутренняя ошибка сервера. Пожалуйста, повторите запрос позже'
+                                controlled_callback(warningMessage)
                             }
                         })
                 }

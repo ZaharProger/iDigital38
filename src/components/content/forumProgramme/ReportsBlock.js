@@ -20,7 +20,7 @@ export default function ReportsBlock(props) {
                     <div className="d-flex flex-column ps-3">
                         <span className="regular-text me-auto mb-1">{ place !== null? place : '' }</span>
                         {
-                            moderators !== null?
+                            moderators !== null && moderators !== ''?
                                 <>
                                     <span className="caption-header-text mb-1 me-auto">
                                         {

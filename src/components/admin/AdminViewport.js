@@ -6,7 +6,8 @@ import WarningLabel from "./warning-label/WarningLabel"
 import '../../styles/admin-viewport.css'
 
 export default function AdminViewport(props) {
-    const { active_panel, is_single, data, is_loading, id_from_url, warning, callback } = props.viewport_props
+    const { active_panel, is_single, is_loading,
+        id_from_url, warning, data, callback, controlled_callback } = props.viewport_props
 
     return (
         <div id="Admin-viewport" className="d-flex flex-row">
@@ -25,7 +26,8 @@ export default function AdminViewport(props) {
                         data,
                         id_from_url,
                         warning,
-                        callback
+                        callback,
+                        controlled_callback
                     }} />
                     :
                     <WarningLabel text={ null } />

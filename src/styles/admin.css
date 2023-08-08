@@ -14,7 +14,7 @@
     cursor: pointer;
     color: var(--secondary-color);
     transition: 0.3s ease-out;
-    font-size: 0.9em;
+    font-size: 0.9em!important;
 }
 
 .dropdown-item:hover {

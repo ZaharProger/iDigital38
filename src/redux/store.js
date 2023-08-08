@@ -1,8 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
 
-import initialState from './initialState'
-import reducer from './reducer.js'
+import { initialLandingState, initialAdminState } from './initialState'
+import { landingReducer, adminReducer } from './reducer.js'
 
-const store = configureStore({ reducer: reducer, preloadedState: initialState })
-
-export default store
+export const landingStore = configureStore({ reducer: landingReducer, preloadedState: initialLandingState })
+export const adminStore = configureStore({ reducer: adminReducer, preloadedState: initialAdminState })
