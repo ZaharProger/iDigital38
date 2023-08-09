@@ -8,7 +8,7 @@ export default function Salutation() {
     const isMobile = useContext(contentContext)
 
     return (
-        <div id="Salutation" className="container-gap pt-5 d-flex">
+        <div id="Salutation" className="container-gap pt-5 mt-5 d-flex">
             <div className={ `d-flex m-auto flex-${isMobile? 'column' : 'row'}` }>
                 <img src={nerpa_intro} id="NerpaIntro" className="d-flex" style={{
                     width: isMobile? 300 : 500,
