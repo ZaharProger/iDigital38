@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import '../../../styles/auth.css'
 import { useNavigate } from "react-router-dom"
 import logo from "../../../assets/pics/logo.svg"
 import useApi from "../../../hooks/useApi"
 import useValidation from "../../../hooks/useValidation"
 import { ROUTES } from '../../../globalConstants';
+import {HOST} from "../../../globalConstants"
 
 
 export default function Auth() {
@@ -28,7 +29,7 @@ export default function Auth() {
     return validationResult.length == 0
   }, [])
 
-  onSubmitting = (e) => {
+  const onSubmitting = (e) => {
 
     e.preventDefault()
     const form = document.querySelector('form')
@@ -36,6 +37,7 @@ export default function Auth() {
 
       const inputsToValidate = Array.from(document.getElementsByTagName('input'))
       if (validateFields(inputsToValidate, form)) {
+        document.getElementById('error-client').style.display = "none";
         const requestMethod = 'POST'
         const requestBody = new FormData(form)
 
