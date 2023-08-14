@@ -20,7 +20,7 @@ export default function WrapButton(props) {
 
     return (
         <div className="Wrap-button d-flex flex-row mb-1 me-auto" onClick={ () => changeWrappedDataState() }
-           onMouseOver={ () => setIsHovered(true) } onMouseLeave={ () => setIsHovered(false) } >
+             onMouseOver={ () => setIsHovered(true) } onMouseLeave={ () => setIsHovered(false) } >
             <button type="button" className={ buttonCaptionClassList }>
                 {
                     header_text

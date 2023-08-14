@@ -29,7 +29,7 @@ export const mapTimetableFormsToObjects = (timetable) => {
             if (timeEnd != '') {
                 timetableObject.time_end = parseTime(timeEnd)
             }
-            if (timetable[index].id !== undefined) {
+            if (timetable[index] !== undefined && timetable[index].id !== undefined) {
                 timetableObject.id = timetable[index].id
             }
 
@@ -60,7 +60,7 @@ export const mapBlockFormsToObjects = (blocks) => {
                 reports: mapReportFormsToObjects(blockForm, blocks[index].reports)
             }
 
-            if (blocks[index].id !== undefined) {
+            if (blocks[index] !== undefined && blocks[index].id !== undefined) {
                 blockObject.id = blocks[index].id
             }
 
@@ -76,10 +76,13 @@ export const mapReportFormsToObjects = (block, reports) => {
                 time_start: parseTime(
                     reportForm.querySelector('input[name=time_start]').value
                 ),
+                time_end: parseTime(
+                    reportForm.querySelector('input[name=time_end]').value
+                ),
                 speakers: reportForm.querySelector('textarea[name=speakers]').value
             }
 
-            if (reports[index].id !== undefined) {
+            if (reports[index] !== undefined && reports[index].id !== undefined) {
                 reportObject.id = reports[index].id
             }
 

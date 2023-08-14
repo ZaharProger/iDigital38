@@ -3,20 +3,19 @@ import React, {useState} from "react"
 import {ACTIVE_PANELS, PANEL_TOOLS} from "../../../../globalConstants"
 import Tool from "../Tool"
 import {prepareTime} from "../../../../utils"
-import useWrap from "../../../../hooks/useWrap";
+import useWrap from "../../../../hooks/useWrap"
 
 export default function ReportForm(props) {
     const { item_data, callback, item_index } = props.item_props
     const isDefined = item_data !== undefined
 
     const [formHeader, setFormHeader] = useState(isDefined? item_data.name : '')
-    const nestedFormClasslist = `Report-form d-flex flex-column justify-content-center nested-form`
 
     const [getState, wrap] = useWrap(formHeader)
     const isNestedWrapped = getState()
 
     return(
-        <div className={ nestedFormClasslist }>
+        <div className="Report-form d-flex flex-column justify-content-center nested-form">
             <div className="d-flex flex-row justify-content-between align-items-center nested-form-header">
                 <div className="d-flex">
                     {
@@ -38,11 +37,17 @@ export default function ReportForm(props) {
                    defaultValue={ isDefined? item_data.name : '' }
                    onInput={ (event) => setFormHeader(event.target.value) } />
             <label className={ isNestedWrapped? 'hidden' : '' }>
-                Время
+                Начало
             </label>
             <input name="time_start" type="time"
                    className={ isNestedWrapped? 'hidden' : '' }
                    defaultValue={ isDefined? prepareTime(item_data.time_start) : '' } />
+            <label className={ isNestedWrapped? 'hidden' : '' }>
+                Конец
+            </label>
+            <input name="time_end" type="time"
+                   className={ isNestedWrapped? 'hidden' : '' }
+                   defaultValue={ isDefined? prepareTime(item_data.time_end) : '' } />
             <label className={ isNestedWrapped? 'hidden' : '' }>
                 Ключевые спикеры (необязательное поле)
             </label>

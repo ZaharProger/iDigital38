@@ -46,16 +46,22 @@ export default function AdminPage(props) {
                     .sort((first, second) => first.order - second.order)
                 break
             case ACTIVE_PANELS.forum_programme:
-                if (data.day_timetable !== undefined && data.day_blocks !== undefined) {
-                    data.day_timetable = data.day_timetable
+                preparedData = data.map(item => {
+                    const sortedTimetable = item.day_timetable
                         .sort((first, second) => first.time_start - second.time_start)
-                    data.day_blocks.forEach(block => {
-                        block.reports = block.reports
-                            .sort((first, second) => first.time_start - second.time_start)
+                    const sortedBlocks = item.day_blocks.map(block => {
+                        return {
+                            ...block,
+                            reports: block.reports
+                                .sort((first, second) => first.time_start - second.time_start)
+                        }
                     })
-                }
 
-                preparedData = data
+                    item.day_timetable = sortedTimetable
+                    item.day_blocks = sortedBlocks
+
+                    return item
+                })
                 break
             default:
                 preparedData = data

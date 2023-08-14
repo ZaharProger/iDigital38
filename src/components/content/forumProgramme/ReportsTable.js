@@ -34,7 +34,9 @@ export default function ReportsTable(props) {
                                 null
                         }
                         <td className={ tableItemClass }>{ item.name }</td>
-                        <td className={ tableItemClass }>{ prepareTime(item.time_start) }</td>
+                        <td className={ tableItemClass }>
+                            { `${prepareTime(item.time_start)} - ${prepareTime(item.time_end)}` }
+                        </td>
                         <td className={ tableItemClass }>{ item.speakers !== null? item.speakers : '' }</td>
                     </tr>
                 })

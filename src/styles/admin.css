@@ -91,7 +91,7 @@ form {
     max-width: 700px;
 }
 
-form > label, .nested-form > label {
+form > label, .nested-form > label, .nested-label {
     color: var(--primary-color);
     font-weight: bold;
     margin-bottom: 2px;
@@ -265,21 +265,8 @@ form > button:disabled, .modal-footer > button:disabled {
     margin: auto 10px auto 0!important;
 }
 
-.report-label {
+.nested-label {
     font-size: 1.2em;
-}
-
-.wrap-form-block {
-    display: flex;
-    background-color: var(--on-primary-color);
-    border-radius: 10px;
-    padding: 5px 10px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-.wrap-form-block:first-child {
-    margin-top: 0;
 }
 
 #error-message {
