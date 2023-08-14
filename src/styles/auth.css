@@ -1,13 +1,14 @@
 #Auth {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    margin: auto;
+    width: 100%;
     color: white;
     height: 100vh;
 }
 
 #form {
+    margin: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -15,6 +16,7 @@
 
 #Auth img {
     margin-bottom: 50px;
+    width: 350px;
 }
 
 #Auth div {
@@ -25,23 +27,35 @@
 
 #Auth div input{
     width: 330px;
+    font-size: 1em;
     height: 35px;
     border-radius: .3rem;
+    outline: none;
     border: 1px solid var(--border-color);
+}
+
+#Auth div input:focus {
+    box-shadow: 0 3px 5px var(--border-color);
 }
 
 #Auth button {
     margin: 30px 0px;
     padding: 12px 40px;
     border-radius: 1.5rem;
+    border-style: none;
     background: var(--border-color);
     color: white;
     font-weight: 700;
+    transition: 0.3s ease-out;
+}
+
+#Auth button:hover {
+    box-shadow: 0 2px 8px var(--secondary-color);
 }
 
 #Auth .error-msg {
     flex-direction: column;
     align-items: center;
-    color: red;
+    color: red!important;
     display: none;
 }

@@ -56,7 +56,7 @@
 }
 
 .error {
-    box-shadow: 0 1px 3px red!important;
+    box-shadow: 0 2px 3px red!important;
     border-color: red;
     animation: error-detection 0.5s ease-out 0s 1 forwards;
 }

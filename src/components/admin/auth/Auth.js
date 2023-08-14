@@ -56,6 +56,7 @@ export default function Auth() {
             }
             else {
               document.getElementById('error-server').style.display = "flex";
+              document.getElementById('error-server').innerText = responseData.data.message
             }
           })
       } else {
@@ -72,23 +73,21 @@ export default function Auth() {
         <img src={logo} />
 
         <div>
-          <span>Логин</span>
-          <input type="text" />
+          <span className="semi-header-text">Логин</span>
+          <input name="username" type="text" className="table-data-text" />
         </div>
 
         <div>
-          <span>Пароль</span>
-          <input type="password" />
+          <span className="semi-header-text">Пароль</span>
+          <input name="password" type="password" className="table-data-text" />
         </div>
 
-        <button className='submit-button' type="submit">Войти</button>
+        <button className='submit-button header-text' type="submit">Войти</button>
 
-        <div id='error-server' className='error-msg'>
-          <span>Произошла внутренняя ошибка сервера.</span>
-          <span>Пожалуйста, повторите запрос позже</span>
+        <div id='error-server' className='error-msg regular-text'>
         </div>
 
-        <div id='error-client' className='error-msg'>
+        <div id='error-client' className='error-msg regular-text'>
           <span>Пожалуйста, заполните все поля</span>
         </div>
 
