@@ -7,13 +7,13 @@
     cursor: pointer;
 }
 
-#Admin-header > div > button {
+#Admin-header > div > div > button {
     background: var(--border-color);
     transition: 0.3s ease-out;
     border-radius: 20px;
     border-style: none;
 }
 
-#Admin-header > div > button:hover {
+#Admin-header > div > div > button:hover {
     box-shadow: 0 2px 8px var(--secondary-color);
 }

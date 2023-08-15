@@ -14,12 +14,12 @@ export default function App() {
     <div id="App" className="h-100">
       <Routes>
           <Route path={ ROUTES.main } element={ <Provider store={ landingStore }><ContentWrap /></Provider> } />
-          <Route path={ ROUTES.admin } element={ <Provider store={ adminStore }><AdminPage admin_props={{
-              active_panel: null,
-              is_single: false
-          }} /></Provider> } />
-          <Route path={ ROUTES.admin_auth } element={ <Auth /> } />
-          <Route element={ <ProtectedRoutes /> }>
+          <Route element={ <Provider store={ adminStore }> <ProtectedRoutes /> </Provider> }>
+              <Route path={ ROUTES.admin_auth } element={ <Auth /> } />
+              <Route path={ ROUTES.admin } element={ <Provider store={ adminStore }><AdminPage admin_props={{
+                  active_panel: null,
+                  is_single: false
+              }} /></Provider> } />
               <Route path={ ROUTES.admin_events } element={ <Provider store={ adminStore }>
                   <AdminPage admin_props={{
                       active_panel: ACTIVE_PANELS.events,

@@ -3,7 +3,7 @@ export default function useApi() {
 
     return async function (url, requestType, body, headers) {
         const settings = {
-            method: requestTypes.includes(requestType)? requestType : requestTypes[0],
+            method: requestTypes.includes(requestType)? requestType : requestTypes[0]
         }
         if (body !== null) {
             settings.body = body
@@ -13,9 +13,11 @@ export default function useApi() {
         }
 
         const response = await fetch(url, settings)
+        const responseData = response.status != 500? await response.json() : {}
+
         return {
             status: response.status,
-            data: await response.json()
+            data: responseData
         }
     }
 }

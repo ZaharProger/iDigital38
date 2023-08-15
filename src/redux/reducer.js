@@ -6,7 +6,7 @@ import {
     ORGANIZERS,
     REMOVED_BLOCKS,
     REMOVED_REPORTS,
-    REMOVED_TIMETABLE
+    REMOVED_TIMETABLE, USERNAME
 } from "./actionTypes"
 
 export function landingReducer(state=initialLandingState, action) {
@@ -52,6 +52,11 @@ export function adminReducer(state=initialAdminState, action) {
             return {
                 ...state,
                 removed_reports: action.removed_reports
+            }
+        case USERNAME:
+            return {
+                ...state,
+                username: action.username
             }
         default:
             return state
