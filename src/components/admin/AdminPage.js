@@ -190,7 +190,9 @@ export default function AdminPage(props) {
         let viewCounter = 0
         const staticViewItems = Array.from(document.getElementsByClassName('view-item-static'))
         const deleteButton = document.getElementById('delete-button')
-        deleteButton.disabled = true
+        if (deleteButton !== null) {
+            deleteButton.disabled = true
+        }
 
         staticViewItems.forEach(viewItem => {
             viewItem.addEventListener('click', () => {
@@ -212,13 +214,16 @@ export default function AdminPage(props) {
             })
         })
 
-        document.getElementById('Deletion-modal').addEventListener('hide.bs.modal', () => {
-            viewCounter = 0
-            deleteButton.disabled = true
-            staticViewItems.forEach(viewItem => {
-                viewItem.classList.remove('selected-view-item')
+        const deletionModal = document.getElementById('Deletion-modal')
+        if (deletionModal !== null) {
+            deletionModal.addEventListener('hide.bs.modal', () => {
+                viewCounter = 0
+                deleteButton.disabled = true
+                staticViewItems.forEach(viewItem => {
+                    viewItem.classList.remove('selected-view-item')
+                })
             })
-        })
+        }
     }, [isLoading])
 
     return (
