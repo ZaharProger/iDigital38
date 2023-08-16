@@ -3,7 +3,8 @@ export default function useApi() {
 
     return async function (url, requestType, body, headers) {
         const settings = {
-            method: requestTypes.includes(requestType)? requestType : requestTypes[0]
+            method: requestTypes.includes(requestType)? requestType : requestTypes[0],
+            credentials: 'include'
         }
         if (body !== null) {
             settings.body = body

@@ -24,7 +24,7 @@ export default function OrganizerForm(props) {
                         'Предпросмотр (файл получен с сервера)' : 'Нет данных для предпросмотра'
                 }
             </label>
-            <img src={ isDefined && data.image_uri !== null? `${HOST}/${data.image_uri}` : '' } />
+            <img src={ isDefined && data.image_uri !== null? `${HOST}${data.image_uri}` : '' } />
             <button type="submit" className="submit-button d-flex regular-text">
                 {
                     has_id? 'Сохранить изменения' : 'Создать запись'

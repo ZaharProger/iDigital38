@@ -10,7 +10,7 @@ export default function OrganizerView(props) {
         <div className={ viewClasslist } draggable={ true }>
             {
                 image_uri !== null?
-                    <img src={ `${HOST}/${image_uri}` } alt='event' className="me-2" />
+                    <img src={ `${HOST}${image_uri}` } alt='event' className="me-2" />
                     :
                     null
             }

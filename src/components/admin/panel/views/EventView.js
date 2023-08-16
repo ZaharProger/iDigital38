@@ -12,13 +12,14 @@ export default function EventView(props) {
         <div className={ viewClasslist }>
             {
                 image_uri !== null?
-                    <img src={ `${HOST}/${image_uri}` } alt='event' className="me-2" />
+                    <img src={ `${HOST}${image_uri}` } alt='event' className="me-2" />
                     :
                     null
             }
             <span className="table-main-data-text">{ name }</span>
             <span className="table-main-data-text ms-auto me-4">{ convertedDate }</span>
-            <a className="table-main-data-text" href={ ref }>Ссылка на мероприятие</a>
+            <a className="table-main-data-text" href={ ref }
+               target="_blank" rel="noopener noreferrer">Ссылка на мероприятие</a>
         </div>
     )
 }

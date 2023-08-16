@@ -23,7 +23,7 @@ export default function EventListItem(props) {
             <div className={ `d-flex flex-${isMobile? 'column' : 'row'}` }>
                 {
                     item_data.image_uri !== null?
-                        <img src={ `${HOST}/${item_data.image_uri}` } alt="Мероприятие" style={{
+                        <img src={ `${HOST}${item_data.image_uri}` } alt="Мероприятие" style={{
                             borderRadius: 30,
                             margin: isMobile? "15px auto auto auto" : "auto",
                             width: isMobile? 300 : 600,
@@ -36,6 +36,7 @@ export default function EventListItem(props) {
                     <span className="regular-text text-center mb-5 me-auto ms-auto mt-auto">{ item_data.name }</span>
                     <span className="header-text text-center mt-5 me-auto ms-auto mb-auto">{ convertedDate }</span>
                     <a href={ item_data.ref }
+                       target="_blank" rel="noopener noreferrer"
                        className="header-text d-flex me-auto ms-auto mt-4 p-3 item-button">Подробнее</a>
                 </div>
             </div>

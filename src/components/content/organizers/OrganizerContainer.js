@@ -10,7 +10,7 @@ export default function OrganizerContainer(props) {
         <div className={ `Organizer-container flex-${isMobile? 'column' : 'row'}${is_last? '' : ' mb-5'}` }>
             {
                 image_uri !== null?
-                    <img src={`${HOST}/${image_uri}`} alt="Organizer" className="organizer-image" style={{
+                    <img src={`${HOST}${image_uri}`} alt="Organizer" className="organizer-image" style={{
                         width: 200,
                         height: 200,
                         objectFit: "cover",

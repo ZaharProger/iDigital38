@@ -25,7 +25,10 @@ export default function ProtectedRoutes() {
     }
 
     useEffect(() => {
-        performApiCall(`${HOST}/api/login`, 'GET', null, null).then(responseData => {
+        const headers = {
+            'ngrok-skip-browser-warning': 'akjgorwgijeori'
+        }
+        performApiCall(`${HOST}/api/login`, 'GET', null, headers).then(responseData => {
             if (responseData.status == 200) {
                 dispatch(setUsername(responseData.data.username))
             }

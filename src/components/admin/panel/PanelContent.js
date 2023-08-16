@@ -175,7 +175,8 @@ export default function PanelContent(props) {
                     const requestBody = active_panel === ACTIVE_PANELS.forum_programme?
                         getJsonData(form ,requestMethod) : getFormData(form, requestMethod)
                     const requestHeaders = active_panel === ACTIVE_PANELS.forum_programme?
-                        { 'Content-Type': 'application/json' } : null
+                        { 'Content-Type': 'application/json', 'ngrok-skip-browser-warning': 'akjgorwgijeori' } :
+                        { 'ngrok-skip-browser-warning': 'akjgorwgijeori' }
 
                     const submitButton = form.querySelector('.submit-button')
                     const prevButtonText = submitButton.innerText
