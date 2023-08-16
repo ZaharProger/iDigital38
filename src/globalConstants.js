@@ -1,4 +1,4 @@
-export const HOST = 'https://b917-2a00-f940-2-2-1-1-0-26.ngrok-free.app'
+export const HOST = REACT_APP_HOST
 
 export const ROUTES = {
     main: '/',
