@@ -27,11 +27,8 @@ export default function DeletionModal(props) {
         deleteButton.innerText = 'Удаление записей...'
         deleteButton.disabled = true
 
-        const headers = {
-            'ngrok-skip-browser-warning': 'akjgorwgijeori'
-        }
 
-        performApiCall(`${HOST}/${backend_endpoint}`, 'DELETE', null, headers).then(responseData => {
+        performApiCall(`${HOST}/${backend_endpoint}`, 'DELETE', null, null).then(responseData => {
             deleteButton.innerText = prevButtonText
             deleteButton.disabled = false
 

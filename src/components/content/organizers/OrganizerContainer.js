@@ -1,20 +1,16 @@
 import React, {useContext} from "react"
 
 import {contentContext} from "../../../context"
-import useImage from "../../../hooks/useImage"
-import {HOST} from "../../../globalConstants"
 
 export default function OrganizerContainer(props) {
     const { item_data: { name, role, additional_role, image_uri }, is_last } = props.organizer_props
     const isMobile = useContext(contentContext)
 
-    const getImage = useImage(image_uri !== null? `${HOST}${image_uri}` : null)
-
     return(
         <div className={ `Organizer-container flex-${isMobile? 'column' : 'row'}${is_last? '' : ' mb-5'}` }>
             {
                 image_uri !== null?
-                    <img src={ getImage() } alt="Organizer" className="organizer-image" style={{
+                    <img src={ image_uri } alt="Organizer" className="organizer-image" style={{
                         width: 200,
                         height: 200,
                         objectFit: "cover",

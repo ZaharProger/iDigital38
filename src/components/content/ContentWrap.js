@@ -95,11 +95,8 @@ export default function ContentWrap() {
             })
         }
 
-        const headers = {
-            'ngrok-skip-browser-warning': 'akjgorwgijeori'
-        }
         endpoints.forEach(item => {
-            performApiCall(`${HOST}/${item.endpoint}`, 'GET', null, headers).then(responseData => {
+            performApiCall(`${HOST}/${item.endpoint}`, 'GET', null, null).then(responseData => {
                 if (responseData.status == 200) {
                     dispatch(item.callback(responseData.data.data))
                 }

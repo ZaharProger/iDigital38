@@ -141,6 +141,22 @@ export default function PanelContent(props) {
     }, [data])
 
     useEffect(() => {
+        document.querySelectorAll('input[type=file]').forEach(input => {
+            input.addEventListener('change', () => {
+                const [file] = input.files
+                const previewLabel = document.getElementById('preview-label')
+
+                if (file) {
+                    previewLabel.innerText = 'Предпросмотр (файл загружен с устройства)'
+                    input.parentElement.querySelector('img').src = URL.createObjectURL(file)
+                }
+                else {
+                    previewLabel.innerText = 'Нет данных для предпросмотра'
+                    input.parentElement.querySelector('img').src = ''
+                }
+            })
+        })
+
         const form = document.querySelector('form')
         if (form !== null) {
             form.onsubmit = (e) => {
@@ -159,8 +175,7 @@ export default function PanelContent(props) {
                     const requestBody = active_panel === ACTIVE_PANELS.forum_programme?
                         getJsonData(form ,requestMethod) : getFormData(form, requestMethod)
                     const requestHeaders = active_panel === ACTIVE_PANELS.forum_programme?
-                        { 'Content-Type': 'application/json', 'ngrok-skip-browser-warning': 'akjgorwgijeori' } :
-                        { 'ngrok-skip-browser-warning': 'akjgorwgijeori' }
+                        { 'Content-Type': 'application/json' } : null
 
                     const submitButton = form.querySelector('.submit-button')
                     const prevButtonText = submitButton.innerText

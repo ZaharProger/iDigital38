@@ -18,10 +18,7 @@ export default function App() {
   const navigate = useNavigate()
 
   useEffect(() => {
-      const headers = {
-          'ngrok-skip-browser-warning': 'akjgorwgijeori'
-      }
-      performApiCall(`${HOST}/api/login`, 'GET', null, headers).then(responseData => {
+      performApiCall(`${HOST}/api/login`, 'GET', null, null).then(responseData => {
           if (responseData.status == 200) {
               if (responseData.data.username !== null) {
                   dispatch(setUsername(responseData.data.username))

@@ -2,8 +2,6 @@ import React, {useContext} from "react"
 
 import '../../../styles/event.css'
 import {contentContext} from "../../../context"
-import {HOST} from "../../../globalConstants"
-import useImage from "../../../hooks/useImage"
 
 export default function EventListItem(props) {
     const { item_data, is_active } = props.item_props
@@ -18,14 +16,12 @@ export default function EventListItem(props) {
     const eventCaptionClasslist = isMobile? 'd-flex flex-column pt-3 me-auto ms-auto pb-3' :
         'd-flex flex-column pt-3 pb-3 ps-5 pe-3 w-100'
 
-    const getImage = useImage(item_data.image_uri !== null? `${HOST}${item_data.image_uri}` : null)
-
     return (
         <div className={ itemClassList }>
             <div className={ `d-flex flex-${isMobile? 'column' : 'row'}` }>
                 {
                     item_data.image_uri !== null?
-                        <img src={ getImage() } alt="Мероприятие" style={{
+                        <img src={ item_data.image_uri } alt="Мероприятие" style={{
                             borderRadius: 30,
                             margin: isMobile? "15px auto auto auto" : "auto",
                             width: isMobile? 300 : 600,

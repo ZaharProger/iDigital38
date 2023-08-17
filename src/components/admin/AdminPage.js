@@ -107,10 +107,7 @@ export default function AdminPage(props) {
 
             if (method == 'GET') {
                 setIsLoading(true)
-                const headers = {
-                    'ngrok-skip-browser-warning': 'akjgorwgijeori'
-                }
-                performApiCall(`${HOST}/${backendGetEndpoint}`, method, null, headers).then(responseData => {
+                performApiCall(`${HOST}/${backendGetEndpoint}`, method, null, null).then(responseData => {
                     updateData(responseData)
                 })
             }
@@ -174,9 +171,6 @@ export default function AdminPage(props) {
                     dragItem.current = null
                     dragOverItem.current = null
 
-                    const headers = {
-                        'ngrok-skip-browser-warning': 'akjgorwgijeori'
-                    }
                     const requestBody = new FormData()
                     let order = -1
                     copiedData.forEach(item => {
@@ -185,7 +179,7 @@ export default function AdminPage(props) {
 
                     setIsLoading(true)
 
-                    performApiCall(`${HOST}/${backendPatchEndpoint}`, 'PATCH', requestBody, headers).then(_ => {
+                    performApiCall(`${HOST}/${backendPatchEndpoint}`, 'PATCH', requestBody, null).then(_ => {
                         performApiCall(`${HOST}/${backendGetEndpoint}`, 'GET', null, null).then(responseData => {
                             updateData(responseData)
                         })

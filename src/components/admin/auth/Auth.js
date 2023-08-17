@@ -40,16 +40,13 @@ export default function Auth() {
         document.getElementById('error-client').style.display = "none";
         const requestMethod = 'POST'
         const requestBody = new FormData(form)
-        const headers = {
-          'ngrok-skip-browser-warning': 'akjgorwgijeori'
-        }
 
         const submitButton = form.querySelector('.submit-button')
         const prevButtonText = submitButton.innerText
         submitButton.innerText = 'Отправка данных...'
         submitButton.disabled = true
 
-        performApiCall(`${HOST}/api/login/`, requestMethod, requestBody, headers)
+        performApiCall(`${HOST}/api/login/`, requestMethod, requestBody, null)
           .then(responseData => {
             submitButton.innerText = prevButtonText
             submitButton.disabled = false

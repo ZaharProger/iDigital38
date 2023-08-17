@@ -10,7 +10,7 @@ if (process.env.NODE_ENV === 'production') {
 module.exports = {
     plugins: [
         new webpack.DefinePlugin({
-            'REACT_APP_HOST': JSON.stringify('https://6563-2a00-f940-2-2-1-1-0-26.ngrok-free.app')
+            'REACT_APP_HOST': JSON.stringify('https://localhost:8000')
         }),
         new HtmlWebpackPlugin(
             {

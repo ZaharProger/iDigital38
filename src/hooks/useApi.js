@@ -1,7 +1,7 @@
 export default function useApi() {
     const requestTypes = ['GET', 'PUT', 'DELETE', 'POST', 'PATCH']
 
-    return async function (url, requestType, body, headers, isBlob=false) {
+    return async function (url, requestType, body, headers) {
         const settings = {
             method: requestTypes.includes(requestType)? requestType : requestTypes[0],
             credentials: 'include'
@@ -14,7 +14,7 @@ export default function useApi() {
         }
 
         const response = await fetch(url, settings)
-        const responseData = response.status != 500? isBlob? await response.blob() : await response.json() : {}
+        const responseData = response.status != 500? await response.json() : {}
 
         return {
             status: response.status,
