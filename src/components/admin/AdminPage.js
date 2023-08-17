@@ -1,6 +1,6 @@
 import React, {useCallback, useEffect, useRef, useState} from "react"
 import {useNavigate, useParams, useLocation} from "react-router-dom"
-import {useDispatch, useSelector} from "react-redux"
+import {Provider, useDispatch, useSelector} from "react-redux"
 
 import AdminHeader from "./header/AdminHeader"
 import '../../styles/admin.css'
@@ -14,6 +14,7 @@ import setData from '../../redux/actions/setData'
 import setRemovedTimetable from '../../redux/actions/setRemovedTimetable'
 import setRemovedBlocks from '../../redux/actions/setRemovedBlocks'
 import setRemovedReports from "../../redux/actions/setRemovedReports"
+import {authStore} from "../../redux/store"
 
 export default function AdminPage(props) {
     const { active_panel, is_single } = props.admin_props
@@ -239,7 +240,9 @@ export default function AdminPage(props) {
                 data,
                 callback: (value) => setWarning(value)
             }} />
-            <AdminHeader callback={ () => setWarning(null) } />
+            <Provider store={ authStore }>
+                <AdminHeader callback={ () => setWarning(null) } />
+            </Provider>
             <AdminViewport viewport_props={{
                 active_panel,
                 is_single,

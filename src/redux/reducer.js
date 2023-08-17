@@ -1,4 +1,4 @@
-import {initialLandingState, initialAdminState} from "./initialState"
+import {initialLandingState, initialAdminState, initialAuthState} from "./initialState"
 import {
     DATA,
     EVENTS,
@@ -53,6 +53,13 @@ export function adminReducer(state=initialAdminState, action) {
                 ...state,
                 removed_reports: action.removed_reports
             }
+        default:
+            return state
+    }
+}
+
+export function authReducer(state=initialAuthState, action) {
+    switch (action.type) {
         case USERNAME:
             return {
                 ...state,

@@ -34,6 +34,9 @@ export const initialAdminState = {
     data: Array(),
     removed_timetable: Array(),
     removed_blocks: Array(),
-    removed_reports: Array(),
+    removed_reports: Array()
+}
+
+export const initialAuthState = {
     username: null
 }
