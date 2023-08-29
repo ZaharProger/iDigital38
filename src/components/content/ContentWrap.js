@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react"
 import {useDispatch} from "react-redux"
 
-import {ACTIVE_PANELS, HEADERS, HOST, LIST_TYPES} from "../../globalConstants"
+import {ACTIVE_PANELS, HEADERS, LIST_TYPES} from "../../globalConstants"
 import '../../styles/content-wrap.css'
 import Header from "./header/Header"
 import News from "./news/News"
@@ -96,7 +96,7 @@ export default function ContentWrap() {
         }
 
         endpoints.forEach(item => {
-            performApiCall(`${HOST}/${item.endpoint}`, 'GET', null, null).then(responseData => {
+            performApiCall(item.endpoint, 'GET', null, null).then(responseData => {
                 if (responseData.status == 200) {
                     dispatch(item.callback(responseData.data.data))
                 }

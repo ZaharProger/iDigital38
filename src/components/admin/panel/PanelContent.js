@@ -3,7 +3,7 @@ import {useNavigate} from "react-router-dom"
 import {v4 as uuidV4} from "uuid"
 import {useSelector} from "react-redux"
 
-import {ACTIVE_PANELS, HOST} from "../../../globalConstants"
+import {ACTIVE_PANELS} from "../../../globalConstants"
 import EventView from "./views/EventView"
 import OrganizerView from "./views/OrganizerView"
 import EventForm from "./forms/EventForm"
@@ -182,7 +182,7 @@ export default function PanelContent(props) {
                     submitButton.innerText = 'Отправка данных...'
                     submitButton.disabled = true
 
-                    performApiCall(`${HOST}/${backend_endpoint}`, requestMethod, requestBody, requestHeaders)
+                    performApiCall(backend_endpoint, requestMethod, requestBody, requestHeaders)
                         .then(responseData => {
                             submitButton.innerText = prevButtonText
                             submitButton.disabled = false

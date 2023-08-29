@@ -8,7 +8,7 @@ import AdminViewport from "./AdminViewport"
 import DeletionModal from "./deletion-modal/DeletionModal"
 import useApi from "../../hooks/useApi"
 import useEndpoint from "../../hooks/useEndpoint"
-import {ACTIVE_PANELS, HOST} from "../../globalConstants"
+import {ACTIVE_PANELS} from "../../globalConstants"
 import '../../styles/admin-page.css'
 import setData from '../../redux/actions/setData'
 import setRemovedTimetable from '../../redux/actions/setRemovedTimetable'
@@ -107,7 +107,7 @@ export default function AdminPage(props) {
 
             if (method == 'GET') {
                 setIsLoading(true)
-                performApiCall(`${HOST}/${backendGetEndpoint}`, method, null, null).then(responseData => {
+                performApiCall(backendGetEndpoint, method, null, null).then(responseData => {
                     updateData(responseData)
                 })
             }
@@ -179,8 +179,8 @@ export default function AdminPage(props) {
 
                     setIsLoading(true)
 
-                    performApiCall(`${HOST}/${backendPatchEndpoint}`, 'PATCH', requestBody, null).then(_ => {
-                        performApiCall(`${HOST}/${backendGetEndpoint}`, 'GET', null, null).then(responseData => {
+                    performApiCall(backendPatchEndpoint, 'PATCH', requestBody, null).then(_ => {
+                        performApiCall(backendGetEndpoint, 'GET', null, null).then(responseData => {
                             updateData(responseData)
                         })
                     })

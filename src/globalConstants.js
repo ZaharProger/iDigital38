@@ -1,5 +1,3 @@
-export const HOST = REACT_APP_HOST
-
 export const ROUTES = {
     main: '/',
     admin: '/admin',

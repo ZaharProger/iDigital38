@@ -1,6 +1,5 @@
 const path = require("path")
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const webpack = require("webpack")
 
 let mode = 'development'
 if (process.env.NODE_ENV === 'production') {
@@ -9,9 +8,6 @@ if (process.env.NODE_ENV === 'production') {
 
 module.exports = {
     plugins: [
-        new webpack.DefinePlugin({
-            'REACT_APP_HOST': JSON.stringify('https://localhost:8000')
-        }),
         new HtmlWebpackPlugin(
             {
                 template: "./public/index.html",

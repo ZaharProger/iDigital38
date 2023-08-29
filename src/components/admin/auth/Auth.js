@@ -4,8 +4,7 @@ import { useNavigate } from "react-router-dom"
 import logo from "../../../assets/pics/logo.svg"
 import useApi from "../../../hooks/useApi"
 import useValidation from "../../../hooks/useValidation"
-import { ROUTES } from '../../../globalConstants';
-import {HOST} from "../../../globalConstants"
+import { ROUTES } from '../../../globalConstants'
 
 
 export default function Auth() {
@@ -46,7 +45,7 @@ export default function Auth() {
         submitButton.innerText = 'Отправка данных...'
         submitButton.disabled = true
 
-        performApiCall(`${HOST}/api/login/`, requestMethod, requestBody, null)
+        performApiCall('/api/login/', requestMethod, requestBody, null)
           .then(responseData => {
             submitButton.innerText = prevButtonText
             submitButton.disabled = false

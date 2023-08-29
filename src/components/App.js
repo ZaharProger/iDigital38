@@ -4,7 +4,7 @@ import {Provider, useDispatch} from "react-redux"
 import {adminStore, landingStore} from "../redux/store"
 
 import ContentWrap from "./content/ContentWrap"
-import {ACTIVE_PANELS, HOST, ROUTES} from "../globalConstants"
+import {ACTIVE_PANELS, ROUTES} from "../globalConstants"
 import AdminPage from "./admin/AdminPage"
 import Auth from "./admin/auth/Auth"
 import useApi from "../hooks/useApi"
@@ -18,7 +18,7 @@ export default function App() {
   const navigate = useNavigate()
 
   useEffect(() => {
-      performApiCall(`${HOST}/api/login`, 'GET', null, null).then(responseData => {
+      performApiCall('/api/login', 'GET', null, null).then(responseData => {
           if (responseData.status == 200) {
               if (responseData.data.username !== null) {
                   dispatch(setUsername(responseData.data.username))

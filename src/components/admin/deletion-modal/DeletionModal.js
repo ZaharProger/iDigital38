@@ -1,7 +1,7 @@
 import React, {useCallback} from "react"
 import {v4 as uuidV4} from "uuid"
 
-import {ACTIVE_PANELS, HOST} from "../../../globalConstants"
+import {ACTIVE_PANELS} from "../../../globalConstants"
 import EventView from "../panel/views/EventView"
 import OrganizerView from "../panel/views/OrganizerView"
 import useApi from "../../../hooks/useApi"
@@ -28,7 +28,7 @@ export default function DeletionModal(props) {
         deleteButton.disabled = true
 
 
-        performApiCall(`${HOST}/${backend_endpoint}`, 'DELETE', null, null).then(responseData => {
+        performApiCall(backend_endpoint, 'DELETE', null, null).then(responseData => {
             deleteButton.innerText = prevButtonText
             deleteButton.disabled = false
 
