@@ -93,6 +93,7 @@ export default function ContentWrap() {
 
     useEffect(() => {
     	const gallery = document.querySelector('#Gallery')
+
         if (gallery !== null) {
             gallery.querySelectorAll('img').forEach(image => {
                 image.onclick = () => {

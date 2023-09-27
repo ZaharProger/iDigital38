@@ -37,7 +37,7 @@ export default function Gallery() {
             {
                 getGalleryItems()
             }
-            <span className="d-flex ms-auto mb-2 mt-2 text-center regular-text">
+            <span className="d-flex ms-auto mb-1 mt-2 text-center regular-text">
                 Все фотографии доступны
                 <a className="semi-header-text ms-1" href="https://disk.yandex.ru/d/JrTkNyIsiV92ig">по ссылке</a>
             </span>
