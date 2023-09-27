@@ -44,6 +44,7 @@ export default function RegisterForm() {
                         submitButton.disabled = false
 
                         if (responseData.status == 200) {
+                            form.querySelectorAll('input').forEach(input => input.value = '')
                             setIsRegistered(true)
                             setError('')
                         }
