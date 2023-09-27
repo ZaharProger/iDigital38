@@ -17,7 +17,12 @@ export default function AdminHeader(props) {
         performApiCall('/api/appointments', 'GET', null, null).then(responseData => {
             if (responseData.status == 200) {
                 const downloadRef = document.querySelector('.download')
-                downloadRef.href = URL.createObjectURL(responseData.data.file)
+                downloadRef.href = URL.createObjectURL(
+                    new Blob(
+                        responseData.data.file,
+                        { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' }
+                    )
+                )
                 downloadRef.download = responseData.data.name
 
                 downloadRef.click()
