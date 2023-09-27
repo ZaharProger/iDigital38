@@ -3,7 +3,7 @@ import {getCookie} from '../utils.js'
 export default function useApi() {
     const requestTypes = ['GET', 'PUT', 'DELETE', 'POST', 'PATCH']
 
-    return async function (url, requestType, body, headers) {
+    return async function (url, requestType, body, headers, isBlobResponse=false) {
         const settings = {
             method: requestTypes.includes(requestType)? requestType : requestTypes[0],
             credentials: 'include',
@@ -22,7 +22,8 @@ export default function useApi() {
         }
 
         const response = await fetch(url, settings)
-        const responseData = response.status != 500? await response.json() : {}
+        const responseData = response.status != 500?
+            isBlobResponse? await response.blob() : await response.json() : {}
 
         return {
             status: response.status,

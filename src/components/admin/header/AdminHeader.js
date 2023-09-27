@@ -14,19 +14,17 @@ export default function AdminHeader(props) {
     const performApiCall = useApi()
 
     const downloadAppointmentsList = useCallback(() => {
-        performApiCall('/api/appointments', 'GET', null, null).then(responseData => {
+        performApiCall('/api/appointments', 'GET', null, null, true).then(responseData => {
             if (responseData.status == 200) {
-                const downloadRef = document.querySelector('.download')
-                downloadRef.href = URL.createObjectURL(
-                    new Blob(
-                        [responseData.data.file],
-                        { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' }
-                    )
-                )
-                downloadRef.download = responseData.data.name
+                const downloadRef = document.createElement('a')
+                downloadRef.href = URL.createObjectURL(responseData.data)
+                downloadRef.download = 'Idigital38_Заявки.xlsx'
+                downloadRef.style.display = 'none'
+                document.appendChild(downloadRef)
 
                 downloadRef.click()
                 URL.revokeObjectURL(downloadRef.href);
+                document.removeChild(downloadRef)
             }
         })
     }, [])
@@ -51,7 +49,6 @@ export default function AdminHeader(props) {
                         className="regular-text d-flex text-center ms-2 mt-auto mb-auto pt-1 pb-1 pe-3 ps-3">
                     Выгрузить список заявок
                 </button>
-                <a className="d-none download"></a>
             </div>
         </div>
     )
