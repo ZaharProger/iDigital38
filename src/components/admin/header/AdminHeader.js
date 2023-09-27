@@ -19,7 +19,7 @@ export default function AdminHeader(props) {
                 const downloadRef = document.querySelector('.download')
                 downloadRef.href = URL.createObjectURL(
                     new Blob(
-                        responseData.data.file,
+                        [responseData.data.file],
                         { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' }
                     )
                 )
