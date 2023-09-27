@@ -27,9 +27,9 @@ export default function FloatingButton() {
                 paddingLeft: 6,
                 paddingRight: 6
             }}>
-                <i id="Icon_arrow" className="fa-duotone fa-arrow-up" ></i>
+                <i id="Icon_arrow" className="fa-solid fa-arrow-up" ></i>
                 <span>Наверх</span>
-                <i id="Icon_arrow" className="fa-duotone fa-arrow-up" ></i>
+                <i id="Icon_arrow" className="fa-solid fa-arrow-up" ></i>
             </div>
         </div>
     )

@@ -41,7 +41,7 @@ export default function Gallery() {
                 Все фотографии доступны
                 <a className="semi-header-text ms-1" href="https://disk.yandex.ru/d/JrTkNyIsiV92ig">по ссылке</a>
             </span>
-            <span className="d-flex ms-auto mb-2 mt-2 text-center regular-text">
+	    <span className="d-flex ms-auto mb-2 mt-2 text-center regular-text">
                 <a className="semi-header-text me-1" href="https://www.youtube.com/watch?v=rZ06tq30NhA">Видео</a>
                 о том, как мы развивали ИТ-компетенции школьников и преподавателей
             </span>
