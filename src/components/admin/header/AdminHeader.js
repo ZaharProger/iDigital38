@@ -43,7 +43,7 @@ export default function AdminHeader(props) {
                 }
                 <button type="button"
                         onClick={ () => downloadAppointmentsList() }
-                        className="regular-text d-flex text-center ms-auto mt-auto mb-auto pt-1 pb-1 pe-3 ps-3">
+                        className="regular-text d-flex text-center ms-2 mt-auto mb-auto pt-1 pb-1 pe-3 ps-3">
                     Выгрузить список заявок
                 </button>
                 <a className="d-none download"></a>
