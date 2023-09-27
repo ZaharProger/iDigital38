@@ -18,6 +18,7 @@ import useEndpoint from "../../hooks/useEndpoint"
 import setEvents from "../../redux/actions/setEvents"
 import setForumProgramme from "../../redux/actions/setForumProgramme"
 import setOrganizers from "../../redux/actions/setOrganizers"
+import RegisterForm from "./registerForm/RegisterForm"
 
 
 // Это обертка над всем контентом страницы (я пока хз пихать ли сюда навбар, но
@@ -134,6 +135,7 @@ export default function ContentWrap() {
                     has_sliders: true,
                     first_item: null
                 } } />
+                <RegisterForm />
                 <Footer/>
             </div>
         </contentContext.Provider>
