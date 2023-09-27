@@ -58,19 +58,6 @@ export default function ContentWrap() {
     useEffect(() => {
         document.querySelector('body').style.overflow = 'auto'
 
-        const gallery = document.querySelector('#Gallery')
-        if (gallery !== null) {
-            gallery.querySelectorAll('img').forEach(image => {
-                image.onclick = () => {
-                    document.querySelector('body').style.overflow = 'hidden'
-                    setFullscreenData({
-                        is_active: true,
-                        id: image.id
-                    })
-                }
-            })
-        }
-
         document.querySelectorAll('.Carousel-list').forEach(carousel => {
             if (carousel.parentElement.id == 'event-carousel') {
                 carousel.classList.add('neon')
@@ -103,6 +90,21 @@ export default function ContentWrap() {
             })
         })
     }, [])
+
+    useEffect(() => {
+    	const gallery = document.querySelector('#Gallery')
+        if (gallery !== null) {
+            gallery.querySelectorAll('img').forEach(image => {
+                image.onclick = () => {
+                    document.querySelector('body').style.overflow = 'hidden'
+                    setFullscreenData({
+                        is_active: true,
+                        id: image.id
+                    })
+                }
+            })
+        }
+    }, [isMobile, fullscreenData])
 
     return (
         <contentContext.Provider value={ isMobile }>

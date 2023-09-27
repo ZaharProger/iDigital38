@@ -24,7 +24,7 @@ export default function Header() {
     }, [isMobile])
 
     const navbarTogglerClasslist =
-        `fa-regular fa-${ isExpanded? 'xmark' : 'bars' } navbar-toggler d-flex justify-content-center${isExpanded? ' mb-4' : ''}`
+        `fa-solid fa-${ isExpanded? 'xmark' : 'bars' } navbar-toggler d-flex justify-content-center${isExpanded? ' mb-4' : ''}`
 
     return (
         <nav id="Header" className="navbar w-100 pb-3 pt-3">

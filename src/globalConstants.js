@@ -50,13 +50,13 @@ export const PANEL_TOOLS = {
     mark_delete: {
         id: 3,
         caption: 'Пометить на удаление',
-        icon_class: 'trash-can-list',
+        icon_class: 'trash-can',
         route: null
     },
     delete: {
         id: 4,
         caption: 'Удалить',
-        icon_class: 'trash',
+        icon_class: 'trash-can',
         route: null
     },
     back: {
@@ -78,14 +78,14 @@ export const ADMIN_MENU = [
     {
         id: 2,
         caption: 'Организационный комитет',
-        icon_class: 'people-pants-simple',
+        icon_class: 'user-tie',
         panel: ACTIVE_PANELS.organizers,
         route: ROUTES.admin_organizers
     },
     {
         id: 3,
         caption: 'Мероприятия',
-        icon_class: 'calendar-star',
+        icon_class: 'calendar-day',
         panel: ACTIVE_PANELS.events,
         route: ROUTES.admin_events
     }
