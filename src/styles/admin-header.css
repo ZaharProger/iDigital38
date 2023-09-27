@@ -6,3 +6,15 @@
 #Admin-header > div > image {
     cursor: pointer;
 }
+
+#Admin-header > .container-fluid > button {
+    border-style: none;
+    background-color: var(--border-color);
+    border-radius: 20px;
+    transition: 0.3s ease-out;
+    font-size: 0.8em;
+}
+
+#Admin-header > .container-fluid > button:hover {
+    box-shadow: 0 2px 8px var(--secondary-color);
+}
