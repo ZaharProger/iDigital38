@@ -76,9 +76,9 @@ export default function RegisterForm() {
                 </label>
                 <label className="regular-text">Организация</label>
                 <select name="organization">
-                    <option>Школа (Я ученик)</option>
-                    <option>Университет (Я студент)</option>
-                    <option>Предприятие (Я сотрудник компании)</option>
+                    <option>Школа (ученик)</option>
+                    <option>Университет (студент)</option>
+                    <option>Предприятие (сотрудник компании)</option>
                 </select>
                 <button type="submit" className="submit-button d-flex regular-text">
                     Отправить
