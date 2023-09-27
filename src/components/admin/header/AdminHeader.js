@@ -16,15 +16,17 @@ export default function AdminHeader(props) {
     const downloadAppointmentsList = useCallback(() => {
         performApiCall('/api/appointments', 'GET', null, null, true).then(responseData => {
             if (responseData.status == 200) {
+                const adminHeader = document.querySelector('#Admin-header')
+
                 const downloadRef = document.createElement('a')
                 downloadRef.href = URL.createObjectURL(responseData.data)
                 downloadRef.download = 'Idigital38_Заявки.xlsx'
                 downloadRef.style.display = 'none'
-                document.appendChild(downloadRef)
+                adminHeader.appendChild(downloadRef)
 
                 downloadRef.click()
                 URL.revokeObjectURL(downloadRef.href);
-                document.removeChild(downloadRef)
+                adminHeader.removeChild(downloadRef)
             }
         })
     }, [])
