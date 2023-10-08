@@ -46,6 +46,7 @@ export default function ContentWrap() {
         }
     ]
 
+    const [isAttention, setIsAttention] = useState(false)
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 1300)
     const [fullscreenData, setFullscreenData] = useState({
         is_active: false,
@@ -108,9 +109,38 @@ export default function ContentWrap() {
         }
     }, [isMobile, fullscreenData])
 
+    useEffect(() => {
+        const attention = document.getElementById('attention')
+        if (attention !== null) {
+            setTimeout(() => {
+                setIsAttention(true)
+                attention.style.animation = 'attention-reveal 0.3s ease-out 0s 1 forwards'
+            }, 1000)
+            attention.onmouseover = () => {
+                setTimeout(() => {
+                    setIsAttention(false)
+                }, 600)
+            }
+        }
+    }, [isMobile])
+
     return (
         <contentContext.Provider value={ isMobile }>
             <div id="Content-wrap" className="d-flex flex-column h-100">
+                <div id="attention"
+                     style={{backgroundColor: 'red', zIndex: '10000', display: isAttention? 'flex' : 'none'}}
+                     className="flex-column position-fixed w-100 pt-3 pb-2 pe-4 ps-4 error text-center">
+                    <span className="semi-header-text d-flex text-center m-auto">
+                        ВНИМАНИЕ!
+                        <br />
+                        К сожалению, по техническим причинам форум переносится!
+                        <br />
+                        Новые даты форума 27.11.2023 - 28.11.2023
+                    </span>
+                    <span className="regular-text d-flex me-auto ms-auto mt-3 text-center">
+                        (наведите мышью на это сообщение, чтобы скрыть его)
+                    </span>
+                </div>
                 <Header />
                 {
                     fullscreenData.is_active?

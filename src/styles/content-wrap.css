@@ -3,3 +3,12 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+@keyframes attention-reveal {
+    from {
+        transform: translateY(-150px);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
