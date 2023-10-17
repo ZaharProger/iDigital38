@@ -1,0 +1,12 @@
+.funding-body-header, .funding-body-price, .funding-body-comment, #funding-modal-label,
+.funding-body-price > a {
+    color: var(--primary-color)!important;
+}
+
+.funding-body-price, .funding-body-header {
+    font-size: 0.9em!important;
+}
+
+.funding-body-comment {
+    font-size: 0.85em!important;
+}

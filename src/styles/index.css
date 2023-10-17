@@ -23,3 +23,24 @@ html, body {
     height: 100%;
     background-color: var(--primary-color);
 }
+
+.modal-body {
+    scrollbar-color: var(--primary-color) #c2c2c2;
+    scrollbar-width: thin;
+}
+
+.modal-body::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    background-color: #c2c2c2;
+    border-radius: 20px;
+}
+
+.modal-body::-webkit-scrollbar-thumb {
+    background-color: var(--primary-color);
+    border-radius: 20px;
+}
+
+.modal-body::-webkit-scrollbar-corner {
+    background-color: #c2c2c2;
+}

@@ -12,3 +12,16 @@
         transform: translateY(0);
     }
 }
+
+#funding-button {
+    border-style: none;
+    border-radius: 20px;
+    transition: 0.3s ease-out;
+    font-size: 0.9em;
+    opacity: 0.8;
+    background-color: transparent;
+}
+
+#funding-button:hover {
+    opacity: 1;
+}

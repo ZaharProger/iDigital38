@@ -19,6 +19,7 @@ import setEvents from "../../redux/actions/setEvents"
 import setForumProgramme from "../../redux/actions/setForumProgramme"
 import setOrganizers from "../../redux/actions/setOrganizers"
 import RegisterForm from "./registerForm/RegisterForm"
+import FundingModal from "./fundingModal/FundingModal"
 
 
 // Это обертка над всем контентом страницы (я пока хз пихать ли сюда навбар, но
@@ -167,6 +168,7 @@ export default function ContentWrap() {
                 } } />
                 <RegisterForm />
                 <Footer/>
+                <FundingModal />
             </div>
         </contentContext.Provider>
     )

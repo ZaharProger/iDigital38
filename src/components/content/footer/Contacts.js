@@ -7,7 +7,8 @@ export default function Contacts() {
             <h2 className="footer-text"> Дмитрий Салко </h2>
             <h3 className="footer-text" style={{marginTop: 15}}> Программный директор форума </h3>
             <h3 className="footer-text" style={{marginTop: -6}}> telegram:
-                <a className="footer-text" href="http://t.me/diagrun" style={{
+                <a className="footer-text" href="http://t.me/diagrun" target="_blank" rel="noreferrer noopener"
+                   style={{
                     marginLeft: 5,
                     fontSize: "0.9em"
                 }}>
