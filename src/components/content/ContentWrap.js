@@ -119,7 +119,10 @@ export default function ContentWrap() {
             }, 1000)
             attention.onclick = () => {
                 setIsAttention(false)
-                document.getElementById('Register-form').scrollIntoView(false)
+                document.getElementById('event-carousel').scrollIntoView({
+                    block: 'center',
+                    inline: 'center'
+                })
             }
         }
     }, [isMobile])
