@@ -117,10 +117,9 @@ export default function ContentWrap() {
                 setIsAttention(true)
                 attention.style.animation = 'attention-reveal 0.3s ease-out 0s 1 forwards'
             }, 1000)
-            attention.onmouseover = () => {
-                setTimeout(() => {
-                    setIsAttention(false)
-                }, 600)
+            attention.onclick = () => {
+                setIsAttention(false)
+                document.getElementById('Register-form').scrollIntoView(false)
             }
         }
     }, [isMobile])
@@ -137,9 +136,11 @@ export default function ContentWrap() {
                         К сожалению, по техническим причинам форум переносится!
                         <br />
                         Новые даты форума 27.11.2023 - 28.11.2023
+                        <br />
+                        Пока вы можете принять участие в наших мероприятиях и прокачать IT скиллы!
                     </span>
                     <span className="regular-text d-flex me-auto ms-auto mt-3 text-center">
-                        (наведите мышью на это сообщение, чтобы скрыть его)
+                        (нажмите на это сообщение, чтобы перейти к мероприятиям)
                     </span>
                 </div>
                 <Header />
