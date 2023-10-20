@@ -100,7 +100,8 @@ export default function RegisterForm() {
                             null
                 }
             </form>
-            <button id="funding-button" type="button" className="text-center regular-text me-auto ms-auto mb-auto mt-3"
+            <button id="funding-button" type="button"
+                    className="text-center regular-text me-auto ms-auto mb-auto mt-4 pt-2 pb-2 pe-3 ps-3"
                     data-bs-toggle="modal" data-bs-target="#Funding-modal">
                 Подробнее о взносах
             </button>

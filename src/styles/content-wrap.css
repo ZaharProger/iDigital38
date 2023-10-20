@@ -15,13 +15,12 @@
 
 #funding-button {
     border-style: none;
+    background-color: var(--border-color);
     border-radius: 20px;
     transition: 0.3s ease-out;
     font-size: 1.05em;
-    opacity: 0.8;
-    background-color: transparent;
 }
 
 #funding-button:hover {
-    opacity: 1;
+    box-shadow: 0 2px 8px var(--secondary-color);
 }
