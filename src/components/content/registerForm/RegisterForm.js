@@ -112,7 +112,7 @@ export default function RegisterForm() {
                     <input type="checkbox" name="2"></input>
                 </div>
                 <div className="d-flex flex-row justify-content-space-around">
-                    <label className="regular-text">IT в отраслях бизнеса</label>
+                    <label className="regular-text">Опыт цифровой трансформации Региона с учетом современных ИТ-трендов</label>
                     <input type="checkbox" name="3"></input>
                 </div>
                 <button type="submit" className="submit-button d-flex regular-text">
