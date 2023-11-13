@@ -20,7 +20,7 @@ module.exports = {
     output:{
         assetModuleFilename: "assets/[name][ext]",
         path: path.join(__dirname, 'dist'),
-        filename: 'bundle.js',
+        filename: '[name].[contenthash].js',
         clean: true
     },
     devtool: "source-map",
