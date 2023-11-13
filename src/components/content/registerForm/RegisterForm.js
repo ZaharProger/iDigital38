@@ -50,7 +50,6 @@ export default function RegisterForm() {
                     }
                     formData.set('sections', sections.join(', '))
 
-                    console.log(...formData)
                     performApiCall('/api/appointments/', 'POST', formData, null).then(responseData => {
                         submitButton.innerText = prevButtonText
                         submitButton.disabled = false
