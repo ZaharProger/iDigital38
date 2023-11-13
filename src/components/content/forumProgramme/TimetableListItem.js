@@ -9,7 +9,7 @@ export default function TimetableListItem(props) {
     const { name, time_start, time_end, moderators, speakers } = props.item_data
 
     let itemHeader = `${prepareTime(time_start)}`
-    itemHeader += time_end !== null? ` - ${prepareTime(time_end)}. ${name}` : `. ${name}`
+    itemHeader += time_end !== null && time_end != 0? ` - ${prepareTime(time_end)}. ${name}` : `. ${name}`
 
     const getNestedItems = useCallback((items) => {
         return items.split('\n').map(item => {
