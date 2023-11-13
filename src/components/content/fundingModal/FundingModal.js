@@ -22,11 +22,12 @@ export default function FundingModal() {
                         </span>
                         <span className="regular-text funding-body-price">
                             <strong className="mb-2">
-                                Участие: 1000 руб
+                                Выступление с докладом на секции: 3000 руб
                                 <br />
-                                Выступление: 10000 руб
+                                Выступление с докладом на секции и участие в выставке it-организаций: 10000 руб
                                 <br />
-                                Партнерство: 20000 руб
+                                Партнерство (выступление с докладом на секции, участие в выставке,
+                                размещение логотипов на информационных ресурсах): 20000 руб
                             </strong>
                             <br />
                             Получить платежные реквизиты можно
@@ -40,11 +41,12 @@ export default function FundingModal() {
                             <strong>ВАЖНО:</strong> при переводе денежных средств введите в поле "Назначение
                             платежа" фразу Форум IDigital38.
                             <br />
-                            Квитанцию об оплате необходимо отправить на почту:
+                            Квитанцию об оплате необходимо отправить организационному директору Лобановой Дарье в telegram:
                             <br />
-                            Богданов Алексей Николаевич
-                            <br />
-                            a.bogdanov@govirk.ru
+                            <a className="regular-text" href="http://t.me/danilysly"
+                               target="_blank" rel="noreferrer noopener">
+                                @danilysly
+                            </a>
                         </span>
                     </div>
                     <div className="modal-footer">

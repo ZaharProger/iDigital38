@@ -39,7 +39,19 @@ export default function RegisterForm() {
                     submitButton.innerText = 'Отправка данных...'
                     submitButton.disabled = true
 
-                    performApiCall('/api/appointments/', 'POST', new FormData(form), null).then(responseData => {
+                    const formData = new FormData(form)
+                    const checkBoxes = form.querySelectorAll('input[type=checkbox]')
+                    const sections = []
+                    for (let i = 0; i < checkBoxes.length; ++i) {
+                        if (checkBoxes[i].checked) {
+                            sections.push(checkBoxes[i].parentElement.querySelector('label').innerText)
+                        }
+                        formData.delete(`${i}`)
+                    }
+                    formData.set('sections', sections.join(', '))
+
+                    console.log(...formData)
+                    performApiCall('/api/appointments/', 'POST', formData, null).then(responseData => {
                         submitButton.innerText = prevButtonText
                         submitButton.disabled = false
 
@@ -67,20 +79,43 @@ export default function RegisterForm() {
     return (
         <div id="Register-form" className="d-flex flex-column">
             <ComponentHeader header_text={ 'Станьте участником форума!' } />
-            <form className="d-flex flex-column m-auto justify-content-center pt-2 pb-3 pe-2 ps-2 neon">
+            <form className="d-flex flex-column m-auto justify-content-center p-4 neon">
                 <label className="regular-text">ФИО</label>
                 <input name="name" type="text" />
-                <label className="regular-text">Ваши контакты</label>
-                <input name="contacts" type="text" />
-                <label className="caption-text info-label">
-                    Можно указать e-mail, номер телефона или ссылку на Telegram аккаунт
-                </label>
+                <label className="regular-text">Должность</label>
+                <input name="status" type="text" />
                 <label className="regular-text">Организация</label>
                 <select name="organization">
                     <option>Школа (ученик)</option>
                     <option>Университет (студент)</option>
                     <option>Предприятие (сотрудник компании)</option>
                 </select>
+                <label className="regular-text">E-mail</label>
+                <input name="email" type="text" />
+                <label className="regular-text">Номер телефона</label>
+                <input name="phone" type="text" />
+                <label className="regular-text">Формат участия</label>
+                <select name="participation_type">
+                    <option>Участник</option>
+                    <option>Партнер</option>
+                </select>
+                <label className="regular-text">Выбор секций</label>
+                <div className="d-flex flex-row justify-content-space-around">
+                    <label className="regular-text">Будущее в IT для студента и школьника</label>
+                    <input type="checkbox" name="0"></input>
+                </div>
+                <div className="d-flex flex-row justify-content-space-around">
+                    <label className="regular-text">Возможность стажировки в IT</label>
+                    <input type="checkbox" name="1"></input>
+                </div>
+                <div className="d-flex flex-row justify-content-space-around">
+                    <label className="regular-text">Цифровизация госсектора</label>
+                    <input type="checkbox" name="2"></input>
+                </div>
+                <div className="d-flex flex-row justify-content-space-around">
+                    <label className="regular-text">IT в отраслях бизнеса</label>
+                    <input type="checkbox" name="3"></input>
+                </div>
                 <button type="submit" className="submit-button d-flex regular-text">
                     Отправить
                 </button>

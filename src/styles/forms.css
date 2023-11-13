@@ -186,6 +186,14 @@ form > button:disabled, .modal-footer > button:disabled {
     margin-top: 10px;
 }
 
+#Register-form > form > div {
+    font-size: 0.8em;
+}
+
+#Register-form > form > div > label {
+    margin-right: 10px;
+}
+
 .info-label {
     font-size: 0.75em!important;
     margin-top: 0!important;
