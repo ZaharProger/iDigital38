@@ -130,22 +130,22 @@ export default function ContentWrap() {
     return (
         <contentContext.Provider value={ isMobile }>
             <div id="Content-wrap" className="d-flex flex-column h-100">
-                <div id="attention"
-                     style={{backgroundColor: 'red', zIndex: '10000', display: isAttention? 'flex' : 'none'}}
-                     className="flex-column position-fixed w-100 pt-3 pb-2 pe-4 ps-4 error text-center">
-                    <span className="semi-header-text d-flex text-center m-auto">
-                        ВНИМАНИЕ!
-                        <br />
-                        К сожалению, по техническим причинам форум переносится!
-                        <br />
-                        Новые даты форума 27.11.2023 - 28.11.2023
-                        <br />
-                        Пока вы можете принять участие в наших мероприятиях и прокачать IT скиллы!
-                    </span>
-                    <span className="regular-text d-flex me-auto ms-auto mt-3 text-center">
-                        (нажмите на это сообщение, чтобы перейти к мероприятиям)
-                    </span>
-                </div>
+                {/*<div id="attention"*/}
+                {/*     style={{backgroundColor: 'red', zIndex: '10000', display: isAttention? 'flex' : 'none'}}*/}
+                {/*     className="flex-column position-fixed w-100 pt-3 pb-2 pe-4 ps-4 error text-center">*/}
+                {/*    <span className="semi-header-text d-flex text-center m-auto">*/}
+                {/*        ВНИМАНИЕ!*/}
+                {/*        <br />*/}
+                {/*        К сожалению, по техническим причинам форум переносится!*/}
+                {/*        <br />*/}
+                {/*        Новые даты форума 27.11.2023 - 28.11.2023*/}
+                {/*        <br />*/}
+                {/*        Пока вы можете принять участие в наших мероприятиях и прокачать IT скиллы!*/}
+                {/*    </span>*/}
+                {/*    <span className="regular-text d-flex me-auto ms-auto mt-3 text-center">*/}
+                {/*        (нажмите на это сообщение, чтобы перейти к мероприятиям)*/}
+                {/*    </span>*/}
+                {/*</div>*/}
                 <Header />
                 {
                     fullscreenData.is_active?
@@ -162,15 +162,15 @@ export default function ContentWrap() {
                 <Salutation />
                 <News/>
                 <Organizers />
-                <Gallery />
                 <ForumProgramme />
+                <RegisterForm />
                 <Carousel data={ {
-                    header_text: HEADERS.events,
+                    header_text: HEADERS.past_events,
                     list_type: LIST_TYPES.events,
                     has_sliders: true,
                     first_item: null
                 } } />
-                <RegisterForm />
+                <Gallery />
                 <Footer/>
                 <FundingModal />
             </div>
