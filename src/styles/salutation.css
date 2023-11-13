@@ -8,6 +8,12 @@
     font-size: 3.2em;
 }
 
+@media screen and (max-width: 1000px) {
+    #Salutation > div > div > h2 {
+        font-size: 1em;
+    }
+}
+
 #Salutation > div > div > span:last-child {
     font-size: 0.7em;
 }
