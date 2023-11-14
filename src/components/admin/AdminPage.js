@@ -28,6 +28,7 @@ export default function AdminPage(props) {
 
     const dispatch = useDispatch()
     const data = useSelector(state => state.data)
+    console.log(data)
 
     let { backend_endpoint: backendGetEndpoint } = useEndpoint(active_panel)
     const { backend_endpoint: backendPatchEndpoint } = useEndpoint(active_panel, false)
