@@ -56,6 +56,7 @@ export const mapBlockFormsToObjects = (blocks) => {
             const blockObject = {
                 name: blockForm.querySelector('input[name=name]').value,
                 place: blockForm.querySelector('input[name=place]').value,
+                target_audience: blockForm.querySelector('input[name=target_audience]').value,
                 moderators: blockForm.querySelector('textarea[name=moderators]').value,
                 reports: mapReportFormsToObjects(blockForm, blocks[index].reports)
             }

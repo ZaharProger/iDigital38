@@ -115,6 +115,10 @@ export default function RegisterForm() {
                     <label className="regular-text">Опыт цифровой трансформации Региона с учетом современных ИТ-трендов</label>
                     <input type="checkbox" name="3"></input>
                 </div>
+                <div className="d-flex flex-row justify-content-space-around">
+                    <label className="regular-text">День 1С:Карьеры</label>
+                    <input type="checkbox" name="4"></input>
+                </div>
                 <button type="submit" className="submit-button d-flex regular-text">
                     Отправить
                 </button>

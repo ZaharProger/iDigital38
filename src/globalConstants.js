@@ -18,6 +18,8 @@ export const HEADERS = {
     events: 'Мероприятия',
     past_events: 'Прошедшие мероприятия',
     forum_programme: 'Программа форума',
+    section_place: 'Зал',
+    target_audience: 'Целевая аудитория',
     moderators: 'Модераторы',
     speakers: 'Спикеры',
     number: '№',

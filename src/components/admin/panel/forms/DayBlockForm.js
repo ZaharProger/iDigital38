@@ -53,6 +53,12 @@ export default function DayBlockForm(props) {
                    defaultValue={ isDefined && item_data.place !== null? item_data.place : '' }
                    className={ isNestedWrapped? 'hidden optional' : 'optional' } />
             <label className={ isNestedWrapped? 'hidden' : '' }>
+                Целевая аудитория (необязательное поле)
+            </label>
+            <input name="target_audience" type="text"
+                   defaultValue={ isDefined && item_data.target_audience !== null? item_data.target_audience : '' }
+                   className={ isNestedWrapped? 'hidden optional' : 'optional' } />
+            <label className={ isNestedWrapped? 'hidden' : '' }>
                 Модераторы (необязательное поле)
                 <br />
                 При вводе разделяйте записи клавишей Enter
