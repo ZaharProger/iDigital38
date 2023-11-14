@@ -115,6 +115,7 @@ export default function ProgrammeDayForm(props) {
                     newData.day_blocks.push({
                         name: `Блок докладов ${Math.round(Math.random() * 100000 + 1)}`,
                         place: '',
+                        target_audience: '',
                         moderators: '',
                         reports: Array()
                     })
