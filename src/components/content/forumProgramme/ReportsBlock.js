@@ -18,7 +18,7 @@ export default function ReportsBlock(props) {
                             <span className="caption-header-text mb-1 me-auto">
                                 { `${HEADERS.section_place}:` }
                             </span>
-                            <span className="regular-text me-auto mb-1">
+                            <span className="caption-text me-auto mb-1">
                                 { place }
                             </span>
                         </>
@@ -31,7 +31,7 @@ export default function ReportsBlock(props) {
                             <span className="caption-header-text mb-1 me-auto">
                                 { `${HEADERS.target_audience}:` }
                             </span>
-                            <span className="regular-text me-auto mb-1">
+                            <span className="caption-text me-auto mb-1">
                                 { target_audience }
                             </span>
                         </>
