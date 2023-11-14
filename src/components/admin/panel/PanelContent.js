@@ -22,7 +22,6 @@ export default function PanelContent(props) {
     const performApiCall = useApi()
     const validate = useValidation()
     let { active_panel, data, is_single, id_from_url, controlled_callback } = props.panel_props
-    console.log(data)
     const { backend_endpoint, frontend_endpoint } = useEndpoint(active_panel, false)
 
     const removedTimetable = useSelector(state => state.removed_timetable)
