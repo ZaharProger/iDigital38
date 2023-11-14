@@ -36,7 +36,7 @@ export default function ReportsBlock(props) {
                         <ReportsTable table_props={{
                             headers: [
                                 HEADERS.number,
-                                HEADERS.report_name,
+                                HEADERS.event_name,
                                 HEADERS.time,
                                 HEADERS.main_speakers
                             ],

@@ -44,6 +44,10 @@
     color: var(--border-color);
 }
 
+#Info > h2 > a > img {
+    width: 150px;
+}
+
 #Info > img {
     cursor: pointer;
 }
