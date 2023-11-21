@@ -86,7 +86,7 @@ export default function RegisterForm() {
                 <label className="regular-text">Организация</label>
                 <select name="organization">
                     <option>Школа (ученик)</option>
-                    <option>Университет (студент)</option>
+                    <option>Университет, СПО (студент)</option>
                     <option>Предприятие (сотрудник компании)</option>
                 </select>
                 <label className="regular-text">E-mail</label>
